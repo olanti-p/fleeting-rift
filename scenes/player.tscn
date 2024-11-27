@@ -1,9 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://dadoqbh5kn2v2"]
+[gd_scene load_steps=33 format=3 uid="uid://dadoqbh5kn2v2"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_hqnfc"]
 [ext_resource type="Texture2D" uid="uid://djraq8bp4byv5" path="res://art/character_death.png" id="2_vlghn"]
 [ext_resource type="Texture2D" uid="uid://bnhb2pqq3tnca" path="res://art/character.png" id="2_w50ok"]
 [ext_resource type="Texture2D" uid="uid://bomwdeyjltuix" path="res://art/character_respawn.png" id="4_8bc5g"]
+[ext_resource type="Texture2D" uid="uid://cwtyh84ykumbg" path="res://art/stamina_bar_bg.png" id="5_8w5qt"]
+[ext_resource type="Texture2D" uid="uid://bbh457ucma3qt" path="res://art/stamina_bar_body.png" id="6_ywjb8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tniwb"]
 radius = 2.9
@@ -238,6 +240,19 @@ frame_progress = 1.0
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_pvoo3")
 target_position = Vector2(2.5, 0)
+
+[node name="StaminaBar" type="TextureProgressBar" parent="FlippableNodes"]
+unique_name_in_owner = true
+offset_left = 4.0
+offset_top = -7.0
+offset_right = 10.0
+offset_bottom = 7.0
+mouse_filter = 2
+value = 100.0
+fill_mode = 3
+texture_under = ExtResource("5_8w5qt")
+texture_progress = ExtResource("6_ywjb8")
+texture_progress_offset = Vector2(2, 2)
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0

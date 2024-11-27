@@ -7,21 +7,35 @@ const JUMP_VELOCITY = -200.0
 
 var was_on_floor: bool = false
 var looking_right: bool = true
-var is_grabbing: bool = false
+var is_grabbing: bool = false:
+	set(value):
+		is_grabbing = value
+		stamina_bar.visible = value
 var is_grabbing_right: bool = false
+var stamina: float = 100.0:
+	set(value):
+		stamina = value
+		stamina_bar.value = value
 var ignore_continued_grabbing: bool = false
 var is_dead: bool = false
 var respawn_position: Vector2
 var checked_respawn_point: RespawnPoint = null
+var air_jumps_remaining: int = NUM_AIR_JUMPS
 
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var continued_grab_timer: Timer = $ContinuedGrabTimer
 @onready var flippable_nodes: Node2D = $FlippableNodes
 @onready var grab_detector: ShapeCast2D = $FlippableNodes/GrabDetector
 @onready var player_sprite: AnimatedSprite2D = $FlippableNodes/Sprite
+@onready var stamina_bar: TextureProgressBar = %StaminaBar
 
+const MIN_STAMINA: float = 0.0
+const MAX_STAMINA: float = 100.0
+const STAMINA_LOSS_RATE: float = 30.0
+const NUM_AIR_JUMPS: int = 1
 
 func _ready() -> void:
+	stamina_bar.visible = false
 	respawn_position = global_position
 
 
@@ -49,6 +63,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		was_on_floor = true
 		coyote_timer.stop()
+		air_jumps_remaining = NUM_AIR_JUMPS
 	elif was_on_floor:
 		was_on_floor = false
 		coyote_timer.start()
@@ -61,13 +76,16 @@ func _physics_process(delta: float) -> void:
 			ignore_continued_grabbing = true
 			continued_grab_timer.start()
 			velocity = JUMP_VELOCITY * make_walljump_vector()
-		if is_on_floor():
+		elif is_on_floor():
 			velocity.y = JUMP_VELOCITY
 			was_on_floor = false
 		elif !coyote_timer.is_stopped():
 			velocity.y = JUMP_VELOCITY
 			coyote_timer.stop()
 			was_on_floor = false
+		elif air_jumps_remaining > 0:
+			air_jumps_remaining -= 1
+			velocity.y = JUMP_VELOCITY
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -91,13 +109,25 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 	# Handle grab
-	if !is_grabbing && grab_detector.is_colliding() && Input.is_action_pressed("grab") && !ignore_continued_grabbing:
+	if !is_grabbing && \
+	  grab_detector.is_colliding() && \
+	  Input.is_action_pressed("grab") && \
+	  !ignore_continued_grabbing && \
+	  !is_on_floor() && \
+	  stamina != MIN_STAMINA:
 		is_grabbing = true
 		is_grabbing_right = looking_right
 		was_on_floor = false
 	if Input.is_action_just_released("grab"):
 		is_grabbing = false
 		ignore_continued_grabbing = false
+	if !is_grabbing && is_on_floor():
+		stamina = MAX_STAMINA
+	if is_grabbing:
+		stamina = move_toward(stamina, MIN_STAMINA, STAMINA_LOSS_RATE * delta)
+		if stamina == MIN_STAMINA:
+			is_grabbing = false
+			
 	
 	if !grab_detector.is_colliding():
 		ignore_continued_grabbing = false
