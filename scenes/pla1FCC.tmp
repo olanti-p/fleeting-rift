@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dadoqbh5kn2v2"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_hqnfc"]
+[ext_resource type="Texture2D" uid="uid://duoa45y8as7lo" path="res://art/character.png" id="2_w50ok"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tniwb"]
+radius = 3.0
+height = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vqub"]
+atlas = ExtResource("2_w50ok")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvoo3"]
+radius = 1.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(304, 455)
+collision_layer = 4
+script = ExtResource("1_hqnfc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("CapsuleShape2D_tniwb")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.06
+one_shot = true
+
+[node name="FlippableNodes" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="FlippableNodes"]
+texture = SubResource("AtlasTexture_5vqub")
+
+[node name="GrabDetector" type="ShapeCast2D" parent="FlippableNodes"]
+shape = SubResource("CircleShape2D_pvoo3")
+target_position = Vector2(2.5, 0)

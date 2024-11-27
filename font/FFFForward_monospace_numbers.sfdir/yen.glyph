@@ -1,0 +1,161 @@
+StartChar: yen
+Encoding: 165 165 101
+Width: 875
+GlyphClass: 1
+Flags: W
+TtInstrs:
+NPUSHB
+ 62
+ 1
+ 20
+ 20
+ 64
+ 21
+ 11
+ 13
+ 12
+ 9
+ 8
+ 5
+ 4
+ 18
+ 17
+ 14
+ 3
+ 13
+ 4
+ 19
+ 4
+ 3
+ 3
+ 0
+ 8
+ 7
+ 4
+ 6
+ 5
+ 2
+ 3
+ 1
+ 10
+ 9
+ 4
+ 16
+ 15
+ 12
+ 3
+ 11
+ 15
+ 14
+ 3
+ 3
+ 2
+ 7
+ 17
+ 16
+ 1
+ 3
+ 0
+ 19
+ 18
+ 1
+ 11
+ 10
+ 7
+ 3
+ 6
+ 3
+ 1
+ 1
+ 70
+SROUND
+MDAP[rnd]
+SHZ[rp1]
+RTG
+SVTCA[y-axis]
+MIAP[rnd]
+SLOOP
+ALIGNRP
+MIAP[rnd]
+ALIGNRP
+MDAP[rnd]
+SLOOP
+ALIGNRP
+MIRP[rp0,min,rnd,black]
+SLOOP
+ALIGNRP
+SVTCA[x-axis]
+MDAP[rnd]
+SLOOP
+ALIGNRP
+MIRP[rp0,min,rnd,black]
+ALIGNRP
+MDAP[rnd]
+SLOOP
+ALIGNRP
+MIRP[rp0,min,rnd,black]
+ALIGNRP
+MDAP[rnd]
+SLOOP
+ALIGNRP
+MIRP[rp0,min,rnd,black]
+SLOOP
+ALIGNRP
+SVTCA[y-axis]
+MDAP[no-rnd]
+MDAP[no-rnd]
+MDAP[no-rnd]
+MDAP[no-rnd]
+MDAP[no-rnd]
+MDAP[no-rnd]
+IUP[x]
+IUP[y]
+SVTCA[x-axis]
+MD[grid]
+ROUND[Grey]
+PUSHW_2
+ 1
+ 20
+MD[grid]
+ROUND[Grey]
+SUB
+PUSHB_1
+ 64
+GT
+IF
+SHPIX
+SRP1
+SHZ[rp1]
+PUSHW_2
+ 20
+ -64
+SHPIX
+EIF
+EndTTInstrs
+LayerCount: 2
+Fore
+SplineSet
+243 372 m 1,0,-1
+ -7 372 l 1,1,-1
+ -7 629 l 1,2,-1
+ 243 629 l 1,3,-1
+ 243 747 l 1,4,-1
+ -7 747 l 1,5,-1
+ -7 1254 l 1,6,-1
+ 250 1254 l 1,7,-1
+ 250 1004 l 1,8,-1
+ 493 1004 l 1,9,-1
+ 493 1254 l 1,10,-1
+ 750 1254 l 1,11,-1
+ 750 747 l 1,12,-1
+ 500 747 l 1,13,-1
+ 500 629 l 1,14,-1
+ 750 629 l 1,15,-1
+ 750 372 l 1,16,-1
+ 500 372 l 1,17,-1
+ 500 -4 l 1,18,-1
+ 243 -4 l 1,19,-1
+ 243 372 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
