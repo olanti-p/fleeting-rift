@@ -14,7 +14,7 @@ var is_grabbing: bool = false:
 var is_grabbing_right: bool = false
 var stamina: float = 100.0:
 	set(value):
-		stamina = value
+		stamina = clampf(value, MIN_STAMINA, MAX_STAMINA)
 		stamina_bar.value = value
 var ignore_continued_grabbing: bool = false
 var is_dead: bool = false
@@ -32,6 +32,7 @@ var air_jumps_remaining: int = NUM_AIR_JUMPS
 const MIN_STAMINA: float = 0.0
 const MAX_STAMINA: float = 100.0
 const STAMINA_LOSS_RATE: float = 30.0
+const STAMINA_LOSS_PER_JUMP: float = 30.0
 const NUM_AIR_JUMPS: int = 1
 
 func _ready() -> void:
@@ -76,6 +77,7 @@ func _physics_process(delta: float) -> void:
 			ignore_continued_grabbing = true
 			continued_grab_timer.start()
 			velocity = JUMP_VELOCITY * make_walljump_vector()
+			stamina -= STAMINA_LOSS_PER_JUMP
 		elif is_on_floor():
 			velocity.y = JUMP_VELOCITY
 			was_on_floor = false
