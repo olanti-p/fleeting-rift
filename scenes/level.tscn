@@ -10,17 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://xm6ihuvsfbrd" path="res://scenes/star_emitter.tscn" id="5_tfeke"]
 [ext_resource type="PackedScene" uid="uid://daip1ghfwxrxb" path="res://scenes/laser_emitter.tscn" id="6_vypjk"]
 [ext_resource type="PackedScene" uid="uid://cou32s6hskjvn" path="res://scenes/laser_beam.tscn" id="7_wvvt7"]
+[ext_resource type="StyleBox" uid="uid://c3rw2njbv6r1a" path="res://ui/simple_panel.tres" id="10_jxr8j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfy25"]
 size = Vector2(1290, 86)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gafte"]
-bg_color = Color(0.0588235, 0.105882, 0.14902, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.960784, 0.909804, 0.819608, 1)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_rvwlj")
@@ -82,7 +75,7 @@ position = Vector2(39, 228)
 position = Vector2(27, 122)
 
 [node name="Player" parent="." instance=ExtResource("2_1eu15")]
-position = Vector2(26, 152)
+position = Vector2(40, 159)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -95,22 +88,88 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
+[node name="TimerContainer" type="PanelContainer" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_right = 56.0
 offset_bottom = 16.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_gafte")
+theme_override_styles/panel = ExtResource("10_jxr8j")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/TimerContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 1
 
-[node name="LevelTimeDisplay" type="Label" parent="CanvasLayer/Control/PanelContainer/MarginContainer"]
+[node name="LevelTimeDisplay" type="Label" parent="CanvasLayer/Control/TimerContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.960784, 0.909804, 0.819608, 1)
 theme_override_fonts/font = ExtResource("5_0s6dd")
 theme_override_font_sizes/font_size = 8
 text = "00:00:00.0"
+
+[node name="ConsoleContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -57.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/ConsoleContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = -1
+
+[node name="DisplayText" type="PanelContainer" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("10_jxr8j")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer/DisplayText"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = -1
+
+[node name="CheatCodeList" type="RichTextLabel" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer/DisplayText/MarginContainer"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "* [color=#20a5a6]1[/color] - Enable immortality
+* [color=#20a5a6]2[/color] - Disable colllisions
+* [color=#20a5a6]0[/color] - Close"
+fit_content = true
+scroll_active = false
+
+[node name="InputText" type="PanelContainer" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("10_jxr8j")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer/InputText"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer/InputText/MarginContainer"]
+layout_mode = 2
+
+[node name="Caret" type="RichTextLabel" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer/InputText/MarginContainer/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(8, 12)
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = ">[pulse freq=2.0 ease=-20.0 color=#00000000]_[/pulse]"
+scroll_active = false
+
+[node name="ConsoleOpenTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
