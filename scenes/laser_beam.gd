@@ -6,6 +6,7 @@ var speed: float = 32.0
 
 @onready var main_sprite: AnimatedSprite2D = $MainSprite
 @onready var collision_detector: ShapeCast2D = $CollisionDetector
+@onready var hit_collision: CollisionShape2D = $HitArea/HitCollision
 
 
 func _physics_process(delta: float) -> void:
@@ -14,6 +15,7 @@ func _physics_process(delta: float) -> void:
 	global_position.x += speed * delta
 	if collision_detector.is_colliding():
 		is_dead = true
+		hit_collision.disabled = true
 		main_sprite.play("death")
 		await main_sprite.animation_finished
 		queue_free()
