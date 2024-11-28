@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cwil3jmniqbr5"]
+[gd_scene load_steps=14 format=4 uid="uid://cwil3jmniqbr5"]
 
 [ext_resource type="Texture2D" uid="uid://b88o8lel7an4m" path="res://icon.svg" id="1_lny80"]
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_rvwlj"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://daip1ghfwxrxb" path="res://scenes/laser_emitter.tscn" id="6_vypjk"]
 [ext_resource type="PackedScene" uid="uid://cou32s6hskjvn" path="res://scenes/laser_beam.tscn" id="7_wvvt7"]
 [ext_resource type="StyleBox" uid="uid://c3rw2njbv6r1a" path="res://ui/simple_panel.tres" id="10_jxr8j"]
+[ext_resource type="PackedScene" uid="uid://dfw4ac21go7bq" path="res://scenes/glitch_entry.tscn" id="12_g20ul"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfy25"]
 size = Vector2(1290, 86)
@@ -73,6 +74,11 @@ position = Vector2(39, 228)
 
 [node name="LaserBeam" parent="Projectiles" instance=ExtResource("7_wvvt7")]
 position = Vector2(27, 122)
+
+[node name="Glitches" type="Node2D" parent="."]
+
+[node name="GlitchEntry" parent="Glitches" instance=ExtResource("12_g20ul")]
+position = Vector2(237, 99)
 
 [node name="Player" parent="." instance=ExtResource("2_1eu15")]
 position = Vector2(40, 159)
