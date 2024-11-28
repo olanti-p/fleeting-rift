@@ -1,0 +1,225 @@
+[gd_scene load_steps=19 format=3 uid="uid://c31p42f5jycat"]
+
+[ext_resource type="Texture2D" uid="uid://c4fiuph21tjjr" path="res://art/exit_door.png" id="1_0143j"]
+[ext_resource type="Script" path="res://scenes/exit_door.gd" id="1_kqnjs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7b7p"]
+atlas = ExtResource("1_0143j")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txbjw"]
+atlas = ExtResource("1_0143j")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmimp"]
+atlas = ExtResource("1_0143j")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aurwc"]
+atlas = ExtResource("1_0143j")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge2l4"]
+atlas = ExtResource("1_0143j")
+region = Rect2(96, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u5a0"]
+atlas = ExtResource("1_0143j")
+region = Rect2(120, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0d4h"]
+atlas = ExtResource("1_0143j")
+region = Rect2(144, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tb6h8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7b7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txbjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmimp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aurwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge2l4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u5a0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0d4h")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sx4ex"]
+size = Vector2(44, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bkqd"]
+size = Vector2(8, 16)
+
+[sub_resource type="Animation" id="Animation_8sjgw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2cuis"]
+resource_name = "do_open"
+length = 0.34
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.14, 0.2, 0.26, 0.34),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lginc"]
+_data = {
+"RESET": SubResource("Animation_8sjgw"),
+"do_open": SubResource("Animation_2cuis")
+}
+
+[sub_resource type="Animation" id="Animation_7k4v2"]
+resource_name = "show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HintContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -4), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HintContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eq8r1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HintContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HintContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mg3jr"]
+_data = {
+"RESET": SubResource("Animation_eq8r1"),
+"show": SubResource("Animation_7k4v2")
+}
+
+[node name="ExitDoor" type="Node2D"]
+script = ExtResource("1_kqnjs")
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tb6h8")
+autoplay = "default"
+
+[node name="BottomStairs" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomStairs"]
+polygon = PackedVector2Array(-12, 12, -8, 9, 8, 9, 12, 12)
+
+[node name="TopStairs" type="StaticBody2D" parent="."]
+rotation = -3.14159
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TopStairs"]
+polygon = PackedVector2Array(-12, 12, -8, 9, 8, 9, 12, 12)
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("RectangleShape2D_sx4ex")
+
+[node name="PlayerEntryDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEntryDetector"]
+shape = SubResource("RectangleShape2D_6bkqd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lginc")
+}
+autoplay = "RESET"
+
+[node name="HintAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mg3jr")
+}
+
+[node name="HintContainer" type="Node2D" parent="."]
+
+[node name="EnterHint" type="Label" parent="HintContainer"]
+offset_left = -40.0
+offset_top = -24.0
+offset_right = 47.0
+offset_bottom = -13.0
+theme_override_colors/font_outline_color = Color(0.0588235, 0.105882, 0.14902, 1)
+theme_override_constants/outline_size = 8
+text = "Press W to enter"
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="body_entered" from="PlayerEntryDetector" to="." method="_on_player_entry_detector_body_entered"]
+[connection signal="body_exited" from="PlayerEntryDetector" to="." method="_on_player_entry_detector_body_exited"]
