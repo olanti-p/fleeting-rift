@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://daip1ghfwxrxb"]
+[gd_scene load_steps=15 format=3 uid="uid://daip1ghfwxrxb"]
 
 [ext_resource type="Script" path="res://scenes/laser_emitter.gd" id="1_u7cwd"]
 [ext_resource type="Texture2D" uid="uid://ccr1sw5u28sfd" path="res://art/laser_emitter.png" id="2_dgrdw"]
@@ -7,9 +7,9 @@
 atlas = ExtResource("2_dgrdw")
 region = Rect2(0, 0, 16, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qtjqm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gxme"]
 atlas = ExtResource("2_dgrdw")
-region = Rect2(0, 0, 16, 8)
+region = Rect2(16, 0, 16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qguhb"]
 atlas = ExtResource("2_dgrdw")
@@ -43,20 +43,24 @@ region = Rect2(112, 0, 16, 8)
 atlas = ExtResource("2_dgrdw")
 region = Rect2(128, 0, 16, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xauy0"]
+atlas = ExtResource("2_dgrdw")
+region = Rect2(144, 0, 16, 8)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_8xmfb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ov7rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gxme")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qtjqm")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qguhb")
 }, {
@@ -80,6 +84,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o56at")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xauy0")
 }],
 "loop": false,
 "name": &"spawn",
