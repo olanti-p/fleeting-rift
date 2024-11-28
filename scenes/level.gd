@@ -4,10 +4,26 @@ class_name Level
 @onready var projectiles: Node2D = $Projectiles
 @onready var console_open_timer: Timer = $ConsoleOpenTimer
 @onready var console_container: MarginContainer = %ConsoleContainer
+@onready var vfx_scanlines_1: CanvasLayer = $VFX_Scanlines1
+@onready var vfx_scanlines_2: CanvasLayer = $VFX_Scanlines2
+@onready var vfx_bad_blocks: CanvasLayer = $VFX_BadBlocks
 
+
+@export var glitches_visible: bool = false:
+	set(value):
+		glitches_visible = value
+		if vfx_scanlines_1:
+			_update_glitch_vfx()
+
+
+func _update_glitch_vfx() -> void:
+	vfx_scanlines_1.visible = glitches_visible
+	vfx_scanlines_2.visible = glitches_visible
+	vfx_bad_blocks.visible = glitches_visible
 
 
 func _ready() -> void:
+	_update_glitch_vfx()
 	console_container.visible = false
 	for child in $Emitters.get_children():
 		child.register_owner_level(self)

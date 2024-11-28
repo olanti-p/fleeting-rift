@@ -1,6 +1,5 @@
-[gd_scene load_steps=45 format=4 uid="uid://cwil3jmniqbr5"]
+[gd_scene load_steps=48 format=4 uid="uid://cwil3jmniqbr5"]
 
-[ext_resource type="Texture2D" uid="uid://b88o8lel7an4m" path="res://icon.svg" id="1_lny80"]
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_rvwlj"]
 [ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="1_ynsno"]
 [ext_resource type="PackedScene" uid="uid://dadoqbh5kn2v2" path="res://scenes/player.tscn" id="2_1eu15"]
@@ -16,9 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://dfw4ac21go7bq" path="res://scenes/glitch_entry.tscn" id="12_g20ul"]
 [ext_resource type="PackedScene" uid="uid://dhvd7jxh07fvh" path="res://scenes/scan_line.tscn" id="14_udcnm"]
 [ext_resource type="PackedScene" uid="uid://bu8dhkrdwmv34" path="res://scenes/bad_screen_block.tscn" id="16_kg1pc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfy25"]
-size = Vector2(1290, 86)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ea5ar"]
 resource_local_to_scene = true
@@ -182,18 +178,38 @@ shader = ExtResource("1_ynsno")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6iqu"]
+resource_local_to_scene = true
+shader = ExtResource("1_ynsno")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ib4mr"]
+resource_local_to_scene = true
+shader = ExtResource("1_ynsno")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ph8s7"]
+resource_local_to_scene = true
+shader = ExtResource("1_ynsno")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swx3i"]
+resource_local_to_scene = true
+shader = ExtResource("1_ynsno")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7lmsv"]
+resource_local_to_scene = true
+shader = ExtResource("1_ynsno")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_rvwlj")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(642, 678)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-scale = Vector2(13.0937, 0.66971)
-texture = ExtResource("1_lny80")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_sfy25")
 
 [node name="Ground" type="Node2D" parent="."]
 
@@ -254,9 +270,9 @@ position = Vector2(372, 220)
 [node name="Player" parent="." instance=ExtResource("2_1eu15")]
 position = Vector2(40, 159)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -265,20 +281,20 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TimerContainer" type="PanelContainer" parent="CanvasLayer/Control"]
+[node name="TimerContainer" type="PanelContainer" parent="UI/Control"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 56.0
 offset_bottom = 16.0
 theme_override_styles/panel = ExtResource("10_jxr8j")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/TimerContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/TimerContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 1
 
-[node name="LevelTimeDisplay" type="Label" parent="CanvasLayer/Control/TimerContainer/MarginContainer"]
+[node name="LevelTimeDisplay" type="Label" parent="UI/Control/TimerContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.960784, 0.909804, 0.819608, 1)
@@ -286,7 +302,7 @@ theme_override_fonts/font = ExtResource("5_0s6dd")
 theme_override_font_sizes/font_size = 8
 text = "00:00:00.0"
 
-[node name="ConsoleContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+[node name="ConsoleContainer" type="MarginContainer" parent="UI/Control"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -298,23 +314,23 @@ offset_top = -57.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/ConsoleContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/ConsoleContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = -1
 
-[node name="DisplayText" type="PanelContainer" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer"]
+[node name="DisplayText" type="PanelContainer" parent="UI/Control/ConsoleContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("10_jxr8j")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer/DisplayText"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/ConsoleContainer/VBoxContainer/DisplayText"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = -1
 
-[node name="CheatCodeList" type="RichTextLabel" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer/DisplayText/MarginContainer"]
+[node name="CheatCodeList" type="RichTextLabel" parent="UI/Control/ConsoleContainer/VBoxContainer/DisplayText/MarginContainer"]
 unique_name_in_owner = true
 clip_contents = false
 layout_mode = 2
@@ -325,21 +341,21 @@ text = "* [color=#20a5a6]1[/color] - Enable immortality
 fit_content = true
 scroll_active = false
 
-[node name="InputText" type="PanelContainer" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer"]
+[node name="InputText" type="PanelContainer" parent="UI/Control/ConsoleContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("10_jxr8j")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer/InputText"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/ConsoleContainer/VBoxContainer/InputText"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer/InputText/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/ConsoleContainer/VBoxContainer/InputText/MarginContainer"]
 layout_mode = 2
 
-[node name="Caret" type="RichTextLabel" parent="CanvasLayer/Control/ConsoleContainer/VBoxContainer/InputText/MarginContainer/HBoxContainer"]
+[node name="Caret" type="RichTextLabel" parent="UI/Control/ConsoleContainer/VBoxContainer/InputText/MarginContainer/HBoxContainer"]
 clip_contents = false
 custom_minimum_size = Vector2(8, 12)
 layout_mode = 2
@@ -352,139 +368,142 @@ scroll_active = false
 wait_time = 0.3
 one_shot = true
 
-[node name="VFX" type="CanvasLayer" parent="."]
+[node name="VFX_Scanlines1" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="ScanLine" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_ea5ar")
 invert_color = true
 
-[node name="ScanLine2" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine2" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_8er8q")
 invert_color = true
 
-[node name="ScanLine3" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine3" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_4dtw1")
 invert_color = true
 
-[node name="ScanLine4" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine4" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_06n8d")
 invert_color = true
 
-[node name="ScanLine5" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine5" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_cdjkk")
 invert_color = true
 
-[node name="ScanLine6" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine6" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_0fvye")
 
-[node name="ScanLine7" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine7" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_r51rl")
 
-[node name="ScanLine8" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine8" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_mvj0y")
 
-[node name="ScanLine9" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine9" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_vwuen")
 invert_color = true
 
-[node name="ScanLine10" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine10" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_3i318")
 invert_color = true
 
-[node name="ScanLine11" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine11" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_05dvt")
 invert_color = true
 
-[node name="ScanLine12" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine12" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_rdq81")
 invert_color = true
 
-[node name="ScanLine13" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine13" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_gsijm")
 invert_color = true
 
-[node name="ScanLine14" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine14" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_r71v5")
 
-[node name="ScanLine15" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine15" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_p5rlo")
 
-[node name="ScanLine16" parent="VFX" instance=ExtResource("14_udcnm")]
+[node name="ScanLine16" parent="VFX_Scanlines1" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_bkexo")
 
-[node name="VFX2" type="CanvasLayer" parent="."]
+[node name="VFX_Scanlines2" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="ScanLine" parent="VFX2" instance=ExtResource("14_udcnm")]
+[node name="ScanLine" parent="VFX_Scanlines2" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_6ufin")
 invert_color = true
 displacement = 0.02
 
-[node name="ScanLine2" parent="VFX2" instance=ExtResource("14_udcnm")]
+[node name="ScanLine2" parent="VFX_Scanlines2" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_kvf2v")
 invert_color = true
 displacement = 0.02
 
-[node name="ScanLine3" parent="VFX2" instance=ExtResource("14_udcnm")]
+[node name="ScanLine3" parent="VFX_Scanlines2" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_4txif")
 displacement = 0.02
 
-[node name="ScanLine4" parent="VFX2" instance=ExtResource("14_udcnm")]
+[node name="ScanLine4" parent="VFX_Scanlines2" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_wlaqp")
 displacement = 0.02
 
-[node name="ScanLine5" parent="VFX2" instance=ExtResource("14_udcnm")]
+[node name="ScanLine5" parent="VFX_Scanlines2" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_7yy82")
 displacement = 0.02
 
-[node name="ScanLine6" parent="VFX2" instance=ExtResource("14_udcnm")]
+[node name="ScanLine6" parent="VFX_Scanlines2" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_38udp")
 invert_color = true
 displacement = 0.02
 
-[node name="ScanLine7" parent="VFX2" instance=ExtResource("14_udcnm")]
+[node name="ScanLine7" parent="VFX_Scanlines2" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_7ujyd")
 invert_color = true
 displacement = 0.02
 
-[node name="ScanLine8" parent="VFX2" instance=ExtResource("14_udcnm")]
+[node name="ScanLine8" parent="VFX_Scanlines2" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_ee1sa")
 displacement = 0.02
 
-[node name="ScanLine9" parent="VFX2" instance=ExtResource("14_udcnm")]
+[node name="ScanLine9" parent="VFX_Scanlines2" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_hibqb")
 displacement = 0.02
 
-[node name="ScanLine10" parent="VFX2" instance=ExtResource("14_udcnm")]
+[node name="ScanLine10" parent="VFX_Scanlines2" instance=ExtResource("14_udcnm")]
 material = SubResource("ShaderMaterial_op7bc")
 displacement = 0.02
 
-[node name="VFX3" type="CanvasLayer" parent="."]
+[node name="VFX_BadBlocks" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="BadScreenBlock" parent="VFX3" instance=ExtResource("16_kg1pc")]
+[node name="BadScreenBlock" parent="VFX_BadBlocks" instance=ExtResource("16_kg1pc")]
 material = SubResource("ShaderMaterial_47pjr")
 position = Vector2(81, 48)
 
-[node name="BadScreenBlock2" parent="VFX3" instance=ExtResource("16_kg1pc")]
-material = SubResource("ShaderMaterial_47pjr")
+[node name="BadScreenBlock2" parent="VFX_BadBlocks" instance=ExtResource("16_kg1pc")]
+material = SubResource("ShaderMaterial_f6iqu")
 position = Vector2(268, 45)
 scale = Vector2(23.0512, 7.97275)
 
-[node name="BadScreenBlock3" parent="VFX3" instance=ExtResource("16_kg1pc")]
-material = SubResource("ShaderMaterial_47pjr")
+[node name="BadScreenBlock3" parent="VFX_BadBlocks" instance=ExtResource("16_kg1pc")]
+material = SubResource("ShaderMaterial_ib4mr")
 position = Vector2(345, 141)
 scale = Vector2(13.7294, 18.3021)
 
-[node name="BadScreenBlock4" parent="VFX3" instance=ExtResource("16_kg1pc")]
-material = SubResource("ShaderMaterial_47pjr")
+[node name="BadScreenBlock4" parent="VFX_BadBlocks" instance=ExtResource("16_kg1pc")]
+material = SubResource("ShaderMaterial_ph8s7")
 position = Vector2(247, 218)
 scale = Vector2(28.3813, 4.44352)
 
-[node name="BadScreenBlock5" parent="VFX3" instance=ExtResource("16_kg1pc")]
-material = SubResource("ShaderMaterial_47pjr")
+[node name="BadScreenBlock5" parent="VFX_BadBlocks" instance=ExtResource("16_kg1pc")]
+material = SubResource("ShaderMaterial_swx3i")
 position = Vector2(74, 141)
 scale = Vector2(15.237, 10.369)
 
-[node name="BadScreenBlock6" parent="VFX3" instance=ExtResource("16_kg1pc")]
-material = SubResource("ShaderMaterial_47pjr")
+[node name="BadScreenBlock6" parent="VFX_BadBlocks" instance=ExtResource("16_kg1pc")]
+material = SubResource("ShaderMaterial_7lmsv")
 position = Vector2(188, 110)
 scale = Vector2(12.1835, 15.0881)
