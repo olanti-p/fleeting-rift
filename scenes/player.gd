@@ -155,6 +155,8 @@ func _on_continued_grab_timer_timeout() -> void:
 
 
 func _on_hit() -> void:
+	if is_dead:
+		return
 	is_dead = true
 	player_sprite.play("death")
 	await player_sprite.animation_finished

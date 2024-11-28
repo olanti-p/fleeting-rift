@@ -1,4 +1,11 @@
 extends Node2D
+class_name Level
+
+@onready var projectiles: Node2D = $Projectiles
+
+func _ready() -> void:
+	for child in $Emitters.get_children():
+		child.register_owner_level(self)
 
 
 var level_time: float = 0.0:
@@ -15,3 +22,8 @@ var level_time: float = 0.0:
 
 func _process(delta: float) -> void:
 	level_time += delta
+
+
+func add_projectile(projectile: Node2D, pos: Vector2) -> void:
+	projectiles.add_child(projectile)
+	projectile.global_position = pos

@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3 uid="uid://cou32s6hskjvn"]
+
+[ext_resource type="Texture2D" uid="uid://buj1o0s0padcd" path="res://art/laser.png" id="1_rfvtb"]
+[ext_resource type="Script" path="res://scenes/laser_beam.gd" id="1_wdhmu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sidla"]
+atlas = ExtResource("1_rfvtb")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvygb"]
+atlas = ExtResource("1_rfvtb")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgocq"]
+atlas = ExtResource("1_rfvtb")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7ixj"]
+atlas = ExtResource("1_rfvtb")
+region = Rect2(24, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shdo2"]
+atlas = ExtResource("1_rfvtb")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsywp"]
+atlas = ExtResource("1_rfvtb")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owhw3"]
+atlas = ExtResource("1_rfvtb")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_benf5"]
+atlas = ExtResource("1_rfvtb")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2wfw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sidla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvygb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgocq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7ixj")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shdo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsywp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owhw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_benf5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qohep"]
+size = Vector2(6, 2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5h2q"]
+radius = 1.0
+
+[node name="LaserBeam" type="Node2D"]
+script = ExtResource("1_wdhmu")
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m2wfw")
+animation = &"death"
+autoplay = "idle"
+
+[node name="HitArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource("RectangleShape2D_qohep")
+
+[node name="CollisionDetector" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_p5h2q")
+target_position = Vector2(2.5, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(-1, 0)
+amount = 3
+lifetime = 0.7
+lifetime_randomness = 0.4
+emission_shape = 3
+emission_rect_extents = Vector2(3, 1)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 20)
+initial_velocity_min = 3.0
+initial_velocity_max = 4.0
+color = Color(0.866667, 0.337255, 0.223529, 1)

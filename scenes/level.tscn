@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cwil3jmniqbr5"]
+[gd_scene load_steps=13 format=4 uid="uid://cwil3jmniqbr5"]
 
 [ext_resource type="Texture2D" uid="uid://b88o8lel7an4m" path="res://icon.svg" id="1_lny80"]
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_rvwlj"]
@@ -6,6 +6,10 @@
 [ext_resource type="TileSet" uid="uid://61jhwsxe4du" path="res://tileset.tres" id="2_o6s4o"]
 [ext_resource type="PackedScene" uid="uid://j0cv5mpeq3d6" path="res://scenes/respawn_point.tscn" id="4_wvt3n"]
 [ext_resource type="FontFile" uid="uid://c5hh33uj7dtlh" path="res://font/FFFFORWA_MONONUMBER.TTF" id="5_0s6dd"]
+[ext_resource type="PackedScene" uid="uid://bg5vq4wc07s0l" path="res://scenes/spinning_star.tscn" id="5_67dry"]
+[ext_resource type="PackedScene" uid="uid://xm6ihuvsfbrd" path="res://scenes/star_emitter.tscn" id="5_tfeke"]
+[ext_resource type="PackedScene" uid="uid://daip1ghfwxrxb" path="res://scenes/laser_emitter.tscn" id="6_vypjk"]
+[ext_resource type="PackedScene" uid="uid://cou32s6hskjvn" path="res://scenes/laser_beam.tscn" id="7_wvvt7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfy25"]
 size = Vector2(1290, 86)
@@ -58,6 +62,24 @@ position = Vector2(386, 164)
 
 [node name="RespawnPoint4" parent="Respawns" instance=ExtResource("4_wvt3n")]
 position = Vector2(118, 52)
+
+[node name="Emitters" type="Node2D" parent="."]
+
+[node name="StarEmitter" parent="Emitters" instance=ExtResource("5_tfeke")]
+position = Vector2(120, 204)
+spawn_time = 1.0
+
+[node name="LaserEmitter" parent="Emitters" instance=ExtResource("6_vypjk")]
+position = Vector2(8, 145)
+spawn_time = 1.0
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="SpinningStar" parent="Projectiles" instance=ExtResource("5_67dry")]
+position = Vector2(39, 228)
+
+[node name="LaserBeam" parent="Projectiles" instance=ExtResource("7_wvvt7")]
+position = Vector2(27, 122)
 
 [node name="Player" parent="." instance=ExtResource("2_1eu15")]
 position = Vector2(26, 152)

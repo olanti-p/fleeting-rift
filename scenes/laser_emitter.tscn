@@ -1,0 +1,103 @@
+[gd_scene load_steps=14 format=3 uid="uid://daip1ghfwxrxb"]
+
+[ext_resource type="Script" path="res://scenes/laser_emitter.gd" id="1_u7cwd"]
+[ext_resource type="Texture2D" uid="uid://ccr1sw5u28sfd" path="res://art/laser_emitter.png" id="2_dgrdw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov7rf"]
+atlas = ExtResource("2_dgrdw")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtjqm"]
+atlas = ExtResource("2_dgrdw")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qguhb"]
+atlas = ExtResource("2_dgrdw")
+region = Rect2(16, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap836"]
+atlas = ExtResource("2_dgrdw")
+region = Rect2(32, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qffmm"]
+atlas = ExtResource("2_dgrdw")
+region = Rect2(48, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fa5i1"]
+atlas = ExtResource("2_dgrdw")
+region = Rect2(64, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_768jl"]
+atlas = ExtResource("2_dgrdw")
+region = Rect2(80, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mnlr"]
+atlas = ExtResource("2_dgrdw")
+region = Rect2(96, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3n72"]
+atlas = ExtResource("2_dgrdw")
+region = Rect2(112, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o56at"]
+atlas = ExtResource("2_dgrdw")
+region = Rect2(128, 0, 16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8xmfb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov7rf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtjqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qguhb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap836")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qffmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fa5i1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_768jl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mnlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3n72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o56at")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 10.0
+}]
+
+[node name="LaserEmitter" type="Node2D"]
+script = ExtResource("1_u7cwd")
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8xmfb")
+animation = &"spawn"
+autoplay = "idle"
+
+[node name="LaserSpawnPos" type="Marker2D" parent="."]
+position = Vector2(2, 0)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
