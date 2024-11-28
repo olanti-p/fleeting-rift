@@ -22,6 +22,9 @@ var respawn_position: Vector2
 var checked_respawn_point: RespawnPoint = null
 var air_jumps_remaining: int = NUM_AIR_JUMPS
 
+var nearby_door: ExitDoor = null
+var is_entering_door: bool = false
+
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var continued_grab_timer: Timer = $ContinuedGrabTimer
 @onready var flippable_nodes: Node2D = $FlippableNodes
@@ -54,8 +57,19 @@ func make_walljump_vector() -> Vector2:
 
 
 func _physics_process(delta: float) -> void:
-	if is_dead:
+	if is_dead || is_entering_door:
 		return
+	
+	# Entering door
+	if !is_entering_door && nearby_door && Input.is_action_just_pressed("up"):
+		is_entering_door = true
+		flippable_nodes.visible = false
+		nearby_door.do_enter()
+		await nearby_door.has_been_entered
+		is_entering_door = false
+		flippable_nodes.visible = true
+		return
+		
 	# Add the gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -155,7 +169,7 @@ func _on_continued_grab_timer_timeout() -> void:
 
 
 func _on_hit() -> void:
-	if is_dead:
+	if is_dead || is_entering_door:
 		return
 	is_dead = true
 	player_sprite.play("death")
