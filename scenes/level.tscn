@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=4 uid="uid://cwil3jmniqbr5"]
+[gd_scene load_steps=18 format=4 uid="uid://cwil3jmniqbr5"]
 
+[ext_resource type="Material" uid="uid://cabo7x1cmo5yr" path="res://scenes/level_material.tres" id="1_f5bi3"]
 [ext_resource type="Texture2D" uid="uid://b88o8lel7an4m" path="res://icon.svg" id="1_lny80"]
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_rvwlj"]
 [ext_resource type="PackedScene" uid="uid://dadoqbh5kn2v2" path="res://scenes/player.tscn" id="2_1eu15"]
@@ -16,6 +17,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfy25"]
 size = Vector2(1290, 86)
+
+[sub_resource type="Gradient" id="Gradient_b1ngu"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g4hp7"]
+gradient = SubResource("Gradient_b1ngu")
+width = 1
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_rvwlj")
@@ -186,3 +194,11 @@ scroll_active = false
 [node name="ConsoleOpenTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="VFX" type="CanvasLayer" parent="."]
+
+[node name="Overlay" type="Sprite2D" parent="VFX"]
+material = ExtResource("1_f5bi3")
+position = Vector2(212.75, 119.75)
+scale = Vector2(426.5, 240.5)
+texture = SubResource("GradientTexture1D_g4hp7")
