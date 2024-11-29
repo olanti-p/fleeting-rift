@@ -7,11 +7,14 @@ const packed_star: PackedScene = preload("res://scenes/spinning_star.tscn")
 @onready var spawn_timer: Timer = $SpawnTimer
 
 @export var spawn_time: float = 3.0
+@export var first_delay: float = 0.0
 var owner_level: Level = null
 
 
 func _ready() -> void:
 	spawn_timer.wait_time = spawn_time
+	if first_delay > 0:
+		await get_tree().create_timer(first_delay).timeout
 	spawn_timer.start()
 
 
