@@ -130,13 +130,16 @@ func _physics_process(delta: float) -> void:
 				looking_right = false
 				flippable_nodes.apply_scale(Vector2(-1, 1))
 	if direction:
-		# While in air, we want to conserve extra velocity gained from wall jump
-		if is_on_floor() or \
+		# While in air, or on ice, we want to conserve extra velocity gained from wall jump
+		if (is_on_floor() and ThisRun.current_level != 2) or \
 		   (direction > 0 and velocity.x < SPEED) or \
 		   (direction < 0 and velocity.x > -SPEED):
 			velocity.x = direction * SPEED
 	elif direction == 0:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if is_on_floor() and ThisRun.current_level == 2:
+			velocity.x = move_toward(velocity.x, 0, SPEED * delta * 4.0)
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 	# Handle grab
 	if !is_control_hackably_disabled && \
