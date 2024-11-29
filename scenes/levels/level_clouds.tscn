@@ -1,205 +1,205 @@
 [gd_scene load_steps=39 format=4 uid="uid://6lms22mfmhln"]
 
-[ext_resource type="PackedScene" uid="uid://cwil3jmniqbr5" path="res://scenes/level.tscn" id="1_ftb51"]
-[ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="2_ae2ja"]
-[ext_resource type="PackedScene" uid="uid://cdwerteriusj" path="res://scenes/camera_area.tscn" id="2_f8r8y"]
-[ext_resource type="PackedScene" uid="uid://j0cv5mpeq3d6" path="res://scenes/respawn_point.tscn" id="2_koas8"]
-[ext_resource type="PackedScene" uid="uid://c31p42f5jycat" path="res://scenes/exit_door.tscn" id="3_eqwej"]
-[ext_resource type="PackedScene" uid="uid://tpn06dqmuwkg" path="res://scenes/fall_damage_area.tscn" id="5_kyrun"]
+[ext_resource type="PackedScene" uid="uid://cwil3jmniqbr5" path="res://scenes/level.tscn" id="1_rpsxk"]
+[ext_resource type="PackedScene" uid="uid://j0cv5mpeq3d6" path="res://scenes/respawn_point.tscn" id="2_rtuwm"]
+[ext_resource type="PackedScene" uid="uid://c31p42f5jycat" path="res://scenes/exit_door.tscn" id="3_i1jhj"]
+[ext_resource type="PackedScene" uid="uid://cdwerteriusj" path="res://scenes/camera_area.tscn" id="4_cdqyq"]
+[ext_resource type="PackedScene" uid="uid://tpn06dqmuwkg" path="res://scenes/fall_damage_area.tscn" id="5_63wdm"]
+[ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="6_bbjm2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ea5ar"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8er8q"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4dtw1"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_06n8d"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cdjkk"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0fvye"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r51rl"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mvj0y"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vwuen"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3i318"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_05dvt"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rdq81"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gsijm"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r71v5"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p5rlo"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bkexo"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ufin"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kvf2v"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4txif"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wlaqp"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7yy82"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_38udp"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ujyd"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ee1sa"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hibqb"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_op7bc"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_47pjr"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f6iqu"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ib4mr"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ph8s7"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_swx3i"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7lmsv"]
 resource_local_to_scene = true
-shader = ExtResource("2_ae2ja")
+shader = ExtResource("6_bbjm2")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.1
 
-[node name="Level_Dots" instance=ExtResource("1_ftb51")]
+[node name="Level_Clouds" instance=ExtResource("1_rpsxk")]
 
 [node name="Ground" parent="." index="0"]
 metadata/_edit_lock_ = true
@@ -227,26 +227,27 @@ position = Vector2(3525, 123)
 [node name="Left" parent="Ground/WorldBoundaries" index="3"]
 position = Vector2(-73, 123)
 
-[node name="RespawnPoint" parent="Respawns" index="0" instance=ExtResource("2_koas8")]
+[node name="RespawnPoint" parent="Respawns" index="0" instance=ExtResource("2_rtuwm")]
 position = Vector2(868, 92)
 
-[node name="RespawnPoint2" parent="Respawns" index="1" instance=ExtResource("2_koas8")]
+[node name="RespawnPoint2" parent="Respawns" index="1" instance=ExtResource("2_rtuwm")]
 position = Vector2(1189, 84)
 
-[node name="RespawnPoint3" parent="Respawns" index="2" instance=ExtResource("2_koas8")]
+[node name="RespawnPoint3" parent="Respawns" index="2" instance=ExtResource("2_rtuwm")]
 position = Vector2(1345, 220)
 
-[node name="RespawnPoint4" parent="Respawns" index="3" instance=ExtResource("2_koas8")]
+[node name="RespawnPoint4" parent="Respawns" index="3" instance=ExtResource("2_rtuwm")]
 position = Vector2(1414, 60)
 
-[node name="RespawnPoint6" parent="Respawns" index="4" instance=ExtResource("2_koas8")]
+[node name="RespawnPoint6" parent="Respawns" index="4" instance=ExtResource("2_rtuwm")]
 position = Vector2(1733, 60)
 
-[node name="RespawnPoint7" parent="Respawns" index="5" instance=ExtResource("2_koas8")]
+[node name="RespawnPoint7" parent="Respawns" index="5" instance=ExtResource("2_rtuwm")]
 position = Vector2(2171, 212)
 
-[node name="ExitDoor" parent="Doors" index="0" instance=ExtResource("3_eqwej")]
+[node name="ExitDoor" parent="Doors" index="0" instance=ExtResource("3_i1jhj")]
 position = Vector2(3365, 188)
+change_to_scene = "res://scenes/levels/level_map.tscn"
 
 [node name="Label" type="Label" parent="Text" index="0"]
 offset_left = 137.0
@@ -289,59 +290,63 @@ horizontal_alignment = 1
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="CameraArea" parent="CameraAreas" index="0" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea" parent="CameraAreas" index="0" instance=ExtResource("4_cdqyq")]
 
-[node name="CameraArea2" parent="CameraAreas" index="1" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea2" parent="CameraAreas" index="1" instance=ExtResource("4_cdqyq")]
 position = Vector2(429, 0)
 
-[node name="CameraArea3" parent="CameraAreas" index="2" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea3" parent="CameraAreas" index="2" instance=ExtResource("4_cdqyq")]
 position = Vector2(860, 0)
 
-[node name="CameraArea4" parent="CameraAreas" index="3" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea4" parent="CameraAreas" index="3" instance=ExtResource("4_cdqyq")]
 position = Vector2(1292, 0)
 
-[node name="CameraArea12" parent="CameraAreas" index="4" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea12" parent="CameraAreas" index="4" instance=ExtResource("4_cdqyq")]
 position = Vector2(1292, -243)
 
-[node name="CameraArea5" parent="CameraAreas" index="5" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea5" parent="CameraAreas" index="5" instance=ExtResource("4_cdqyq")]
 position = Vector2(1724, 0)
 
-[node name="CameraArea6" parent="CameraAreas" index="6" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea6" parent="CameraAreas" index="6" instance=ExtResource("4_cdqyq")]
 position = Vector2(2153, 113)
 
-[node name="CameraArea7" parent="CameraAreas" index="7" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea7" parent="CameraAreas" index="7" instance=ExtResource("4_cdqyq")]
 position = Vector2(2583, 113)
 
-[node name="CameraArea8" parent="CameraAreas" index="8" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea8" parent="CameraAreas" index="8" instance=ExtResource("4_cdqyq")]
 position = Vector2(3012, 113)
 
-[node name="CameraArea9" parent="CameraAreas" index="9" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea9" parent="CameraAreas" index="9" instance=ExtResource("4_cdqyq")]
 position = Vector2(3012, -143)
 
-[node name="CameraArea10" parent="CameraAreas" index="10" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea10" parent="CameraAreas" index="10" instance=ExtResource("4_cdqyq")]
 position = Vector2(2582, -143)
 
-[node name="CameraArea11" parent="CameraAreas" index="11" instance=ExtResource("2_f8r8y")]
+[node name="CameraArea11" parent="CameraAreas" index="11" instance=ExtResource("4_cdqyq")]
 position = Vector2(2153, -143)
 
-[node name="FallDamageArea" parent="DangerAreas" index="0" instance=ExtResource("5_kyrun")]
+[node name="FallDamageArea" parent="DangerAreas" index="0" instance=ExtResource("5_63wdm")]
 position = Vector2(1940, 237)
 scale = Vector2(15.5506, 0.463485)
 
-[node name="FallDamageArea2" parent="DangerAreas" index="1" instance=ExtResource("5_kyrun")]
+[node name="FallDamageArea2" parent="DangerAreas" index="1" instance=ExtResource("5_63wdm")]
 position = Vector2(2366, 349)
 scale = Vector2(21.3906, 0.463485)
 
-[node name="FallDamageArea3" parent="DangerAreas" index="2" instance=ExtResource("5_kyrun")]
+[node name="FallDamageArea3" parent="DangerAreas" index="2" instance=ExtResource("5_63wdm")]
 position = Vector2(2795, 349)
 scale = Vector2(21.3906, 0.463485)
 
-[node name="FallDamageArea4" parent="DangerAreas" index="3" instance=ExtResource("5_kyrun")]
+[node name="FallDamageArea4" parent="DangerAreas" index="3" instance=ExtResource("5_63wdm")]
 position = Vector2(3224, 349)
 scale = Vector2(21.3906, 0.463485)
 
 [node name="Player" parent="." index="9"]
 position = Vector2(193, 220)
+
+[node name="DebugPlayerSpawner" parent="." index="10"]
+position = Vector2(3249, 207)
+spawn_enabled = true
 
 [node name="ScanLine" parent="VFX_Scanlines1" index="0"]
 material = SubResource("ShaderMaterial_ea5ar")

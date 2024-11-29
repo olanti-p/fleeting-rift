@@ -33,15 +33,28 @@ func _update_glitch_vfx() -> void:
 func _ready() -> void:
 	_update_glitch_vfx()
 	console_container.visible = false
+	if $DebugPlayerSpawner.spawn_enabled:
+		$Player.global_position = $DebugPlayerSpawner.global_position
 	for child in $Emitters.get_children():
 		child.register_owner_level(self)
 	for area in $CameraAreas.get_children():
 		area.connect("player_entered", _on_camera_area_entered)
+	for door in $Doors.get_children():
+		door.connect("has_been_entered", _on_player_entered_door)
+	for door in $GlitchEntries.get_children():
+		door.connect("has_been_entered", _on_player_entered_glitch)
 
 
 func _on_camera_area_entered(_player: Player, area: CameraArea) -> void:
 	main_camera.global_position = area.get_camera_position()
 
+
+func _on_player_entered_door(new_scene: String) -> void:
+	get_tree().change_scene_to_file(new_scene)
+
+
+func _on_player_entered_glitch(new_scene: String) -> void:
+	get_tree().change_scene_to_file(new_scene)
 
 
 var level_time: float = 0.0:

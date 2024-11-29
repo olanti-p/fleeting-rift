@@ -1,6 +1,8 @@
 extends Node2D
 
-signal player_entered(player: Player)
+signal player_entered(player: Player, new_scene: String)
+
+@export var change_to_scene: String = ""
 
 func _randomize(anim: AnimationPlayer) -> void:
 	anim.seek(randf_range(0.0, anim.current_animation_length))
@@ -13,4 +15,4 @@ func _ready() -> void:
 
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
-	player_entered.emit(body as Player)
+	player_entered.emit(body as Player, change_to_scene)
