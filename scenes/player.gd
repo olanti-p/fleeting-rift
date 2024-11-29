@@ -1,9 +1,15 @@
 extends CharacterBody2D
 class_name Player
 
+@export var jump_gain_rate_curve: Curve = null
 
-const SPEED = 120.0
-const JUMP_VELOCITY = -200.0
+const SPEED = 100.0
+const AIRJUMP_VELOCITY = 0.0#180.0
+const WALLJUMP_VELOCITY = 180.0
+const JUMP_VELOCITY_IMMEDIATE = 60.0
+const JUMP_VELOCITY_DELAYED = 30.0
+const JUMP_VELOCITY_TOP_GAIN_RATE = 200.0
+const JUMP_VELOCITY_EXPECTED_TIME_RATE = 0.1
 
 var was_on_floor: bool = false
 var looking_right: bool = true
@@ -21,6 +27,10 @@ var is_dead: bool = false
 var respawn_position: Vector2
 var checked_respawn_point: RespawnPoint = null
 var air_jumps_remaining: int = NUM_AIR_JUMPS
+var is_jumping: bool = false
+
+var time_since_jump_pressed: float = 0.0
+var jump_velocity_remaining: float = 0.0
 
 var nearby_door: ExitDoor = null
 var is_entering_door: bool = false
@@ -71,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		return
 		
 	# Add the gravity
-	if not is_on_floor():
+	if not is_on_floor() && !is_jumping:
 		velocity += get_gravity() * delta
 	
 	# Handle Coyote Timer
@@ -83,25 +93,43 @@ func _physics_process(delta: float) -> void:
 		was_on_floor = false
 		coyote_timer.start()
 	
-	# Handle jump.
+	# Handle jumping
+	if is_jumping:
+		time_since_jump_pressed += delta
+		if Input.is_action_pressed("jump") && jump_velocity_remaining > 0.0:
+			var curve_progression = clampf(
+				time_since_jump_pressed / JUMP_VELOCITY_EXPECTED_TIME_RATE
+			, 0.0, 1.0)
+			var relative_rate = jump_gain_rate_curve.sample(curve_progression)
+			var current_rate = JUMP_VELOCITY_TOP_GAIN_RATE * relative_rate
+			var gain = min(current_rate * delta, jump_velocity_remaining)
+			jump_velocity_remaining -= gain
+			velocity.y += -gain
+		else:
+			is_jumping = false
+			jump_velocity_remaining = 0.0
+			time_since_jump_pressed = 0.0
 	if Input.is_action_just_pressed("jump"):
 		if is_grabbing:
 			is_grabbing = false
 			was_on_floor = false
 			ignore_continued_grabbing = true
 			continued_grab_timer.start()
-			velocity = JUMP_VELOCITY * make_walljump_vector()
+			velocity = -WALLJUMP_VELOCITY * make_walljump_vector()
 			stamina -= STAMINA_LOSS_PER_JUMP
-		elif is_on_floor():
-			velocity.y = JUMP_VELOCITY
-			was_on_floor = false
-		elif !coyote_timer.is_stopped():
-			velocity.y = JUMP_VELOCITY
+		elif is_on_floor() || !coyote_timer.is_stopped():
 			coyote_timer.stop()
 			was_on_floor = false
+			is_jumping = true
+			velocity.y = -JUMP_VELOCITY_IMMEDIATE
+			jump_velocity_remaining = JUMP_VELOCITY_DELAYED
+			time_since_jump_pressed = 0.0
 		elif air_jumps_remaining > 0:
 			air_jumps_remaining -= 1
-			velocity.y = JUMP_VELOCITY
+			velocity.y = -AIRJUMP_VELOCITY
+	
+	if (velocity.y < 0.0):
+		print(velocity.y)
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
