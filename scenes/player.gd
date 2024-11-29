@@ -41,6 +41,7 @@ const MAX_STAMINA: float = 100.0
 const STAMINA_LOSS_RATE: float = 30.0
 const STAMINA_LOSS_PER_JUMP: float = 30.0
 const NUM_AIR_JUMPS: int = 0
+const GRAB_ICE_SLIP_SPEED: float = 8.0
 
 func _ready() -> void:
 	stamina_bar.visible = false
@@ -163,7 +164,7 @@ func _physics_process(delta: float) -> void:
 		ignore_continued_grabbing = false
 	
 	if is_grabbing:
-		velocity = Vector2.ZERO
+		velocity = Vector2.ZERO if ThisRun.current_level != 2 else Vector2(0.0, GRAB_ICE_SLIP_SPEED)
 	
 	# Animation
 	if is_grabbing:
