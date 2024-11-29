@@ -26,7 +26,7 @@ func _update_appear() -> void:
 
 
 func _ready() -> void:
-	if !disable_gfx:
+	if disable_gfx:
 		_update_appear()
 
 
@@ -49,6 +49,12 @@ func uncheck() -> void:
 		main_sprite.play("unchecked")
 		await main_sprite.animation_finished
 		main_sprite.play("idle")
+
+
+func play_menu_anim() -> void:
+	main_sprite.play("checked")
+	await main_sprite.animation_finished
+	main_sprite.play("idle_checked")
 
 
 func _on_player_detector_body_entered(body: Node2D) -> void:

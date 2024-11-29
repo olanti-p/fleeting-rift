@@ -18,6 +18,12 @@ class_name Level
 			_update_glitch_vfx()
 
 
+var is_timer_visible: bool = true:
+	set(value):
+		is_timer_visible = value
+		%TimerContainer.visible = value
+
+
 func _update_glitch_vfx() -> void:
 	vfx_scanlines_1.visible = glitches_visible
 	vfx_scanlines_2.visible = glitches_visible
