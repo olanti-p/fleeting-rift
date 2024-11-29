@@ -39,7 +39,7 @@ var is_control_hackably_disabled: bool = false
 const MIN_STAMINA: float = 0.0
 const MAX_STAMINA: float = 100.0
 const STAMINA_LOSS_RATE: float = 30.0
-const STAMINA_LOSS_PER_JUMP: float = 30.0
+const STAMINA_LOSS_PER_JUMP: float = -30.0
 const NUM_AIR_JUMPS: int = 0
 const GRAB_ICE_SLIP_SPEED: float = 8.0
 
@@ -77,7 +77,12 @@ func _physics_process(delta: float) -> void:
 		is_entering_door = false
 		flippable_nodes.visible = true
 		return
-		
+	
+	if is_grabbing && !grab_detector.is_colliding():
+		# Slipped down
+		is_grabbing = false
+		ignore_continued_grabbing = false
+	
 	# Add the gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -167,7 +172,10 @@ func _physics_process(delta: float) -> void:
 		ignore_continued_grabbing = false
 	
 	if is_grabbing:
-		velocity = Vector2.ZERO if ThisRun.current_level != 2 else Vector2(0.0, GRAB_ICE_SLIP_SPEED)
+		if ThisRun.current_level == 2:
+			velocity = Vector2(0.0, GRAB_ICE_SLIP_SPEED)
+		else:
+			velocity = Vector2.ZERO
 	
 	# Animation
 	if is_grabbing:

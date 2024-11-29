@@ -1,0 +1,107 @@
+[gd_scene load_steps=15 format=3 uid="uid://dpbqfee8hlo8d"]
+
+[ext_resource type="Texture2D" uid="uid://bgk56e5yso4kb" path="res://art/snowflake.png" id="1_sy4u2"]
+[ext_resource type="Script" path="res://scenes/snowflake.gd" id="2_insb7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ke3y"]
+atlas = ExtResource("1_sy4u2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxanp"]
+atlas = ExtResource("1_sy4u2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlj44"]
+atlas = ExtResource("1_sy4u2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mw25f"]
+atlas = ExtResource("1_sy4u2")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xubfu"]
+atlas = ExtResource("1_sy4u2")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_me6lo"]
+atlas = ExtResource("1_sy4u2")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12vme"]
+atlas = ExtResource("1_sy4u2")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41qeg"]
+atlas = ExtResource("1_sy4u2")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3y531"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ke3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxanp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlj44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mw25f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xubfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_me6lo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12vme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41qeg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fyewl"]
+radius = 6.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0hev2"]
+radius = 5.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5t2w2"]
+radius = 4.0
+
+[node name="Snowflake" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_3y531")
+autoplay = "default"
+frame = 3
+script = ExtResource("2_insb7")
+
+[node name="HitArea" type="Area2D" parent="."]
+
+[node name="Big" type="CollisionShape2D" parent="HitArea"]
+unique_name_in_owner = true
+position = Vector2(-0.5, -0.5)
+shape = SubResource("CircleShape2D_fyewl")
+
+[node name="Medium" type="CollisionShape2D" parent="HitArea"]
+unique_name_in_owner = true
+position = Vector2(-0.5, -0.5)
+shape = SubResource("CircleShape2D_0hev2")
+
+[node name="Small" type="CollisionShape2D" parent="HitArea"]
+unique_name_in_owner = true
+position = Vector2(-0.5, -0.5)
+shape = SubResource("CircleShape2D_5t2w2")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

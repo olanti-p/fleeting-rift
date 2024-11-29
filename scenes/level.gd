@@ -9,6 +9,7 @@ class_name Level
 @onready var vfx_bad_blocks: CanvasLayer = $VFX_BadBlocks
 @onready var main_camera: Camera2D = $MainCamera
 
+var active_camera_area: CameraArea = null
 
 
 @export var glitches_visible: bool = false:
@@ -40,6 +41,7 @@ func _ready() -> void:
 	for child in $Emitters.get_children():
 		child.register_owner_level(self)
 	for area in $CameraAreas.get_children():
+		area.owner_level = self
 		area.connect("player_entered", _on_camera_area_entered)
 	for door in $Doors.get_children():
 		door.connect("has_been_entered", _on_player_entered_door)
@@ -48,7 +50,10 @@ func _ready() -> void:
 
 
 func _on_camera_area_entered(_player: Player, area: CameraArea) -> void:
-	main_camera.global_position = area.get_camera_position()
+	if active_camera_area:
+		active_camera_area.detach_camera()
+	active_camera_area = area
+	active_camera_area.attach_camera(main_camera)
 
 
 func _on_player_entered_door(new_scene: String) -> void:
@@ -117,6 +122,10 @@ func _process(delta: float) -> void:
 func add_projectile(projectile: Node2D, pos: Vector2) -> void:
 	projectiles.add_child(projectile)
 	projectile.global_position = pos
+
+
+func get_player_global_pos() -> Vector2:
+	return $Player.global_position
 
 
 func _on_world_boundaries_body_entered(body: Node2D) -> void:

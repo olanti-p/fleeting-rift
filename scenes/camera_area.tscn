@@ -17,4 +17,9 @@ shape = SubResource("RectangleShape2D_euqs5")
 [node name="CameraFixedPosition" type="Marker2D" parent="."]
 position = Vector2(213, 120)
 
+[node name="TopLeft" type="Marker2D" parent="."]
+
+[node name="BottomRight" type="Marker2D" parent="."]
+position = Vector2(426, 240)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
