@@ -95,6 +95,7 @@ start_level={
 2d_physics/layer_4="DangerLasers"
 2d_physics/layer_5="DangerStars"
 2d_physics/layer_6="WorldBoundary"
+2d_physics/layer_7="DangerOther"
 
 [physics]
 
