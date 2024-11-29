@@ -12,7 +12,7 @@ var speed: float = 24.0
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
-	global_position.x += speed * delta
+	global_position += ($Direction.global_position - global_position).normalized() * speed * delta
 	if collision_detector.is_colliding():
 		is_dead = true
 		hit_collision.disabled = true

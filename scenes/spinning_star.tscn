@@ -96,3 +96,6 @@ shape = SubResource("CircleShape2D_xdruu")
 [node name="CollisionDetector" type="ShapeCast2D" parent="."]
 shape = SubResource("CircleShape2D_6iy30")
 target_position = Vector2(2.5, 0)
+
+[node name="Direction" type="Marker2D" parent="."]
+position = Vector2(1, 0)
