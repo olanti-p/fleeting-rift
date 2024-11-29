@@ -255,14 +255,24 @@ theme_override_colors/font_outline_color = Color(0.0588235, 0.105882, 0.14902, 1
 theme_override_constants/outline_size = 2
 text = "FROZEN NORTH"
 
-[node name="LabelControls" type="Label" parent="Text" index="3"]
+[node name="LabelControlsSimple" type="Label" parent="Text" index="3"]
 offset_left = 79.0
 offset_top = 242.0
 offset_right = 363.0
 offset_bottom = 253.0
 theme_override_colors/font_outline_color = Color(0.0588235, 0.105882, 0.14902, 1)
 theme_override_constants/outline_size = 2
-text = "Press A and D to choose location, press SPACE to start"
+text = "Press ENTER to start"
+horizontal_alignment = 1
+
+[node name="LabelControlsExpanded" type="Label" parent="Text" index="4"]
+offset_left = 79.0
+offset_top = 242.0
+offset_right = 363.0
+offset_bottom = 253.0
+theme_override_colors/font_outline_color = Color(0.0588235, 0.105882, 0.14902, 1)
+theme_override_constants/outline_size = 2
+text = "Press A and D to choose location, press ENTER to start"
 horizontal_alignment = 1
 
 [node name="Player" parent="." index="9"]

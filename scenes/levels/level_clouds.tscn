@@ -1,7 +1,8 @@
-[gd_scene load_steps=39 format=4 uid="uid://6lms22mfmhln"]
+[gd_scene load_steps=40 format=4 uid="uid://6lms22mfmhln"]
 
 [ext_resource type="PackedScene" uid="uid://cwil3jmniqbr5" path="res://scenes/level.tscn" id="1_rpsxk"]
 [ext_resource type="PackedScene" uid="uid://j0cv5mpeq3d6" path="res://scenes/respawn_point.tscn" id="2_rtuwm"]
+[ext_resource type="Script" path="res://scenes/levels/level_clouds.gd" id="2_togrn"]
 [ext_resource type="PackedScene" uid="uid://c31p42f5jycat" path="res://scenes/exit_door.tscn" id="3_i1jhj"]
 [ext_resource type="PackedScene" uid="uid://cdwerteriusj" path="res://scenes/camera_area.tscn" id="4_cdqyq"]
 [ext_resource type="PackedScene" uid="uid://tpn06dqmuwkg" path="res://scenes/fall_damage_area.tscn" id="5_63wdm"]
@@ -200,6 +201,7 @@ shader_parameter/invert_color = null
 shader_parameter/displacement = 0.1
 
 [node name="Level_Clouds" instance=ExtResource("1_rpsxk")]
+script = ExtResource("2_togrn")
 
 [node name="Ground" parent="." index="0"]
 metadata/_edit_lock_ = true
@@ -246,6 +248,7 @@ position = Vector2(1733, 60)
 position = Vector2(2171, 212)
 
 [node name="ExitDoor" parent="Doors" index="0" instance=ExtResource("3_i1jhj")]
+unique_name_in_owner = true
 position = Vector2(3365, 188)
 change_to_scene = "res://scenes/levels/level_map.tscn"
 

@@ -32,9 +32,11 @@ func _update_glitch_vfx() -> void:
 
 func _ready() -> void:
 	_update_glitch_vfx()
+	is_timer_visible = ThisRun.timer_started
 	console_container.visible = false
 	if $DebugPlayerSpawner.spawn_enabled:
 		$Player.global_position = $DebugPlayerSpawner.global_position
+		$Player.respawn_position = $Player.global_position
 	for child in $Emitters.get_children():
 		child.register_owner_level(self)
 	for area in $CameraAreas.get_children():
@@ -55,18 +57,6 @@ func _on_player_entered_door(new_scene: String) -> void:
 
 func _on_player_entered_glitch(new_scene: String) -> void:
 	get_tree().change_scene_to_file(new_scene)
-
-
-var level_time: float = 0.0:
-	set(value):
-		level_time = value
-		@warning_ignore("integer_division")
-		var hours = floori(level_time) / 3600
-		@warning_ignore("integer_division")
-		var minutes = (floori(level_time) / 60) % 60
-		var seconds = floori(level_time) % 60
-		var milliseconds = floori(fmod(level_time, 1.0) * 10.0) % 10
-		%LevelTimeDisplay.text = "%02d:%02d:%02d.%01d" % [hours, minutes, seconds, milliseconds]
 
 
 func _unhandled_key_input(raw_event: InputEvent) -> void:
@@ -107,7 +97,14 @@ func _open_console() -> void:
 
 
 func _process(delta: float) -> void:
-	level_time += delta
+	ThisRun.run_time += delta
+	
+	var level_time = ThisRun.run_time
+	var hours = floori(level_time) / 3600
+	var minutes = (floori(level_time) / 60) % 60
+	var seconds = floori(level_time) % 60
+	var milliseconds = floori(fmod(level_time, 1.0) * 10.0) % 10
+	%LevelTimeDisplay.text = "%02d:%02d:%02d.%01d" % [hours, minutes, seconds, milliseconds]
 	
 	if Input.is_action_just_pressed("open_console"):
 		if console_open_timer.is_stopped():
