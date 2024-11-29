@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdwerteriusj"]
+
+[ext_resource type="Script" path="res://scenes/camera_area.gd" id="1_d22ra"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_euqs5"]
+size = Vector2(426, 240)
+
+[node name="CameraArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_d22ra")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(213, 120)
+shape = SubResource("RectangleShape2D_euqs5")
+
+[node name="CameraFixedPosition" type="Marker2D" parent="."]
+position = Vector2(213, 120)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

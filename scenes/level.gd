@@ -7,6 +7,8 @@ class_name Level
 @onready var vfx_scanlines_1: CanvasLayer = $VFX_Scanlines1
 @onready var vfx_scanlines_2: CanvasLayer = $VFX_Scanlines2
 @onready var vfx_bad_blocks: CanvasLayer = $VFX_BadBlocks
+@onready var main_camera: Camera2D = $MainCamera
+
 
 
 @export var glitches_visible: bool = false:
@@ -27,6 +29,13 @@ func _ready() -> void:
 	console_container.visible = false
 	for child in $Emitters.get_children():
 		child.register_owner_level(self)
+	for area in $CameraAreas.get_children():
+		area.connect("player_entered", _on_camera_area_entered)
+
+
+func _on_camera_area_entered(_player: Player, area: CameraArea) -> void:
+	main_camera.global_position = area.get_camera_position()
+
 
 
 var level_time: float = 0.0:
