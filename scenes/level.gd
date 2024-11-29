@@ -101,3 +101,8 @@ func _process(delta: float) -> void:
 func add_projectile(projectile: Node2D, pos: Vector2) -> void:
 	projectiles.add_child(projectile)
 	projectile.global_position = pos
+
+
+func _on_world_boundaries_body_entered(body: Node2D) -> void:
+	var player = body as Player
+	player.fell_beyond_map_edge()

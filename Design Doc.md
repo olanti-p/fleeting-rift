@@ -95,3 +95,7 @@ Game progression:
 Notes:
 On world map, it should show # of glitches when running with debug info
 
+Known bugs:
+1. It's possible to wall-jump up onto a corner and then grab the wall "backwards"
+2. When rapidly switching between camera areas, it's possible to get the camera stuck in wrong area
+ 

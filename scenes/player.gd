@@ -108,9 +108,6 @@ func _physics_process(delta: float) -> void:
 			air_jumps_remaining -= 1
 			velocity.y = -AIRJUMP_VELOCITY
 	
-	if (velocity.y < 0.0):
-		print(velocity.y)
-	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
@@ -176,12 +173,7 @@ func _on_continued_grab_timer_timeout() -> void:
 	ignore_continued_grabbing = false
 
 
-func _on_hit() -> void:
-	if is_dead || is_entering_door:
-		return
-	is_dead = true
-	player_sprite.play("death")
-	await player_sprite.animation_finished
+func _respawn() -> void:
 	global_position = respawn_position
 	velocity = Vector2.ZERO
 	is_grabbing = false
@@ -189,6 +181,22 @@ func _on_hit() -> void:
 	player_sprite.play("respawn")
 	await player_sprite.animation_finished
 	is_dead = false
+
+
+func _on_hit() -> void:
+	if is_dead || is_entering_door:
+		return
+	is_dead = true
+	player_sprite.play("death")
+	await player_sprite.animation_finished
+	_respawn()
+
+
+func fell_beyond_map_edge() -> void:
+	if is_dead || is_entering_door:
+		return
+	is_dead = true
+	_respawn()
 
 
 func set_respawn_point(rp: RespawnPoint) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://cwil3jmniqbr5"]
+[gd_scene load_steps=42 format=4 uid="uid://cwil3jmniqbr5"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_rvwlj"]
 [ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="1_ynsno"]
@@ -8,6 +8,8 @@
 [ext_resource type="StyleBox" uid="uid://c3rw2njbv6r1a" path="res://ui/simple_panel.tres" id="10_jxr8j"]
 [ext_resource type="PackedScene" uid="uid://dhvd7jxh07fvh" path="res://scenes/scan_line.tscn" id="14_udcnm"]
 [ext_resource type="PackedScene" uid="uid://bu8dhkrdwmv34" path="res://scenes/bad_screen_block.tscn" id="16_kg1pc"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3lar6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ea5ar"]
 resource_local_to_scene = true
@@ -217,6 +219,29 @@ tile_set = ExtResource("2_o6s4o")
 [node name="Spikes" type="TileMapLayer" parent="Ground"]
 tile_set = ExtResource("2_o6s4o")
 
+[node name="WorldBoundaries" type="Area2D" parent="Ground"]
+collision_layer = 32
+collision_mask = 4
+
+[node name="Bottom" type="CollisionShape2D" parent="Ground/WorldBoundaries"]
+position = Vector2(0, 305)
+shape = SubResource("WorldBoundaryShape2D_3lar6")
+
+[node name="Top" type="CollisionShape2D" parent="Ground/WorldBoundaries"]
+position = Vector2(0, -100)
+rotation = -3.14159
+shape = SubResource("WorldBoundaryShape2D_3lar6")
+
+[node name="Right" type="CollisionShape2D" parent="Ground/WorldBoundaries"]
+position = Vector2(516, 123)
+rotation = -1.57079
+shape = SubResource("WorldBoundaryShape2D_3lar6")
+
+[node name="Left" type="CollisionShape2D" parent="Ground/WorldBoundaries"]
+position = Vector2(-194, 123)
+rotation = -4.71238
+shape = SubResource("WorldBoundaryShape2D_3lar6")
+
 [node name="Respawns" type="Node2D" parent="."]
 
 [node name="Emitters" type="Node2D" parent="."]
@@ -230,6 +255,8 @@ tile_set = ExtResource("2_o6s4o")
 [node name="Text" type="Node2D" parent="."]
 
 [node name="CameraAreas" type="Node2D" parent="."]
+
+[node name="DangerAreas" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_1eu15")]
 position = Vector2(211, 218)
@@ -474,3 +501,5 @@ scale = Vector2(15.237, 10.369)
 material = SubResource("ShaderMaterial_7lmsv")
 position = Vector2(188, 110)
 scale = Vector2(12.1835, 15.0881)
+
+[connection signal="body_entered" from="Ground/WorldBoundaries" to="." method="_on_world_boundaries_body_entered"]

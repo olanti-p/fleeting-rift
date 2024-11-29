@@ -212,7 +212,6 @@ radius = 2.8
 height = 7.4
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(304, 455)
 collision_layer = 4
 script = ExtResource("1_hqnfc")
 
@@ -231,10 +230,8 @@ wait_time = 0.4
 
 [node name="Sprite" type="AnimatedSprite2D" parent="FlippableNodes"]
 sprite_frames = SubResource("SpriteFrames_p7qfr")
-animation = &"respawn"
+animation = &"idle"
 autoplay = "idle"
-frame = 7
-frame_progress = 1.0
 
 [node name="GrabDetector" type="ShapeCast2D" parent="FlippableNodes"]
 position = Vector2(0, 1)
@@ -256,7 +253,7 @@ texture_progress_offset = Vector2(2, 2)
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 26
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_dj7ui")

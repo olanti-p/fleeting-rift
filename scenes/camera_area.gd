@@ -7,6 +7,7 @@ signal player_entered(player: Player, camera_area: CameraArea)
 
 
 func _on_body_entered(body: Node2D) -> void:
+	print("Player entered area ", name)
 	var player = body as Player
 	assert(player)
 	player_entered.emit(player, self)
