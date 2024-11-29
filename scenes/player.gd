@@ -27,6 +27,7 @@ var is_jumping: bool = false
 
 var nearby_door: ExitDoor = null
 var is_entering_door: bool = false
+var is_control_hackably_disabled: bool = false
 
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var continued_grab_timer: Timer = $ContinuedGrabTimer
@@ -64,7 +65,10 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	# Entering door
-	if !is_entering_door && nearby_door && Input.is_action_just_pressed("up"):
+	if !is_control_hackably_disabled && \
+	  !is_entering_door && \
+	  nearby_door && \
+	  Input.is_action_just_pressed("up"):
 		is_entering_door = true
 		flippable_nodes.visible = false
 		nearby_door.do_enter()
@@ -87,11 +91,15 @@ func _physics_process(delta: float) -> void:
 		coyote_timer.start()
 	
 	# Handle jumping
-	if is_jumping && Input.is_action_just_released("jump") && velocity.y < 0.0:
+	if !is_control_hackably_disabled && \
+	  is_jumping && \
+	  Input.is_action_just_released("jump") && \
+	  velocity.y < 0.0:
 		velocity.y /= JUMP_VELOCITY_DIVIDE_FACTOR
 	if !Input.is_action_pressed("jump"):
 		is_jumping = false
-	if Input.is_action_just_pressed("jump"):
+	if !is_control_hackably_disabled && \
+	  Input.is_action_just_pressed("jump"):
 		if is_grabbing:
 			is_grabbing = false
 			was_on_floor = false
@@ -108,9 +116,9 @@ func _physics_process(delta: float) -> void:
 			air_jumps_remaining -= 1
 			velocity.y = -AIRJUMP_VELOCITY
 	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
+	if is_control_hackably_disabled:
+		direction = 0
 	if !is_grabbing:
 		if direction > 0:
 			if !looking_right:
@@ -130,7 +138,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 	# Handle grab
-	if !is_grabbing && \
+	if !is_control_hackably_disabled && \
+	  !is_grabbing && \
 	  grab_detector.is_colliding() && \
 	  Input.is_action_pressed("grab") && \
 	  !ignore_continued_grabbing && \
