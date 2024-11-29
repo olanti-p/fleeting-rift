@@ -1,15 +1,11 @@
 extends CharacterBody2D
 class_name Player
 
-@export var jump_gain_rate_curve: Curve = null
-
 const SPEED = 100.0
-const AIRJUMP_VELOCITY = 0.0#180.0
-const WALLJUMP_VELOCITY = 180.0
-const JUMP_VELOCITY_IMMEDIATE = 60.0
-const JUMP_VELOCITY_DELAYED = 30.0
-const JUMP_VELOCITY_TOP_GAIN_RATE = 200.0
-const JUMP_VELOCITY_EXPECTED_TIME_RATE = 0.1
+const AIRJUMP_VELOCITY = 180.0
+const WALLJUMP_VELOCITY = 200.0
+const JUMP_VELOCITY_IMMEDIATE = 180.0
+const JUMP_VELOCITY_DIVIDE_FACTOR = 2.0
 
 var was_on_floor: bool = false
 var looking_right: bool = true
@@ -29,9 +25,6 @@ var checked_respawn_point: RespawnPoint = null
 var air_jumps_remaining: int = NUM_AIR_JUMPS
 var is_jumping: bool = false
 
-var time_since_jump_pressed: float = 0.0
-var jump_velocity_remaining: float = 0.0
-
 var nearby_door: ExitDoor = null
 var is_entering_door: bool = false
 
@@ -46,7 +39,7 @@ const MIN_STAMINA: float = 0.0
 const MAX_STAMINA: float = 100.0
 const STAMINA_LOSS_RATE: float = 30.0
 const STAMINA_LOSS_PER_JUMP: float = 30.0
-const NUM_AIR_JUMPS: int = 1
+const NUM_AIR_JUMPS: int = 0
 
 func _ready() -> void:
 	stamina_bar.visible = false
@@ -81,7 +74,7 @@ func _physics_process(delta: float) -> void:
 		return
 		
 	# Add the gravity
-	if not is_on_floor() && !is_jumping:
+	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
 	# Handle Coyote Timer
@@ -94,21 +87,10 @@ func _physics_process(delta: float) -> void:
 		coyote_timer.start()
 	
 	# Handle jumping
-	if is_jumping:
-		time_since_jump_pressed += delta
-		if Input.is_action_pressed("jump") && jump_velocity_remaining > 0.0:
-			var curve_progression = clampf(
-				time_since_jump_pressed / JUMP_VELOCITY_EXPECTED_TIME_RATE
-			, 0.0, 1.0)
-			var relative_rate = jump_gain_rate_curve.sample(curve_progression)
-			var current_rate = JUMP_VELOCITY_TOP_GAIN_RATE * relative_rate
-			var gain = min(current_rate * delta, jump_velocity_remaining)
-			jump_velocity_remaining -= gain
-			velocity.y += -gain
-		else:
-			is_jumping = false
-			jump_velocity_remaining = 0.0
-			time_since_jump_pressed = 0.0
+	if is_jumping && Input.is_action_just_released("jump") && velocity.y < 0.0:
+		velocity.y /= JUMP_VELOCITY_DIVIDE_FACTOR
+	if !Input.is_action_pressed("jump"):
+		is_jumping = false
 	if Input.is_action_just_pressed("jump"):
 		if is_grabbing:
 			is_grabbing = false
@@ -122,8 +104,6 @@ func _physics_process(delta: float) -> void:
 			was_on_floor = false
 			is_jumping = true
 			velocity.y = -JUMP_VELOCITY_IMMEDIATE
-			jump_velocity_remaining = JUMP_VELOCITY_DELAYED
-			time_since_jump_pressed = 0.0
 		elif air_jumps_remaining > 0:
 			air_jumps_remaining -= 1
 			velocity.y = -AIRJUMP_VELOCITY

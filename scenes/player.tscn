@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dadoqbh5kn2v2"]
+[gd_scene load_steps=33 format=3 uid="uid://dadoqbh5kn2v2"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_hqnfc"]
 [ext_resource type="Texture2D" uid="uid://djraq8bp4byv5" path="res://art/character_death.png" id="2_vlghn"]
@@ -6,10 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bomwdeyjltuix" path="res://art/character_respawn.png" id="4_8bc5g"]
 [ext_resource type="Texture2D" uid="uid://cwtyh84ykumbg" path="res://art/stamina_bar_bg.png" id="5_8w5qt"]
 [ext_resource type="Texture2D" uid="uid://bbh457ucma3qt" path="res://art/stamina_bar_body.png" id="6_ywjb8"]
-
-[sub_resource type="Curve" id="Curve_jhy6l"]
-_data = [Vector2(0, 0.587838), 0.0, 0.0, 0, 0, Vector2(0.379032, 0.554054), 0.0, 0.0, 0, 0, Vector2(1, 0.587838), 0.0, 0.0, 0, 0]
-point_count = 3
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tniwb"]
 radius = 2.9
@@ -219,7 +215,6 @@ height = 7.4
 position = Vector2(304, 455)
 collision_layer = 4
 script = ExtResource("1_hqnfc")
-jump_gain_rate_curve = SubResource("Curve_jhy6l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
