@@ -453,13 +453,15 @@ script = ExtResource("1_qlh4l")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(3, -2)
 amount = 64
-lifetime = 2.0
+lifetime = 2.2
 preprocess = 2.0
 lifetime_randomness = 0.4
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 20.0
 initial_velocity_max = 20.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
 damping_min = 10.0
 damping_max = 10.0
 color_initial_ramp = SubResource("Gradient_tau8e")
