@@ -454,6 +454,7 @@ script = ExtResource("1_qlh4l")
 position = Vector2(3, -2)
 amount = 64
 lifetime = 2.0
+preprocess = 2.0
 lifetime_randomness = 0.4
 spread = 180.0
 gravity = Vector2(0, 0)

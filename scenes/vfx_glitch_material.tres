@@ -5,5 +5,5 @@
 [resource]
 resource_local_to_scene = true
 shader = ExtResource("1_k58lq")
-shader_parameter/invert_color = null
-shader_parameter/displacement = 0.1
+shader_parameter/invert_color = true
+shader_parameter/displacement = 0.0

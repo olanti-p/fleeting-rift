@@ -33,7 +33,7 @@ func _update_glitch_vfx() -> void:
 
 func _ready() -> void:
 	_update_glitch_vfx()
-	is_timer_visible = ThisRun.timer_started
+	is_timer_visible = ThisRun.timer_started && !ThisRun.is_completed
 	console_container.visible = false
 	if $DebugPlayerSpawner.spawn_enabled:
 		$Player.global_position = $DebugPlayerSpawner.global_position
@@ -46,7 +46,7 @@ func _ready() -> void:
 	for door in $Doors.get_children():
 		door.connect("has_been_entered", _on_player_entered_door)
 	for door in $GlitchEntries.get_children():
-		door.connect("has_been_entered", _on_player_entered_glitch)
+		door.connect("player_entered", _on_player_entered_glitch)
 
 
 func _on_camera_area_entered(_player: Player, area: CameraArea) -> void:
@@ -101,15 +101,17 @@ func _open_console() -> void:
 	console_container.visible = true
 
 
+func fmt_timer(val: float) -> String:
+	var hours = floori(val) / 3600
+	var minutes = (floori(val) / 60) % 60
+	var seconds = floori(val) % 60
+	var milliseconds = floori(fmod(val, 1.0) * 10.0) % 10
+	return "%02d:%02d:%02d.%01d" % [hours, minutes, seconds, milliseconds]
+
+
 func _process(delta: float) -> void:
 	ThisRun.run_time += delta
-	
-	var level_time = ThisRun.run_time
-	var hours = floori(level_time) / 3600
-	var minutes = (floori(level_time) / 60) % 60
-	var seconds = floori(level_time) % 60
-	var milliseconds = floori(fmod(level_time, 1.0) * 10.0) % 10
-	%LevelTimeDisplay.text = "%02d:%02d:%02d.%01d" % [hours, minutes, seconds, milliseconds]
+	%LevelTimeDisplay.text = fmt_timer(ThisRun.run_time)
 	
 	if Input.is_action_just_pressed("open_console"):
 		if console_open_timer.is_stopped():

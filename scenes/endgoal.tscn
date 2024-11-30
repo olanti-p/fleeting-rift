@@ -1,0 +1,124 @@
+[gd_scene load_steps=12 format=3 uid="uid://bh34ww0micoyn"]
+
+[ext_resource type="Texture2D" uid="uid://cr5xlve0omi15" path="res://art/endgoal.png" id="1_avhi0"]
+[ext_resource type="Script" path="res://scenes/endgoal.gd" id="2_oabor"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4l8g"]
+atlas = ExtResource("1_avhi0")
+region = Rect2(0, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkw2v"]
+atlas = ExtResource("1_avhi0")
+region = Rect2(24, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgmlu"]
+atlas = ExtResource("1_avhi0")
+region = Rect2(48, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_un142"]
+atlas = ExtResource("1_avhi0")
+region = Rect2(72, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lie0"]
+atlas = ExtResource("1_avhi0")
+region = Rect2(96, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kefej"]
+atlas = ExtResource("1_avhi0")
+region = Rect2(120, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlfxk"]
+atlas = ExtResource("1_avhi0")
+region = Rect2(0, 0, 24, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xe6if"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4l8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkw2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgmlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_un142")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lie0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kefej")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlfxk")
+}],
+"loop": false,
+"name": &"inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgqno"]
+size = Vector2(14, 194)
+
+[node name="Endgoal" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_xe6if")
+animation = &"inactive"
+autoplay = "default"
+script = ExtResource("2_oabor")
+
+[node name="IdleParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 9)
+amount = 30
+lifetime = 4.0
+lifetime_randomness = 0.2
+emission_shape = 3
+emission_rect_extents = Vector2(8, 1)
+direction = Vector2(0, -1)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 10.0
+color = Color(0.12549, 0.647059, 0.65098, 1)
+
+[node name="VictoryParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, -17)
+emitting = false
+amount = 300
+lifetime = 5.0
+one_shot = true
+preprocess = 1.5
+explosiveness = 1.0
+lifetime_randomness = 0.6
+emission_shape = 3
+emission_rect_extents = Vector2(8, 40)
+direction = Vector2(0, -1)
+spread = 35.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 25.0
+linear_accel_max = 5.0
+color = Color(0.960784, 0.909804, 0.819608, 1)
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+position = Vector2(0, -3)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, -85)
+shape = SubResource("RectangleShape2D_cgqno")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-12, 13, -8, 10, 8, 10, 12, 13)
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
