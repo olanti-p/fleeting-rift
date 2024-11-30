@@ -1,0 +1,92 @@
+Godot Engine v4.3.stable.official.77dcf97d8 - https://godotengine.org
+OpenGL API 3.3.14761 Core Profile Forward-Compatible Context 21.30.24.05 30.0.13024.5001 - Compatibility - Using Device: ATI Technologies Inc. - AMD Radeon RX 6600M
+
+--- Debugging process stopped ---
+  editor/editor_node.cpp:7946 - Condition "plugins_list.has(p_plugin)" is true.
+  editor/editor_node.cpp:7946 - Condition "plugins_list.has(p_plugin)" is true.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  scene/resources/animation.cpp:1496 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  scene/resources/animation.cpp:1850 - Index p_track = -1 is out of bounds (tracks.size() = 1).
+  Animation '<null>' doesn't exist.
+  editor/editor_node.cpp:7946 - Condition "plugins_list.has(p_plugin)" is true.
+  editor/editor_node.cpp:7946 - Condition "plugins_list.has(p_plugin)" is true.
+  res://scenes/exit_door.gd:10 - Parse Error: Expected indented block after function declaration.
+  GDScript parser bug: Trying to advance past the end of stream.
+  GDScript parser bug: Trying to advance past the end of stream.
+  GDScript parser bug: Trying to advance past the end of stream.
+  GDScript parser bug: Trying to advance past the end of stream.
+  GDScript parser bug: Trying to advance past the end of stream.
+  GDScript parser bug: Trying to advance past the end of stream.
+  GDScript parser bug: Trying to advance past the end of stream.
+  GDScript parser bug: Trying to advance past the end of stream.
+  GDScript parser bug: Trying to advance past the end of stream.
+  GDScript parser bug: Trying to advance past the end of stream.
+  editor/plugins/tiles/tile_map_layer_editor.cpp:3347 - Parameter "edited_layer" is null.
