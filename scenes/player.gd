@@ -39,7 +39,7 @@ var is_control_hackably_disabled: bool = false
 const MIN_STAMINA: float = 0.0
 const MAX_STAMINA: float = 100.0
 const STAMINA_LOSS_RATE: float = 30.0
-const STAMINA_LOSS_PER_JUMP: float = -30.0
+const STAMINA_LOSS_PER_JUMP: float = 30.0
 const NUM_AIR_JUMPS: int = 0
 const GRAB_ICE_SLIP_SPEED: float = 8.0
 

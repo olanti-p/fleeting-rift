@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 ThisRun="*res://scenes/globals/this_run.gd"
+AllRuns="*res://scenes/globals/all_runs.gd"
 
 [debug]
 
@@ -96,6 +97,7 @@ start_level={
 2d_physics/layer_5="DangerStars"
 2d_physics/layer_6="WorldBoundary"
 2d_physics/layer_7="DangerOther"
+2d_physics/layer_8="GlitchDamage"
 
 [physics]
 

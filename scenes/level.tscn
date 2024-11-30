@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://cwil3jmniqbr5"]
+[gd_scene load_steps=44 format=4 uid="uid://cwil3jmniqbr5"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_rvwlj"]
 [ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="1_ynsno"]
@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://61jhwsxe4du" path="res://tileset.tres" id="2_o6s4o"]
 [ext_resource type="Script" path="res://scenes/debug_player_spawner.gd" id="4_78bw4"]
 [ext_resource type="FontFile" uid="uid://c5hh33uj7dtlh" path="res://font/FFFFORWA_MONONUMBER.TTF" id="5_0s6dd"]
+[ext_resource type="Script" path="res://scenes/cheat_code_list.gd" id="7_fb0jk"]
 [ext_resource type="StyleBox" uid="uid://c3rw2njbv6r1a" path="res://ui/simple_panel.tres" id="10_jxr8j"]
 [ext_resource type="PackedScene" uid="uid://dhvd7jxh07fvh" path="res://scenes/scan_line.tscn" id="14_udcnm"]
 [ext_resource type="PackedScene" uid="uid://bu8dhkrdwmv34" path="res://scenes/bad_screen_block.tscn" id="16_kg1pc"]
@@ -302,7 +303,6 @@ text = "00:00:00.0"
 
 [node name="ConsoleContainer" type="MarginContainer" parent="UI/Control"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -338,6 +338,7 @@ text = "* [color=#20a5a6]1[/color] - Enable immortality
 * [color=#20a5a6]0[/color] - Close"
 fit_content = true
 scroll_active = false
+script = ExtResource("7_fb0jk")
 
 [node name="InputText" type="PanelContainer" parent="UI/Control/ConsoleContainer/VBoxContainer"]
 layout_mode = 2

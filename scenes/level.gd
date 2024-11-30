@@ -63,6 +63,76 @@ func _on_player_entered_door(new_scene: String) -> void:
 func _on_player_entered_glitch(new_scene: String) -> void:
 	get_tree().change_scene_to_file(new_scene)
 
+func _cheat_reset() -> void:
+	if !AllRuns.cheat_reset:
+		return
+	pass
+
+func _cheat_reveal() -> void:
+	if !AllRuns.cheat_reveal:
+		return
+	pass
+
+func _cheat_infinite_dash() -> void:
+	if !AllRuns.cheat_infinite_dash:
+		return
+	pass
+
+func _cheat_double_jump() -> void:
+	if !AllRuns.cheat_double_jump:
+		return
+	pass
+
+func _cheat_no_fall_damage() -> void:
+	if !AllRuns.cheat_no_fall_damage:
+		return
+	pass
+
+func _cheat_unlock_map() -> void:
+	if !AllRuns.cheat_unlock_map:
+		return
+	pass
+
+func _cheat_no_spike_damage() -> void:
+	if !AllRuns.cheat_no_spike_damage:
+		return
+	pass
+
+func _cheat_infinite_stamina() -> void:
+	if !AllRuns.cheat_infinite_stamina:
+		return
+	pass
+
+func _cheat_no_star_damage() -> void:
+	if !AllRuns.cheat_no_star_damage:
+		return
+	pass
+
+func _cheat_reverse_gravity() -> void:
+	if !AllRuns.cheat_reverse_gravity:
+		return
+	pass
+
+func _cheat_no_laser_damage() -> void:
+	if !AllRuns.cheat_no_laser_damage:
+		return
+	pass
+
+func _cheat_unstuck() -> void:
+	if !AllRuns.cheat_unstuck:
+		return
+	pass
+
+func _cheat_noclip() -> void:
+	if !AllRuns.cheat_noclip:
+		return
+	pass
+
+func _cheat_timer() -> void:
+	if !AllRuns.cheat_timer:
+		return
+	pass
+
 
 func _unhandled_key_input(raw_event: InputEvent) -> void:
 	if !console_container.visible:
@@ -74,7 +144,7 @@ func _unhandled_key_input(raw_event: InputEvent) -> void:
 			48: # 0
 				_close_console()
 			49: # 1
-				pass
+				_cheat_reveal()
 			50: # 2
 				pass
 			51: # 3
