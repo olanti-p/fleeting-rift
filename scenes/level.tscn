@@ -282,6 +282,7 @@ mouse_filter = 2
 
 [node name="TimerContainer" type="PanelContainer" parent="UI/Control"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_right = 56.0
 offset_bottom = 16.0
@@ -303,6 +304,7 @@ text = "00:00:00.0"
 
 [node name="ConsoleContainer" type="MarginContainer" parent="UI/Control"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0

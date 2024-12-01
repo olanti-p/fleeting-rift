@@ -1,0 +1,321 @@
+[gd_scene load_steps=37 format=4 uid="uid://bcqqitkxcrnny"]
+
+[ext_resource type="PackedScene" uid="uid://cwil3jmniqbr5" path="res://scenes/level.tscn" id="1_i55oe"]
+[ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="2_6ow5h"]
+[ext_resource type="Script" path="res://scenes/levels/glitch_level.gd" id="2_vhqdl"]
+[ext_resource type="PackedScene" uid="uid://qs6bqvumu8nr" path="res://scenes/cheat_code.tscn" id="3_ednv6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ea5ar"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8er8q"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4dtw1"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06n8d"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cdjkk"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0fvye"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r51rl"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mvj0y"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwuen"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3i318"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05dvt"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rdq81"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gsijm"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r71v5"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5rlo"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bkexo"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ufin"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvf2v"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4txif"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wlaqp"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7yy82"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_38udp"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ujyd"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ee1sa"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hibqb"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_op7bc"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_47pjr"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6iqu"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ib4mr"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ph8s7"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swx3i"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7lmsv"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ow5h")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[node name="GlitchLevel12" instance=ExtResource("1_i55oe")]
+script = ExtResource("2_vhqdl")
+
+[node name="Walls" parent="Ground" index="1"]
+tile_map_data = PackedByteArray("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AAAGAP7/AQAAAAEAAAAFAP//AQAAAAIAAAAFAP7/AQAAAAIAAAAEAP//AQAAAAAAAAAEAP7/AQAAAAAAAAADAP//AQAAAAMAAAADAP7/AQAAAAIAAAACAP//AQAAAAEAAAACAP7/AQAAAAMAAAABAP//AQAAAAIAAAABAP7/AQAAAAMAAAAAAP//AQAAAAIAAAAAAP7/AQAAAAEAAAAAABwAAQAAAAYAAAAAABsAAQAAAAYAAAAAABoAAQAAAAYAAAAAABkAAQAAAAYAAAAAABgAAQAAAAYAAAAAABUAAQAAAAYAAAAAABQAAQAAAAYAAAAAABMAAQAAAAYAAAAAABIAAQAAAAYAAAAAABEAAQAAAAYAAAAAABAAAQAAAAYAAAAAAA8AAQAAAAYAAAAAAA4AAQAAAAYAAAAAAA0AAQAAAAYAAAAAAAwAAQAAAAYAAAAAAAsAAQAAAAYAAAAAAAoAAQAAAAYAAAAAAAkAAQAAAAYAAAAAAAgAAQAAAAYAAAAAAAcAAQAAAAYAAAAAAAYAAQAAAAYAAAAAAAUAAQAAAAYAAAAAAAQAAQAAAAYAAAAAAAMAAQAAAAYAAAAAAAIAAQAAAAYAAAAAAAEAAQAAAAYAAAAAAAAAAQAAAAIAAAA0AB8AAQAAAAMAAAA0AB4AAQAAAAMAAAAzAB8AAQAAAAEAAAAzAB4AAQAAAAEAAAAyAB8AAQAAAAEAAAAyAB4AAQAAAAMAAAAxAB8AAQAAAAAAAAAxAB4AAQAAAAIAAAAwAB8AAQAAAAMAAAAwAB4AAQAAAAIAAAAvAB8AAQAAAAAAAAAvAB4AAQAAAAMAAAAuAB8AAQAAAAMAAAAuAB4AAQAAAAMAAAAtAB8AAQAAAAMAAAAtAB4AAQAAAAMAAAAsAB8AAQAAAAAAAAAsAB4AAQAAAAEAAAArAB8AAQAAAAEAAAArAB4AAQAAAAIAAAAqAB8AAQAAAAAAAAAqAB4AAQAAAAEAAAApAB8AAQAAAAEAAAApAB4AAQAAAAMAAAAoAB8AAQAAAAIAAAAoAB4AAQAAAAIAAAAnAB8AAQAAAAMAAAAnAB4AAQAAAAMAAAAmAB8AAQAAAAAAAAAmAB4AAQAAAAIAAAAlAB8AAQAAAAAAAAAlAB4AAQAAAAMAAAAkAB8AAQAAAAAAAAAkAB4AAQAAAAMAAAAjAB8AAQAAAAEAAAAjAB4AAQAAAAIAAAAiAB8AAQAAAAMAAAAiAB4AAQAAAAIAAAAhAB8AAQAAAAMAAAAhAB4AAQAAAAIAAAAgAB8AAQAAAAIAAAAgAB4AAQAAAAAAAAAfAB8AAQAAAAIAAAAfAB4AAQAAAAAAAAAeAB8AAQAAAAMAAAAeAB4AAQAAAAEAAAAdAB8AAQAAAAAAAAAdAB4AAQAAAAAAAAAcAB8AAQAAAAMAAAAcAB4AAQAAAAAAAAAbAB8AAQAAAAAAAAAbAB4AAQAAAAIAAAAaAB8AAQAAAAMAAAAaAB4AAQAAAAAAAAAZAB8AAQAAAAEAAAAZAB4AAQAAAAAAAAAYAB8AAQAAAAMAAAAYAB4AAQAAAAAAAAAXAB8AAQAAAAMAAAAXAB4AAQAAAAEAAAAWAB8AAQAAAAAAAAAWAB4AAQAAAAIAAAAVAB8AAQAAAAMAAAAVAB4AAQAAAAMAAAAUAB8AAQAAAAIAAAAUAB4AAQAAAAIAAAATAB8AAQAAAAEAAAATAB4AAQAAAAAAAAASAB8AAQAAAAIAAAASAB4AAQAAAAMAAAARAB8AAQAAAAIAAAARAB4AAQAAAAIAAAAQAB8AAQAAAAIAAAAQAB4AAQAAAAMAAAAPAB8AAQAAAAMAAAAPAB4AAQAAAAEAAAAOAB8AAQAAAAMAAAAOAB4AAQAAAAMAAAANAB8AAQAAAAIAAAANAB4AAQAAAAIAAAAMAB8AAQAAAAIAAAAMAB4AAQAAAAEAAAALAB8AAQAAAAAAAAALAB4AAQAAAAMAAAAKAB8AAQAAAAAAAAAKAB4AAQAAAAIAAAAJAB8AAQAAAAMAAAAJAB4AAQAAAAAAAAAIAB8AAQAAAAAAAAAIAB4AAQAAAAEAAAAHAB8AAQAAAAAAAAAHAB4AAQAAAAMAAAAGAB8AAQAAAAEAAAAGAB4AAQAAAAMAAAAFAB8AAQAAAAEAAAAFAB4AAQAAAAEAAAAEAB8AAQAAAAEAAAAEAB4AAQAAAAAAAAADAB8AAQAAAAIAAAADAB4AAQAAAAMAAAACAB8AAQAAAAIAAAACAB4AAQAAAAEAAAABAB8AAQAAAAMAAAABAB4AAQAAAAAAAAAAAB8AAQAAAAAAAAAAAB4AAQAAAAIAAAD//x8AAQAAAAAAAAD//x4AAQAAAAIAAAD//x0AAQAAAAAAAAD+/x8AAQAAAAUAAAD+/x4AAQAAAAUAAAD+/x0AAQAAAAUAAAD//xwAAQAAAAAAAAD//xsAAQAAAAMAAAD//xoAAQAAAAMAAAD//xkAAQAAAAAAAAD//xgAAQAAAAEAAAD//xcAAQAAAAIAAAD//xYAAQAAAAMAAAD//xUAAQAAAAAAAAD//xQAAQAAAAEAAAD//xMAAQAAAAAAAAD//xIAAQAAAAAAAAD//xEAAQAAAAMAAAD//xAAAQAAAAAAAAD//w8AAQAAAAAAAAD//w4AAQAAAAMAAAD//w0AAQAAAAEAAAD//wwAAQAAAAMAAAD//wsAAQAAAAEAAAD//woAAQAAAAMAAAD//wkAAQAAAAAAAAD//wgAAQAAAAAAAAD+/xwAAQAAAAUAAAD+/xsAAQAAAAUAAAD+/xoAAQAAAAUAAAD+/xkAAQAAAAUAAAD+/xgAAQAAAAUAAAD+/xcAAQAAAAUAAAD+/xYAAQAAAAUAAAD+/xUAAQAAAAUAAAD+/xQAAQAAAAUAAAD+/xMAAQAAAAUAAAD+/xIAAQAAAAUAAAD+/xEAAQAAAAUAAAD+/xAAAQAAAAUAAAD+/w8AAQAAAAUAAAD+/w4AAQAAAAUAAAD+/w0AAQAAAAUAAAD+/wwAAQAAAAUAAAD+/wsAAQAAAAUAAAD+/woAAQAAAAUAAAD+/wkAAQAAAAUAAAD+/wgAAQAAAAUAAAD//wcAAQAAAAIAAAD//wYAAQAAAAIAAAD//wUAAQAAAAAAAAD//wQAAQAAAAEAAAD//wMAAQAAAAEAAAD//wIAAQAAAAEAAAD//wEAAQAAAAAAAAD//wAAAQAAAAIAAAD/////AQAAAAAAAAD///7/AQAAAAEAAAD+/wcAAQAAAAUAAAD+/wYAAQAAAAUAAAD+/wUAAQAAAAUAAAD+/wQAAQAAAAUAAAD+/wMAAQAAAAUAAAD+/wIAAQAAAAUAAAD+/wEAAQAAAAUAAAD+/wAAAQAAAAUAAAD+////AQAAAAUAAAD+//7/AQAAAAUAAAA0AP7/AQAAAAIAAAAxAAAAAQAAAAAAAAAwAAAAAQAAAAIAAAAvAAAAAQAAAAEAAAAuAAAAAQAAAAMAAAAtAAAAAQAAAAAAAAAsAAAAAQAAAAAAAAArAAAAAQAAAAAAAAAqAAAAAQAAAAIAAAApAAAAAQAAAAMAAAAoAAAAAQAAAAMAAAAnAAAAAQAAAAIAAAAmAAAAAQAAAAMAAAAlAAAAAQAAAAIAAAAkAAAAAQAAAAEAAAAjAAAAAQAAAAMAAAAiAAAAAQAAAAAAAAAhAAAAAQAAAAAAAAAgAAAAAQAAAAEAAAAfAAAAAQAAAAAAAAAeAAAAAQAAAAAAAAAdAAAAAQAAAAAAAAAcAAAAAQAAAAAAAAAbAAAAAQAAAAIAAAAaAAAAAQAAAAAAAAAZAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAXAAAAAQAAAAEAAAAWAAAAAQAAAAIAAAAVAAAAAQAAAAMAAAAUAAAAAQAAAAMAAAATAAAAAQAAAAEAAAASAAAAAQAAAAIAAAARAAAAAQAAAAEAAAAQAAAAAQAAAAMAAAAPAAAAAQAAAAMAAAAOAAAAAQAAAAMAAAANAAAAAQAAAAAAAAAMAAAAAQAAAAEAAAALAAAAAQAAAAAAAAAKAAAAAQAAAAIAAAAJAAAAAQAAAAAAAAAIAAAAAQAAAAIAAAAHAAAAAQAAAAAAAAAGAAAAAQAAAAEAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAEAAAADAAAAAQAAAAMAAAACAAAAAQAAAAEAAAABAAAAAQAAAAEAAAA3AB8AAQAAAAYAAAA3AB4AAQAAAAYAAAA3AB0AAQAAAAYAAAA3ABwAAQAAAAYAAAA3ABsAAQAAAAYAAAA3ABoAAQAAAAYAAAA3ABkAAQAAAAYAAAA3ABgAAQAAAAYAAAA3ABcAAQAAAAYAAAA3ABYAAQAAAAYAAAA3ABUAAQAAAAYAAAA3ABQAAQAAAAYAAAA3ABMAAQAAAAYAAAA3ABIAAQAAAAYAAAA3ABEAAQAAAAYAAAA3ABAAAQAAAAYAAAA3AA8AAQAAAAYAAAA3AA4AAQAAAAYAAAA3AA0AAQAAAAYAAAA3AAwAAQAAAAYAAAA3AAsAAQAAAAYAAAA3AAoAAQAAAAYAAAA3AAkAAQAAAAYAAAA3AAgAAQAAAAYAAAA3AAcAAQAAAAYAAAA3AAYAAQAAAAYAAAA3AAUAAQAAAAYAAAA3AAQAAQAAAAYAAAA3AAMAAQAAAAYAAAA3AAIAAQAAAAYAAAA3AAEAAQAAAAYAAAA3AAAAAQAAAAYAAAA3AP//AQAAAAYAAAA3AP7/AQAAAAYAAAA2AB8AAQAAAAIAAAA2AB4AAQAAAAMAAAA2AB0AAQAAAAEAAAA2ABwAAQAAAAEAAAA2ABsAAQAAAAEAAAA2ABoAAQAAAAEAAAA2ABkAAQAAAAEAAAA2ABgAAQAAAAMAAAA2ABcAAQAAAAAAAAA2ABYAAQAAAAMAAAA2ABUAAQAAAAMAAAA2ABQAAQAAAAMAAAA2ABMAAQAAAAIAAAA2ABIAAQAAAAIAAAA2ABEAAQAAAAAAAAA2ABAAAQAAAAEAAAA2AA8AAQAAAAIAAAA2AA4AAQAAAAMAAAA2AA0AAQAAAAEAAAA2AAwAAQAAAAMAAAA2AAsAAQAAAAAAAAA2AAoAAQAAAAAAAAA2AAkAAQAAAAMAAAA2AAgAAQAAAAEAAAA2AAcAAQAAAAIAAAA2AAYAAQAAAAEAAAA2AAUAAQAAAAEAAAA2AAQAAQAAAAEAAAA2AAMAAQAAAAEAAAA2AAIAAQAAAAAAAAA2AAEAAQAAAAMAAAA2AAAAAQAAAAMAAAA2AP//AQAAAAMAAAA2AP7/AQAAAAAAAAA1AB8AAQAAAAMAAAA1AB4AAQAAAAMAAAA1AB0AAQAAAAMAAAA1ABwAAQAAAAIAAAA1ABsAAQAAAAMAAAA1ABoAAQAAAAMAAAA1ABkAAQAAAAIAAAA1ABgAAQAAAAMAAAA1ABcAAQAAAAEAAAA1ABYAAQAAAAIAAAA1ABUAAQAAAAIAAAA1ABQAAQAAAAIAAAA1ABMAAQAAAAAAAAA1ABIAAQAAAAEAAAA1ABEAAQAAAAEAAAA1ABAAAQAAAAMAAAA1AA8AAQAAAAIAAAA1AA4AAQAAAAAAAAA1AA0AAQAAAAEAAAA1AAwAAQAAAAAAAAA1AAsAAQAAAAEAAAA1AAoAAQAAAAEAAAA1AAkAAQAAAAIAAAA1AAgAAQAAAAIAAAA1AAcAAQAAAAMAAAA1AAYAAQAAAAAAAAA1AAUAAQAAAAEAAAA1AAQAAQAAAAIAAAA1AAMAAQAAAAMAAAA1AAIAAQAAAAAAAAA1AAEAAQAAAAIAAAA1AAAAAQAAAAAAAAA1AP//AQAAAAIAAAA1AP7/AQAAAAEAAAA0ABwAAQAAAAUAAAA0ABsAAQAAAAUAAAA0ABoAAQAAAAUAAAA0ABkAAQAAAAUAAAA0ABgAAQAAAAUAAAA0ABcAAQAAAAUAAAA0ABYAAQAAAAUAAAA0ABUAAQAAAAUAAAA0ABQAAQAAAAUAAAA0ABMAAQAAAAUAAAA0ABIAAQAAAAUAAAA0ABEAAQAAAAUAAAA0ABAAAQAAAAUAAAA0AA8AAQAAAAUAAAA0AA4AAQAAAAUAAAA0AA0AAQAAAAUAAAA0AAwAAQAAAAUAAAA0AAsAAQAAAAUAAAA0AAoAAQAAAAUAAAA0AAkAAQAAAAUAAAA0AAgAAQAAAAUAAAA0AAcAAQAAAAUAAAA0AAYAAQAAAAUAAAA0AAUAAQAAAAUAAAA0AAQAAQAAAAUAAAA0AAMAAQAAAAUAAAA0AAIAAQAAAAUAAAA0AAEAAQAAAAUAAAA=")
+
+[node name="CheatText" type="RichTextLabel" parent="Text" index="0"]
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 369.0
+offset_bottom = 146.0
+theme_override_colors/font_outline_color = Color(0.0588235, 0.105882, 0.14902, 1)
+theme_override_constants/outline_size = 4
+bbcode_enabled = true
+text = "// yo its friday, we release today!
+// u hyped? im hyped!
+// made last fixes to win cutscene
+// to test it ive set the limit to 3 sec and ran
+// looks gr8, gonna commit and clock off
+// gl hf guys!
+// - jeff"
+
+[node name="CheatUnstuck" parent="Text" index="1" instance=ExtResource("3_ednv6")]
+position = Vector2(243, 49)
+cheat_id = "cheat_unstuck"
+cheat_text = "TIMEOUT"
+
+[node name="ScanLine" parent="VFX_Scanlines1" index="0"]
+material = SubResource("ShaderMaterial_ea5ar")
+
+[node name="ScanLine2" parent="VFX_Scanlines1" index="1"]
+material = SubResource("ShaderMaterial_8er8q")
+
+[node name="ScanLine3" parent="VFX_Scanlines1" index="2"]
+material = SubResource("ShaderMaterial_4dtw1")
+
+[node name="ScanLine4" parent="VFX_Scanlines1" index="3"]
+material = SubResource("ShaderMaterial_06n8d")
+
+[node name="ScanLine5" parent="VFX_Scanlines1" index="4"]
+material = SubResource("ShaderMaterial_cdjkk")
+
+[node name="ScanLine6" parent="VFX_Scanlines1" index="5"]
+material = SubResource("ShaderMaterial_0fvye")
+
+[node name="ScanLine7" parent="VFX_Scanlines1" index="6"]
+material = SubResource("ShaderMaterial_r51rl")
+
+[node name="ScanLine8" parent="VFX_Scanlines1" index="7"]
+material = SubResource("ShaderMaterial_mvj0y")
+
+[node name="ScanLine9" parent="VFX_Scanlines1" index="8"]
+material = SubResource("ShaderMaterial_vwuen")
+
+[node name="ScanLine10" parent="VFX_Scanlines1" index="9"]
+material = SubResource("ShaderMaterial_3i318")
+
+[node name="ScanLine11" parent="VFX_Scanlines1" index="10"]
+material = SubResource("ShaderMaterial_05dvt")
+
+[node name="ScanLine12" parent="VFX_Scanlines1" index="11"]
+material = SubResource("ShaderMaterial_rdq81")
+
+[node name="ScanLine13" parent="VFX_Scanlines1" index="12"]
+material = SubResource("ShaderMaterial_gsijm")
+
+[node name="ScanLine14" parent="VFX_Scanlines1" index="13"]
+material = SubResource("ShaderMaterial_r71v5")
+
+[node name="ScanLine15" parent="VFX_Scanlines1" index="14"]
+material = SubResource("ShaderMaterial_p5rlo")
+
+[node name="ScanLine16" parent="VFX_Scanlines1" index="15"]
+material = SubResource("ShaderMaterial_bkexo")
+
+[node name="ScanLine" parent="VFX_Scanlines2" index="0"]
+material = SubResource("ShaderMaterial_6ufin")
+
+[node name="ScanLine2" parent="VFX_Scanlines2" index="1"]
+material = SubResource("ShaderMaterial_kvf2v")
+
+[node name="ScanLine3" parent="VFX_Scanlines2" index="2"]
+material = SubResource("ShaderMaterial_4txif")
+
+[node name="ScanLine4" parent="VFX_Scanlines2" index="3"]
+material = SubResource("ShaderMaterial_wlaqp")
+
+[node name="ScanLine5" parent="VFX_Scanlines2" index="4"]
+material = SubResource("ShaderMaterial_7yy82")
+
+[node name="ScanLine6" parent="VFX_Scanlines2" index="5"]
+material = SubResource("ShaderMaterial_38udp")
+
+[node name="ScanLine7" parent="VFX_Scanlines2" index="6"]
+material = SubResource("ShaderMaterial_7ujyd")
+
+[node name="ScanLine8" parent="VFX_Scanlines2" index="7"]
+material = SubResource("ShaderMaterial_ee1sa")
+
+[node name="ScanLine9" parent="VFX_Scanlines2" index="8"]
+material = SubResource("ShaderMaterial_hibqb")
+
+[node name="ScanLine10" parent="VFX_Scanlines2" index="9"]
+material = SubResource("ShaderMaterial_op7bc")
+
+[node name="BadScreenBlock" parent="VFX_BadBlocks" index="0"]
+material = SubResource("ShaderMaterial_47pjr")
+
+[node name="BadScreenBlock2" parent="VFX_BadBlocks" index="1"]
+material = SubResource("ShaderMaterial_f6iqu")
+
+[node name="BadScreenBlock3" parent="VFX_BadBlocks" index="2"]
+material = SubResource("ShaderMaterial_ib4mr")
+
+[node name="BadScreenBlock4" parent="VFX_BadBlocks" index="3"]
+material = SubResource("ShaderMaterial_ph8s7")
+
+[node name="BadScreenBlock5" parent="VFX_BadBlocks" index="4"]
+material = SubResource("ShaderMaterial_swx3i")
+
+[node name="BadScreenBlock6" parent="VFX_BadBlocks" index="5"]
+material = SubResource("ShaderMaterial_7lmsv")

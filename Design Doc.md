@@ -29,7 +29,7 @@ Cheat code ideas:
 
 1. Show debug info & collisions -> unveils a hidden passage
 2. Disable damage from spikes -> lets you pass through tunnel with spikes
-3. Disable damage from stars -> lets you pass through tunnel with spikes
+3. Disable damage from stars -> lets you pass through tunnel with stars
 4. Disable damage from lasers -> lets you pass through tunnel with lasers
 5. Disable fall damage -> lets you fall below the map edge and trigger a glitch
 6. Disable all damage -> QoL (disables all damage)
@@ -68,12 +68,12 @@ Game progression:
 5. Enter glitch area #1
 6. Get hint about hack menu, collect hack_1 and hack_14, reset
 7. Play cloud area, enter invisible wall, enter glitch area #2
-8. Collect hack_10, reset
-9. Play cloud area, reach unreachable island, enter glitch area #3
+8. Collect hack_5, reset
+9. Play cloud area, fall beyond map bottom, enter glitch area #3
 10. Collect hack_9, reset
-11. Play cloud area, reach high island, enter glitch area #4
-12. Collect hack_5, reset
-13. Play cloud area, fall beyond map bottom, enter glitch area #5
+11. Play cloud area, reach high island, enter glitch area #5
+12. Collect hack_10, reset
+13. Play cloud area, reach unreachable island, enter glitch area #4
 14. Collect hack_7 and hack_2
 15. Play bastion area, enter corridor with spikes, enter glitch area #6
 16. Collect hack_8

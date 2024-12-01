@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dadoqbh5kn2v2"]
+[gd_scene load_steps=37 format=3 uid="uid://dadoqbh5kn2v2"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_hqnfc"]
 [ext_resource type="Texture2D" uid="uid://djraq8bp4byv5" path="res://art/character_death.png" id="2_vlghn"]
@@ -10,6 +10,22 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tniwb"]
 radius = 2.9
 height = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fvye"]
+atlas = ExtResource("2_w50ok")
+region = Rect2(0, 32, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ec4dr"]
+atlas = ExtResource("2_w50ok")
+region = Rect2(8, 32, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvcnl"]
+atlas = ExtResource("2_w50ok")
+region = Rect2(16, 32, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l77gt"]
+atlas = ExtResource("2_w50ok")
+region = Rect2(24, 32, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_np608"]
 atlas = ExtResource("2_vlghn")
@@ -101,6 +117,23 @@ region = Rect2(24, 16, 8, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p7qfr"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fvye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ec4dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvcnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l77gt")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_np608")
@@ -223,6 +256,10 @@ shape = SubResource("CapsuleShape2D_tniwb")
 wait_time = 0.06
 one_shot = true
 
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [node name="ContinuedGrabTimer" type="Timer" parent="."]
 wait_time = 0.4
 
@@ -258,6 +295,7 @@ collision_mask = 218
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_dj7ui")
 
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ContinuedGrabTimer" to="." method="_on_continued_grab_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

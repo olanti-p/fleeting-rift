@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 	if !$Player.is_control_hackably_disabled:
 		return
 	
-	if Input.is_action_just_pressed("grab"):
+	if ThisRun.all_areas_unlocked:
 		is_all_unlocked = true
 	
 	if is_bastion_unlocked || is_north_unlocked || is_all_unlocked:
@@ -85,12 +85,12 @@ func _process(delta: float) -> void:
 				current_level = LEVEL_CLOUDS
 			_update_player_position(false)
 	if Input.is_action_just_pressed("start_level"):
-		if !ThisRun.timer_started:
+		if !ThisRun.timer_started && !ThisRun.is_completed:
 			ThisRun.start_timer()
 		match current_level:
 			LEVEL_BASTION:
-				get_tree().change_scene_to_file("res://scenes/levels/level_bastion.tscn")
+				SceneTransition.do_normal("res://scenes/levels/level_bastion.tscn")
 			LEVEL_CLOUDS:
-				get_tree().change_scene_to_file("res://scenes/levels/level_clouds.tscn")
+				SceneTransition.do_normal("res://scenes/levels/level_clouds.tscn")
 			LEVEL_NORTH:
-				get_tree().change_scene_to_file("res://scenes/levels/level_north.tscn")
+				SceneTransition.do_normal("res://scenes/levels/level_north.tscn")

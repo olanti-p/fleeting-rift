@@ -22,8 +22,9 @@ var ignore_continued_grabbing: bool = false
 var is_dead: bool = false
 var respawn_position: Vector2
 var checked_respawn_point: RespawnPoint = null
-var air_jumps_remaining: int = NUM_AIR_JUMPS
+var air_jumps_remaining: int = 0
 var is_jumping: bool = false
+var is_dashing: bool = false
 
 var nearby_door: ExitDoor = null
 var is_entering_door: bool = false
@@ -40,12 +41,14 @@ const MIN_STAMINA: float = 0.0
 const MAX_STAMINA: float = 100.0
 const STAMINA_LOSS_RATE: float = 30.0
 const STAMINA_LOSS_PER_JUMP: float = 30.0
-const NUM_AIR_JUMPS: int = 0
 const GRAB_ICE_SLIP_SPEED: float = 8.0
+const DASH_VELOCITY: float = 200.0
+const NOCLIP_FLOAT_SPEED: float = 150
 
 func _ready() -> void:
 	stamina_bar.visible = false
 	respawn_position = global_position
+	_reset_air_jump_counter()
 
 
 func make_walljump_vector() -> Vector2:
@@ -61,8 +64,17 @@ func make_walljump_vector() -> Vector2:
 	return direction.normalized()
 
 
+func _reset_air_jump_counter() -> void:
+	air_jumps_remaining = 1 if ThisRun.is_double_jump_enabled else 0
+
+
 func _physics_process(delta: float) -> void:
 	if is_dead || is_entering_door:
+		return
+	
+	if !is_control_hackably_disabled && \
+	  Input.is_action_just_pressed("restart"):
+		_on_restart_pressed()
 		return
 	
 	# Entering door
@@ -78,20 +90,50 @@ func _physics_process(delta: float) -> void:
 		flippable_nodes.visible = true
 		return
 	
+	set_collision_mask_value(1, !ThisRun.is_noclip_enabled)
+	if ThisRun.is_spike_damage_disabled:
+		$Hitbox.set_collision_mask_value(2, false)
+	if ThisRun.is_star_damage_disabled:
+		$Hitbox.set_collision_mask_value(5, false)
+	if ThisRun.is_laser_damage_disabled:
+		$Hitbox.set_collision_mask_value(4, false)
+	if ThisRun.is_stamina_hack_enabled:
+		stamina = MAX_STAMINA
+	
+	if ThisRun.is_noclip_enabled:
+		var dir = Input.get_vector("left", "right", "up", "down")
+		position += dir * NOCLIP_FLOAT_SPEED * delta
+		_update_anim()
+		move_and_slide()
+		return
+	
+	if !is_control_hackably_disabled && \
+	  ThisRun.is_dash_enabled && \
+	  !is_dashing && \
+	  Input.is_action_just_pressed("dash"):
+		is_jumping = false
+		is_grabbing = false
+		was_on_floor = false
+		is_dashing = true
+		$DashTimer.start()
+	
 	if is_grabbing && !grab_detector.is_colliding():
 		# Slipped down
 		is_grabbing = false
 		ignore_continued_grabbing = false
 	
 	# Add the gravity
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	if not is_on_floor() || ThisRun.is_gravity_flipped:
+		var dv = get_gravity() * delta
+		if ThisRun.is_gravity_flipped:
+			dv = -dv
+		velocity += dv
 	
 	# Handle Coyote Timer
 	if is_on_floor():
 		was_on_floor = true
 		coyote_timer.stop()
-		air_jumps_remaining = NUM_AIR_JUMPS
+		_reset_air_jump_counter()
 	elif was_on_floor:
 		was_on_floor = false
 		coyote_timer.start()
@@ -105,6 +147,7 @@ func _physics_process(delta: float) -> void:
 	if !Input.is_action_pressed("jump"):
 		is_jumping = false
 	if !is_control_hackably_disabled && \
+	  !is_dashing && \
 	  Input.is_action_just_pressed("jump"):
 		if is_grabbing:
 			is_grabbing = false
@@ -121,6 +164,7 @@ func _physics_process(delta: float) -> void:
 		elif air_jumps_remaining > 0:
 			air_jumps_remaining -= 1
 			velocity.y = -AIRJUMP_VELOCITY
+			is_jumping = true
 	
 	var direction := Input.get_axis("left", "right")
 	if is_control_hackably_disabled:
@@ -149,6 +193,7 @@ func _physics_process(delta: float) -> void:
 	# Handle grab
 	if !is_control_hackably_disabled && \
 	  !is_grabbing && \
+	  !is_dashing && \
 	  grab_detector.is_colliding() && \
 	  Input.is_action_pressed("grab") && \
 	  !ignore_continued_grabbing && \
@@ -166,7 +211,6 @@ func _physics_process(delta: float) -> void:
 		stamina = move_toward(stamina, MIN_STAMINA, STAMINA_LOSS_RATE * delta)
 		if stamina == MIN_STAMINA:
 			is_grabbing = false
-			
 	
 	if !grab_detector.is_colliding():
 		ignore_continued_grabbing = false
@@ -177,8 +221,21 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = Vector2.ZERO
 	
-	# Animation
-	if is_grabbing:
+	if is_dashing:
+		velocity.y = 0
+		if looking_right:
+			velocity.x = DASH_VELOCITY
+		else:
+			velocity.x = -DASH_VELOCITY
+	
+	_update_anim()
+	move_and_slide()
+
+
+func _update_anim() -> void:
+	if is_dashing:
+		player_sprite.play("dash")
+	elif is_grabbing:
 		player_sprite.play("grab")
 	elif !is_on_floor():
 		player_sprite.play("jump")
@@ -186,8 +243,6 @@ func _physics_process(delta: float) -> void:
 		player_sprite.play("run")
 	else:
 		player_sprite.play("idle")
-	
-	move_and_slide()
 
 
 func _on_continued_grab_timer_timeout() -> void:
@@ -220,6 +275,15 @@ func fell_beyond_map_edge() -> void:
 	_respawn()
 
 
+func _on_restart_pressed() -> void:
+	if is_dead || is_entering_door:
+		return
+	is_dead = true
+	player_sprite.play("death")
+	await player_sprite.animation_finished
+	_respawn()
+
+
 func set_respawn_point(rp: RespawnPoint) -> void:
 	if checked_respawn_point:
 		checked_respawn_point.uncheck()
@@ -233,3 +297,7 @@ func _on_hitbox_area_entered(_area: Area2D) -> void:
 
 func _on_hitbox_body_entered(_body: Node2D) -> void:
 	_on_hit()
+
+
+func _on_dash_timer_timeout() -> void:
+	is_dashing = false
