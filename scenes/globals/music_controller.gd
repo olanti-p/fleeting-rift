@@ -1,19 +1,37 @@
 extends Node
 
+
+func stop_all() -> void:
+	for child in get_children():
+		var ch: AudioStreamPlayer = child
+		ch.stop()
+
+
 func play_main_menu() -> void:
-	pass
+	stop_all()
+	$MusicMainMenu.play()
+
 
 func play_map() -> void:
-	pass
+	stop_all()
+	$MusicMap.play()
+
 
 func play_clouds() -> void:
-	pass
+	stop_all()
+	$MusicDreamyClouds.play()
+
 
 func play_bastion() -> void:
-	pass
+	stop_all()
+	$MusicBastion.play()
 
-func play_ice() -> void:
-	pass
+
+func play_north() -> void:
+	stop_all()
+	$MusicFrozenNorth.play()
+
 
 func play_glitch() -> void:
-	pass
+	stop_all()
+	$MusicHardwareFault.play()

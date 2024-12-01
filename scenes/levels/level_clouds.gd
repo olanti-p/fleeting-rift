@@ -7,6 +7,7 @@ extends Level
 func _ready() -> void:
 	super()
 	ThisRun.current_level = 0
+	MusicController.play_clouds()
 	%ExitDoor.connect("has_been_entered", _this_door_entered)
 
 func _process(delta: float) -> void:

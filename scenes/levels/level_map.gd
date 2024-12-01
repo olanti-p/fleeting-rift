@@ -41,6 +41,7 @@ func _ready() -> void:
 	_update_player_position(true)
 	is_north_unlocked = ThisRun.bastion_finished
 	is_bastion_unlocked = ThisRun.clouds_finished
+	MusicController.play_map()
 	super()
 
 func _update_player_position(first: bool) -> void:

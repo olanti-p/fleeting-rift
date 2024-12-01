@@ -6,6 +6,7 @@ func _ready() -> void:
 	$VFX_AwardGlitchReveal.visible = false
 	%EndgoalTextExpected.visible = false
 	%EndgoalTextFail.visible = false
+	MusicController.play_north()
 	ThisRun.current_level = 2
 
 func fmt_run_time_display() -> void:
@@ -34,6 +35,7 @@ func _on_glitch_reveal_area_body_entered(_body: Node2D) -> void:
 		return
 	has_triggered_reveal = true
 	%GlitchRevealPlayer.play("reveal")
+	MusicController.stop_all()
 	await %GlitchRevealPlayer.animation_finished
 	%CertificateEntry.visible = true
 
@@ -43,6 +45,7 @@ func _on_endgoal_player_entered() -> void:
 	ThisRun.final_time = ThisRun.run_time
 	ThisRun.is_completed = true
 	fmt_run_time_display()
+	MusicController.play_map()
 	await get_tree().create_timer(2.0).timeout
 	%EndgoalTextExpected.visible = true
 	await get_tree().create_timer(2.0).timeout

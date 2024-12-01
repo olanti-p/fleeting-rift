@@ -211,7 +211,7 @@ position = Vector2(178, 274)
 position = Vector2(0, -284)
 
 [node name="Right" parent="Ground/WorldBoundaries" index="2"]
-position = Vector2(616, -27)
+position = Vector2(880, -26)
 
 [node name="Left" parent="Ground/WorldBoundaries" index="3"]
 position = Vector2(-32, 123)
@@ -254,8 +254,7 @@ metadata/_edit_group_ = true
 position = Vector2(429, -200)
 
 [node name="DebugPlayerSpawner" parent="." index="10"]
-position = Vector2(270, -27)
-spawn_enabled = true
+position = Vector2(287, 207)
 
 [node name="ScanLine" parent="VFX_Scanlines1" index="0"]
 material = SubResource("ShaderMaterial_ea5ar")
