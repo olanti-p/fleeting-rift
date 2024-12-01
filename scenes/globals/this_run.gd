@@ -8,10 +8,8 @@ var current_level: int = 0
 var final_time: float = 0.0
 var is_completed: bool = false
 var is_fall_damage_disabled: bool = false
-#var is_double_jump_enabled: bool = false
-#var is_dash_enabled: bool = false
-var is_double_jump_enabled: bool = true
-var is_dash_enabled: bool = true
+var is_double_jump_enabled: bool = false
+var is_dash_enabled: bool = false
 var all_areas_unlocked: bool = false
 var is_spike_damage_disabled: bool = false
 var is_star_damage_disabled: bool = false
@@ -34,4 +32,13 @@ func reset_run() -> void:
 	current_level = 0
 	final_time = 0.0
 	is_completed = false
-	
+	is_fall_damage_disabled = false
+	is_double_jump_enabled = false
+	is_dash_enabled = false
+	all_areas_unlocked = false
+	is_spike_damage_disabled = false
+	is_star_damage_disabled = false
+	is_laser_damage_disabled = false
+	is_stamina_hack_enabled = false
+	is_gravity_flipped = false
+	is_noclip_enabled = false

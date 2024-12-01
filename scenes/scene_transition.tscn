@@ -1,6 +1,3357 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl1bven4a03r8"]
+[gd_scene load_steps=52 format=3 uid="uid://bl1bven4a03r8"]
 
 [ext_resource type="Script" path="res://scenes/scene_transition.gd" id="1_e4l2q"]
+[ext_resource type="Texture2D" uid="uid://cox7ulcyyjlte" path="res://art/fade_in.png" id="2_wkcia"]
+[ext_resource type="PackedScene" uid="uid://bu8dhkrdwmv34" path="res://scenes/bad_screen_block.tscn" id="3_afu2v"]
+[ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="4_kys5r"]
+[ext_resource type="PackedScene" uid="uid://dhvd7jxh07fvh" path="res://scenes/scan_line.tscn" id="5_d1wa4"]
+[ext_resource type="AudioStream" uid="uid://dmq22k3eqgfr4" path="res://sfx/glitch_sound.ogg" id="6_gopv7"]
+[ext_resource type="AudioStream" uid="uid://c2cgxfoujksmd" path="res://sfx/shutdown.wav" id="7_kfkuj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wgjq"]
+atlas = ExtResource("2_wkcia")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_matea"]
+atlas = ExtResource("2_wkcia")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thoj5"]
+atlas = ExtResource("2_wkcia")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpil6"]
+atlas = ExtResource("2_wkcia")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eg0n"]
+atlas = ExtResource("2_wkcia")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jeuj"]
+atlas = ExtResource("2_wkcia")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u07oc"]
+atlas = ExtResource("2_wkcia")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gsgl3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wgjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_matea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thoj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpil6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eg0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jeuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u07oc")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="Animation" id="Animation_tbxvt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_eh0im"]
+resource_name = "fade_in"
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_45hea"]
+resource_name = "fade_out"
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tdtv1"]
+_data = {
+"RESET": SubResource("Animation_tbxvt"),
+"fade_in": SubResource("Animation_eh0im"),
+"fade_out": SubResource("Animation_45hea")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_56226"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2uysi"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ttd4"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_30ruq"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xbnef"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bb64b"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ej7l5"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6lisw"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5do2"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b7m57"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qd57d"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l4ym5"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6kes"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2hh05"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6yrp"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68vmu"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_01pu6"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kubj3"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k102c"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5oltl"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d75ra"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_55ell"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbesv"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d8cor"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cl2mc"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jxh5d"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gy4m3"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8xbl"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cnp0m"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2pgny"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oq74s"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8l7ng"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
 
 [node name="SceneTransition" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_e4l2q")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 127
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D18" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D19" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D20" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D21" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D22" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D23" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D24" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D25" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D26" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D27" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D28" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D29" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D30" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D31" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D32" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D33" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D34" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D35" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D36" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D37" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D38" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D39" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D40" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D41" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D42" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D43" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D44" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D45" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D46" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D47" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D48" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D49" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D50" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D51" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D52" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D53" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D54" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D55" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D56" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D57" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D58" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D59" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D60" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D61" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D62" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D63" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D64" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D65" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D66" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D67" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D68" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D69" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D70" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D71" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D72" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D73" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D74" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D75" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D76" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D77" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D78" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D79" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D80" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D81" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D82" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D83" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D84" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D85" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D86" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D87" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D88" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D89" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D90" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D91" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D92" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D93" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D94" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D95" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D96" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D97" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D98" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D99" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D100" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D101" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D102" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D103" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D104" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D105" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D106" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D109" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D110" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D113" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D114" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D115" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D116" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D117" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D118" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D119" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D120" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D121" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D122" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D125" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D126" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D107" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D108" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D111" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D112" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D123" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D124" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D127" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D128" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D129" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D130" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D131" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D132" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D133" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D134" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D135" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D136" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D137" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D138" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D139" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D140" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D141" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D142" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D143" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D144" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D145" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D146" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D147" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D148" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D149" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D150" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D151" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D152" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D153" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D154" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D155" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D156" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D157" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D158" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D159" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D160" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D161" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D162" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D163" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D164" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D165" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D166" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D167" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D168" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D169" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D170" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D171" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D172" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D173" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D174" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D175" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D176" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D177" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D178" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D179" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D180" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D181" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D182" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D183" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D184" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D185" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D186" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D187" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D188" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D189" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D190" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D191" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D192" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D193" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D194" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D195" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D196" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D197" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D198" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D199" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D200" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D201" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D202" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D203" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D204" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D205" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D206" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D207" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D208" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D209" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D210" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D211" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D212" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D213" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D214" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D215" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D216" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D217" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D218" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D219" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D220" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D221" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D222" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D223" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D224" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D225" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D226" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D227" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D228" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D229" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D230" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D231" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D232" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D233" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D234" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D235" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D236" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D237" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D238" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D239" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D240" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D241" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D242" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D243" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D244" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D245" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D246" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D247" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D248" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D249" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D250" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D251" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D252" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D253" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D254" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D255" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D256" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D257" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D258" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D259" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D260" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D261" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D262" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D263" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D264" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D265" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D266" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D267" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D268" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D269" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D270" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D271" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D272" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D273" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D274" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D275" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D276" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D277" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D278" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D279" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D280" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D281" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D282" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D283" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D284" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D285" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D286" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D287" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D288" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D289" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D290" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D291" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D292" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D293" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D294" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D295" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D296" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D297" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D298" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D299" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D300" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D301" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D302" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D303" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D304" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D305" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D306" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D307" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D308" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D309" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D310" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D311" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D312" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D313" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D314" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D315" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D316" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D317" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D318" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D319" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D320" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D321" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D322" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D323" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D324" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D325" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D326" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D327" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D328" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D329" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D330" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D331" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D332" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D333" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D334" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D335" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D336" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D337" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D338" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D339" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D340" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D341" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D342" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D343" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D344" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D345" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D346" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D347" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D348" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D349" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D350" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D351" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D352" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D353" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D354" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D355" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D356" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D357" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D358" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D359" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D360" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D361" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D362" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D363" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D364" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D365" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D367" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D369" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D370" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D371" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D372" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D373" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D375" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D393" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D394" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D395" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D396" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D397" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D399" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D401" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D402" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D403" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D404" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D405" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D407" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D425" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D426" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D427" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D428" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D429" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D431" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D433" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D434" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D435" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D436" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D437" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D439" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D457" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D458" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D459" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D460" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D461" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D463" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D465" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D466" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D467" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D366" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D409" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D430" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(8, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D432" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D438" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D440" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D441" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D442" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D443" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D444" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D445" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D446" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D447" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D448" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D449" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D450" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D451" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D452" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D453" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D454" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D455" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D456" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D462" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D464" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D471" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D472" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D473" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D474" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D475" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D476" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, -8)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D410" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 24)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D411" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 40)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D412" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 56)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D413" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 72)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D414" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 88)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D415" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 104)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D416" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 120)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D417" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 136)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D418" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 152)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D419" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 168)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D420" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 184)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D421" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 200)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D422" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 216)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D423" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 232)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D424" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-8, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D368" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(24, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D374" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(40, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D376" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D377" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(72, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D378" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(88, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D379" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(104, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D380" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(120, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D381" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(136, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D382" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(152, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D383" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(168, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D384" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(184, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D385" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(200, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D386" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(216, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D387" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(232, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D388" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(248, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D389" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(264, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D390" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(280, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D391" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(296, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D392" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(312, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D398" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(328, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D400" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(344, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D406" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(360, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D408" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(376, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D468" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(392, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D469" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(408, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimatedSprite2D470" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(424, 248)
+sprite_frames = SubResource("SpriteFrames_gsgl3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tdtv1")
+}
+
+[node name="VFX_Scanlines1" type="CanvasLayer" parent="."]
+layer = 120
+
+[node name="ScanLine" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_56226")
+invert_color = true
+
+[node name="ScanLine2" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_2uysi")
+invert_color = true
+
+[node name="ScanLine3" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_1ttd4")
+invert_color = true
+
+[node name="ScanLine4" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_30ruq")
+invert_color = true
+
+[node name="ScanLine5" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_xbnef")
+invert_color = true
+
+[node name="ScanLine6" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_bb64b")
+
+[node name="ScanLine7" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_ej7l5")
+invert_color = true
+
+[node name="ScanLine8" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_6lisw")
+
+[node name="ScanLine9" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_b5do2")
+invert_color = true
+
+[node name="ScanLine10" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_b7m57")
+invert_color = true
+
+[node name="ScanLine11" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_qd57d")
+invert_color = true
+
+[node name="ScanLine12" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_l4ym5")
+invert_color = true
+
+[node name="ScanLine13" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_e6kes")
+invert_color = true
+
+[node name="ScanLine14" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_2hh05")
+
+[node name="ScanLine15" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_e6yrp")
+invert_color = true
+
+[node name="ScanLine16" parent="VFX_Scanlines1" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_68vmu")
+
+[node name="VFX_Scanlines2" type="CanvasLayer" parent="."]
+layer = 121
+
+[node name="ScanLine" parent="VFX_Scanlines2" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_01pu6")
+invert_color = true
+displacement = 0.02
+
+[node name="ScanLine2" parent="VFX_Scanlines2" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_kubj3")
+invert_color = true
+displacement = 0.02
+
+[node name="ScanLine3" parent="VFX_Scanlines2" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_k102c")
+invert_color = true
+displacement = 0.02
+
+[node name="ScanLine4" parent="VFX_Scanlines2" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_5oltl")
+invert_color = true
+displacement = 0.02
+
+[node name="ScanLine5" parent="VFX_Scanlines2" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_d75ra")
+invert_color = true
+displacement = 0.02
+
+[node name="ScanLine6" parent="VFX_Scanlines2" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_55ell")
+invert_color = true
+displacement = 0.02
+
+[node name="ScanLine7" parent="VFX_Scanlines2" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_bbesv")
+invert_color = true
+displacement = 0.02
+
+[node name="ScanLine8" parent="VFX_Scanlines2" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_d8cor")
+invert_color = true
+displacement = 0.02
+
+[node name="ScanLine9" parent="VFX_Scanlines2" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_cl2mc")
+invert_color = true
+displacement = 0.02
+
+[node name="ScanLine10" parent="VFX_Scanlines2" instance=ExtResource("5_d1wa4")]
+material = SubResource("ShaderMaterial_jxh5d")
+invert_color = true
+displacement = 0.02
+
+[node name="VFX_BadBlocks" type="CanvasLayer" parent="."]
+layer = 122
+
+[node name="BadScreenBlock" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
+material = SubResource("ShaderMaterial_gy4m3")
+position = Vector2(81, 48)
+
+[node name="BadScreenBlock7" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
+material = SubResource("ShaderMaterial_gy4m3")
+position = Vector2(99, 82)
+scale = Vector2(7.425, 8.09469)
+
+[node name="BadScreenBlock8" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
+material = SubResource("ShaderMaterial_gy4m3")
+position = Vector2(180.15, 128.311)
+scale = Vector2(2.7125, 14.6723)
+
+[node name="BadScreenBlock2" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
+material = SubResource("ShaderMaterial_a8xbl")
+position = Vector2(268, 45)
+scale = Vector2(23.0512, 7.97275)
+
+[node name="BadScreenBlock3" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
+material = SubResource("ShaderMaterial_cnp0m")
+position = Vector2(345, 141)
+scale = Vector2(13.7294, 18.3021)
+
+[node name="BadScreenBlock9" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
+material = SubResource("ShaderMaterial_cnp0m")
+position = Vector2(203, 152)
+scale = Vector2(18.6147, 5.40105)
+
+[node name="BadScreenBlock4" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
+material = SubResource("ShaderMaterial_2pgny")
+position = Vector2(247, 218)
+scale = Vector2(28.3813, 4.44352)
+
+[node name="BadScreenBlock5" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
+material = SubResource("ShaderMaterial_oq74s")
+position = Vector2(74, 141)
+scale = Vector2(15.237, 10.369)
+
+[node name="BadScreenBlock6" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
+material = SubResource("ShaderMaterial_8l7ng")
+position = Vector2(188, 110)
+scale = Vector2(12.1835, 15.0881)
+
+[node name="BadScreenBlock10" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
+material = SubResource("ShaderMaterial_8l7ng")
+position = Vector2(221, 123)
+scale = Vector2(25.9668, 5.41905)
+
+[node name="GlitchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_gopv7")
+
+[node name="ShutdownSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_kfkuj")

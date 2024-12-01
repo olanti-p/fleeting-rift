@@ -13,6 +13,7 @@ script = ExtResource("1_mebda")
 metadata/_edit_lock_ = true
 
 [node name="LabelTitle" type="Label" parent="."]
+layout_mode = 0
 offset_left = 108.0
 offset_top = 27.0
 offset_right = 330.0
@@ -23,6 +24,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LabelSubtitle" type="Label" parent="."]
+layout_mode = 0
 offset_left = 176.0
 offset_top = 62.0
 offset_right = 252.0
@@ -69,6 +71,7 @@ horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
 offset_left = 319.0
 offset_top = 210.0
 offset_right = 419.0
@@ -81,6 +84,7 @@ text = "EXIT"
 
 [node name="FactoryReset" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
 offset_left = 8.0
 offset_top = 210.0
 offset_right = 108.0

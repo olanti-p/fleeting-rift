@@ -636,7 +636,7 @@ position = Vector2(860, 0)
 position = Vector2(77, 156)
 
 [node name="DebugPlayerSpawner" parent="." index="10"]
-position = Vector2(1434, -267)
+position = Vector2(1503, -457)
 spawn_enabled = true
 
 [node name="ScanLine" parent="VFX_Scanlines1" index="0"]

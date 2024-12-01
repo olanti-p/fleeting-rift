@@ -9,33 +9,40 @@ func stop_all() -> void:
 
 func play_main_menu() -> void:
 	stop_all()
-	$MusicMainMenu.play()
+	if !$MusicMainMenu.playing:
+		$MusicMainMenu.play()
 
 
 func play_map() -> void:
 	stop_all()
-	$MusicMap.play()
+	if !$MusicMap.playing:
+		$MusicMap.play()
 
 
 func play_clouds() -> void:
 	stop_all()
-	$MusicDreamyClouds.play()
+	if !$MusicDreamyClouds.playing:
+		$MusicDreamyClouds.play()
 
 
 func play_bastion() -> void:
 	stop_all()
-	$MusicBastion.play()
+	if !$MusicBastion.playing:
+		$MusicBastion.play()
 
 
 func play_north() -> void:
 	stop_all()
-	$MusicFrozenNorth.play()
+	if !$MusicFrozenNorth.playing:
+		$MusicFrozenNorth.play()
 
 
 func play_glitch() -> void:
 	stop_all()
-	$MusicHardwareFault.play()
+	if !$MusicHardwareFault.playing:
+		$MusicHardwareFault.play()
 
 func play_finale() -> void:
 	stop_all()
-	$MusicFinale.play()
+	if !$MusicFinale.playing:
+		$MusicFinale.play()

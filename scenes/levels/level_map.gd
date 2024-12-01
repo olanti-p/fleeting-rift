@@ -53,10 +53,15 @@ func _update_player_position(first: bool) -> void:
 	else:
 		create_tween().tween_property($Player, "global_position", respawn_pos, 0.1)
 
+var is_starting: bool = false
+
 func _process(delta: float) -> void:
 	super(delta)
 	
 	if !$Player.is_control_hackably_disabled:
+		return
+	
+	if is_starting:
 		return
 	
 	if ThisRun.all_areas_unlocked:
@@ -89,6 +94,7 @@ func _process(delta: float) -> void:
 			_update_player_position(false)
 	if Input.is_action_just_pressed("start_level"):
 		$AreaSelected.play()
+		is_starting = true
 		await get_tree().create_timer(1.0).timeout
 		if !ThisRun.timer_started && !ThisRun.is_completed:
 			ThisRun.start_timer()

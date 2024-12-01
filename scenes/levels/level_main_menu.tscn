@@ -506,6 +506,13 @@ material = SubResource("ShaderMaterial_7lmsv")
 
 [node name="PlayPressed" type="AudioStreamPlayer" parent="." index="17"]
 unique_name_in_owner = true
+process_mode = 3
 stream = ExtResource("9_j6tq2")
+
+[node name="CheatcodeActivated" parent="." index="18"]
+process_mode = 3
+
+[node name="CheatcodeFailed" parent="." index="19"]
+process_mode = 3
 
 [connection signal="pressed" from="Text/Control/CenterContainer/PanelContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

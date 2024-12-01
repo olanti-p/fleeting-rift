@@ -5,7 +5,6 @@ func _ready() -> void:
 	is_timer_visible = false
 	$Player.is_control_hackably_disabled = true
 	await get_tree().create_timer(1.0).timeout
-	MusicController.play_main_menu()
 	for respawn in $Respawns.get_children():
 		respawn.play_menu_anim()
 
@@ -23,5 +22,5 @@ func _on_play_button_pressed() -> void:
 	has_started = true
 	%PlayPressed.play()
 	MusicController.stop_all()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.3).timeout
 	SceneTransition.do_normal("res://scenes/levels/level_map.tscn")

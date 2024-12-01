@@ -10,25 +10,33 @@
 [ext_resource type="AudioStream" uid="uid://ceji7sqhiqy4j" path="res://music/FR-Finale.mp3" id="8_rkwp3"]
 
 [node name="MusicController" type="Node"]
+process_mode = 3
 script = ExtResource("1_ur88g")
 
 [node name="MusicMainMenu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_j7itu")
+volume_db = 3.0
 
 [node name="MusicMap" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_l0nkw")
+volume_db = 3.0
 
 [node name="MusicDreamyClouds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_240sx")
+volume_db = 3.0
 
 [node name="MusicBastion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_xipy3")
+volume_db = 3.0
 
 [node name="MusicFrozenNorth" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_24csl")
+volume_db = 3.0
 
 [node name="MusicHardwareFault" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_powub")
+volume_db = 3.0
 
 [node name="MusicFinale" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_rkwp3")
+volume_db = 3.0

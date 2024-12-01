@@ -31,12 +31,14 @@ func _update_glitch_vfx() -> void:
 	vfx_scanlines_2.visible = glitches_visible
 	vfx_bad_blocks.visible = glitches_visible
 
+var is_debug_spawn_enabled: bool = false
 
 func _ready() -> void:
+	AllRuns.current_level = self
 	_update_glitch_vfx()
 	is_timer_visible = ThisRun.timer_started && !ThisRun.is_completed
 	console_container.visible = false
-	if $DebugPlayerSpawner.spawn_enabled:
+	if is_debug_spawn_enabled and $DebugPlayerSpawner.spawn_enabled:
 		$Player.global_position = $DebugPlayerSpawner.global_position
 		$Player.respawn_position = $Player.global_position
 	for child in $Emitters.get_children():
@@ -58,6 +60,7 @@ func _on_camera_area_entered(_player: Player, area: CameraArea) -> void:
 
 
 func _on_player_entered_door(new_scene: String) -> void:
+	$Player.visible = false
 	SceneTransition.do_normal(new_scene)
 
 
