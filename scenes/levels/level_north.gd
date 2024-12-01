@@ -38,9 +38,6 @@ func _on_glitch_reveal_area_body_entered(_body: Node2D) -> void:
 	%CertificateEntry.visible = true
 
 
-func _play_win() -> void:
-	pass
-
 func _on_endgoal_player_entered() -> void:
 	is_timer_visible = false
 	ThisRun.final_time = ThisRun.run_time
@@ -50,6 +47,6 @@ func _on_endgoal_player_entered() -> void:
 	%EndgoalTextExpected.visible = true
 	await get_tree().create_timer(2.0).timeout
 	if ThisRun.final_time < 3.0:
-		_play_win()
+		SceneTransition.do_glitched("res://scenes/levels/level_win.tscn")
 	else:
 		%EndgoalTextFail.visible = true

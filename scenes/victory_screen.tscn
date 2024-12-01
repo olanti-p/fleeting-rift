@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0xgu2lppwomd"]
+
+[ext_resource type="Script" path="res://scenes/victory_screen.gd" id="1_mebda"]
+
+[node name="VictoryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mebda")
+metadata/_edit_lock_ = true
+
+[node name="LabelTitle" type="Label" parent="."]
+offset_left = 108.0
+offset_top = 27.0
+offset_right = 330.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 24
+text = "FLEETING RIFT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelSubtitle" type="Label" parent="."]
+offset_left = 176.0
+offset_top = 62.0
+offset_right = 252.0
+offset_bottom = 73.0
+text = "Game by Olanti"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelTotalText" type="Label" parent="."]
+layout_mode = 2
+offset_left = 165.0
+offset_top = 98.0
+offset_right = 260.0
+offset_bottom = 109.0
+text = "Final time"
+horizontal_alignment = 1
+
+[node name="LabelTotalTime" type="Label" parent="."]
+layout_mode = 2
+offset_left = 183.0
+offset_top = 112.0
+offset_right = 242.0
+offset_bottom = 123.0
+text = "[00:00:00.0]"
+horizontal_alignment = 1
+
+[node name="LabelGoodJob" type="Label" parent="."]
+layout_mode = 2
+offset_left = 165.0
+offset_top = 139.0
+offset_right = 260.0
+offset_bottom = 150.0
+text = "Great job!"
+horizontal_alignment = 1
+
+[node name="LabelThanks" type="Label" parent="."]
+layout_mode = 2
+offset_left = 156.0
+offset_top = 187.0
+offset_right = 269.0
+offset_bottom = 198.0
+text = "Thank you for playing!"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 0)
+offset_left = 319.0
+offset_top = 210.0
+offset_right = 419.0
+offset_bottom = 234.0
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 8
+text = "EXIT"
+
+[node name="FactoryReset" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 0)
+offset_left = 8.0
+offset_top = 210.0
+offset_right = 108.0
+offset_bottom = 234.0
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 8
+text = "FACTORY RESET"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="FactoryReset" to="." method="_on_factory_reset_pressed"]

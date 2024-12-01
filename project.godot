@@ -104,6 +104,7 @@ dash={
 2d_physics/layer_6="WorldBoundary"
 2d_physics/layer_7="DangerOther"
 2d_physics/layer_8="GlitchDamage"
+2d_physics/layer_9="WinTrigger"
 
 [physics]
 

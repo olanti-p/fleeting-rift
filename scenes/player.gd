@@ -90,7 +90,9 @@ func _physics_process(delta: float) -> void:
 		flippable_nodes.visible = true
 		return
 	
-	set_collision_mask_value(1, !ThisRun.is_noclip_enabled)
+	var should_noclip = ThisRun.is_noclip_enabled && !get_parent().is_glitch_level
+	
+	set_collision_mask_value(1, !should_noclip)
 	if ThisRun.is_spike_damage_disabled:
 		$Hitbox.set_collision_mask_value(2, false)
 	if ThisRun.is_star_damage_disabled:
@@ -100,7 +102,7 @@ func _physics_process(delta: float) -> void:
 	if ThisRun.is_stamina_hack_enabled:
 		stamina = MAX_STAMINA
 	
-	if ThisRun.is_noclip_enabled:
+	if should_noclip:
 		var dir = Input.get_vector("left", "right", "up", "down")
 		position += dir * NOCLIP_FLOAT_SPEED * delta
 		_update_anim()
@@ -301,3 +303,11 @@ func _on_hitbox_body_entered(_body: Node2D) -> void:
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false
+
+
+func _do_win() -> void:
+	SceneTransition.do_glitched("res://scenes/victory_screen.tscn")
+
+
+func _on_win_scanner_body_entered(_body: Node2D) -> void:
+	call_deferred("_do_win")
