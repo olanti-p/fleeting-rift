@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 ThisRun="*res://scenes/globals/this_run.gd"
 AllRuns="*res://scenes/globals/all_runs.gd"
 SceneTransition="*res://scenes/scene_transition.tscn"
+MusicController="*res://scenes/globals/music_controller.tscn"
 
 [debug]
 
