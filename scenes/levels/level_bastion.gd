@@ -9,5 +9,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super(delta)
 
-func _this_door_entered(_new_scene: String) -> void:
+func _this_door_entered(_new_scene: String, _buggy: bool) -> void:
 	ThisRun.bastion_finished = true
