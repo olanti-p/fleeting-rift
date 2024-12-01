@@ -13,7 +13,7 @@ config_version=5
 config/name="Fleeting Rift"
 run/main_scene="res://scenes/levels/level_main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://art/game_icon.png"
 
 [autoload]
 
