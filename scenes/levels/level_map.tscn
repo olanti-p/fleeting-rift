@@ -230,6 +230,7 @@ disable_gfx = true
 [node name="ExitDoor" parent="Doors" index="0" instance=ExtResource("3_qky8c")]
 position = Vector2(364, 157)
 change_to_scene = "res://scenes/levels/glitch_level_11.tscn"
+is_buggy = true
 
 [node name="LabelClouds" type="Label" parent="Text" index="0"]
 offset_left = 89.0

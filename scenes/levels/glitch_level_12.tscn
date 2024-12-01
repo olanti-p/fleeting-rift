@@ -219,9 +219,9 @@ text = "// yo its friday, we release today!
 // gl hf guys!
 // - jeff"
 
-[node name="CheatUnstuck" parent="Text" index="1" instance=ExtResource("3_ednv6")]
+[node name="CheatTimeout" parent="Text" index="1" instance=ExtResource("3_ednv6")]
 position = Vector2(243, 49)
-cheat_id = "cheat_unstuck"
+cheat_id = "cheat_timer"
 cheat_text = "TIMEOUT"
 
 [node name="ScanLine" parent="VFX_Scanlines1" index="0"]

@@ -59,9 +59,12 @@ func _on_camera_area_entered(_player: Player, area: CameraArea) -> void:
 	active_camera_area.attach_camera(main_camera)
 
 
-func _on_player_entered_door(new_scene: String) -> void:
+func _on_player_entered_door(new_scene: String, buggy: bool) -> void:
 	$Player.visible = false
-	SceneTransition.do_normal(new_scene)
+	if buggy:
+		SceneTransition.do_glitched(new_scene)
+	else:
+		SceneTransition.do_normal(new_scene)
 
 
 func _enter_glitch_deferred(new_scene: String) -> void:

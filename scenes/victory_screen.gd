@@ -2,12 +2,21 @@ extends Control
 
 var total_time: float = 0.0
 
+func fmt_timer(val: float) -> String:
+	var hours = floori(val) / 3600
+	var minutes = (floori(val) / 60) % 60
+	var seconds = floori(val) % 60
+	var milliseconds = floori(fmod(val, 1.0) * 10.0) % 10
+	return "[%02d:%02d:%02d.%01d]" % [hours, minutes, seconds, milliseconds]
+
 func _ready() -> void:
 	total_time = AllRuns.total_time_in_game
+	
 	$LabelTitle.visible = false
 	$LabelSubtitle.visible = false
 	$LabelTotalText.visible = false
 	$LabelTotalTime.visible = false
+	$LabelTotalTime.text = fmt_timer(total_time)
 	$LabelGoodJob.visible = false
 	$LabelThanks.visible = false
 	$PlayButton.visible = false

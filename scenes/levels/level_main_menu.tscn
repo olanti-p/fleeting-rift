@@ -333,6 +333,7 @@ spawn_time = 2.0
 [node name="ExitDoor" parent="Doors" index="0" instance=ExtResource("4_ai47e")]
 position = Vector2(212, 212)
 change_to_scene = "res://scenes/levels/glitch_level_12.tscn"
+is_buggy = true
 
 [node name="Control" type="Control" parent="Text" index="0"]
 layout_mode = 3

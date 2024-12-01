@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bl1bven4a03r8"]
+[gd_scene load_steps=56 format=3 uid="uid://bl1bven4a03r8"]
 
 [ext_resource type="Script" path="res://scenes/scene_transition.gd" id="1_e4l2q"]
 [ext_resource type="Texture2D" uid="uid://cox7ulcyyjlte" path="res://art/fade_in.png" id="2_wkcia"]
@@ -284,6 +284,18 @@ shader = ExtResource("4_kys5r")
 shader_parameter/invert_color = null
 shader_parameter/displacement = 0.1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ysww5"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4pal"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a8xbl"]
 resource_local_to_scene = true
 shader = ExtResource("4_kys5r")
@@ -291,6 +303,12 @@ shader_parameter/invert_color = null
 shader_parameter/displacement = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cnp0m"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p3mxa"]
 resource_local_to_scene = true
 shader = ExtResource("4_kys5r")
 shader_parameter/invert_color = null
@@ -309,6 +327,12 @@ shader_parameter/invert_color = null
 shader_parameter/displacement = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8l7ng"]
+resource_local_to_scene = true
+shader = ExtResource("4_kys5r")
+shader_parameter/invert_color = null
+shader_parameter/displacement = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rb82m"]
 resource_local_to_scene = true
 shader = ExtResource("4_kys5r")
 shader_parameter/invert_color = null
@@ -3306,12 +3330,12 @@ material = SubResource("ShaderMaterial_gy4m3")
 position = Vector2(81, 48)
 
 [node name="BadScreenBlock7" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
-material = SubResource("ShaderMaterial_gy4m3")
+material = SubResource("ShaderMaterial_ysww5")
 position = Vector2(99, 82)
 scale = Vector2(7.425, 8.09469)
 
 [node name="BadScreenBlock8" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
-material = SubResource("ShaderMaterial_gy4m3")
+material = SubResource("ShaderMaterial_q4pal")
 position = Vector2(180.15, 128.311)
 scale = Vector2(2.7125, 14.6723)
 
@@ -3326,7 +3350,7 @@ position = Vector2(345, 141)
 scale = Vector2(13.7294, 18.3021)
 
 [node name="BadScreenBlock9" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
-material = SubResource("ShaderMaterial_cnp0m")
+material = SubResource("ShaderMaterial_p3mxa")
 position = Vector2(203, 152)
 scale = Vector2(18.6147, 5.40105)
 
@@ -3346,7 +3370,7 @@ position = Vector2(188, 110)
 scale = Vector2(12.1835, 15.0881)
 
 [node name="BadScreenBlock10" parent="VFX_BadBlocks" instance=ExtResource("3_afu2v")]
-material = SubResource("ShaderMaterial_8l7ng")
+material = SubResource("ShaderMaterial_rb82m")
 position = Vector2(221, 123)
 scale = Vector2(25.9668, 5.41905)
 

@@ -2,12 +2,13 @@ extends Node2D
 class_name ExitDoor
 
 @export var change_to_scene: String = ""
+@export var is_buggy: bool = false
 
 @onready var hint_animation: AnimationPlayer = $HintAnimation
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hint_container: Node2D = $HintContainer
 
-signal has_been_entered(new_scene: String)
+signal has_been_entered(new_scene: String, buggy: bool)
 
 var is_being_entered: bool = false
 var is_player_nearby: bool = false
@@ -20,7 +21,7 @@ func do_enter() -> void:
 	hint_animation.play_backwards("show")
 	animation_player.play("enter")
 	await animation_player.animation_finished
-	has_been_entered.emit(change_to_scene)
+	has_been_entered.emit(change_to_scene, is_buggy)
 	is_being_entered = false
 
 
