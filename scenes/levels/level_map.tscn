@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://bc15gca1cforb"]
+[gd_scene load_steps=41 format=4 uid="uid://bc15gca1cforb"]
 
 [ext_resource type="PackedScene" uid="uid://cwil3jmniqbr5" path="res://scenes/level.tscn" id="1_5eioy"]
 [ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="2_blmds"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://j0cv5mpeq3d6" path="res://scenes/respawn_point.tscn" id="2_mkl74"]
 [ext_resource type="TileSet" uid="uid://61jhwsxe4du" path="res://tileset.tres" id="3_a23rk"]
 [ext_resource type="PackedScene" uid="uid://c31p42f5jycat" path="res://scenes/exit_door.tscn" id="3_qky8c"]
+[ext_resource type="AudioStream" uid="uid://dfmbsxxv2if4" path="res://sfx/select_area.wav" id="7_hulf2"]
+[ext_resource type="AudioStream" uid="uid://cfxkq776fwpd2" path="res://sfx/area_selected.wav" id="8_pa0lu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ea5ar"]
 resource_local_to_scene = true
@@ -377,3 +379,10 @@ material = SubResource("ShaderMaterial_swx3i")
 
 [node name="BadScreenBlock6" parent="VFX_BadBlocks" index="5"]
 material = SubResource("ShaderMaterial_7lmsv")
+
+[node name="AreaSwitched" type="AudioStreamPlayer" parent="." index="17"]
+stream = ExtResource("7_hulf2")
+max_polyphony = 4
+
+[node name="AreaSelected" type="AudioStreamPlayer" parent="." index="18"]
+stream = ExtResource("8_pa0lu")

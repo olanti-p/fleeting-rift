@@ -73,6 +73,7 @@ func _process(delta: float) -> void:
 					current_level = LEVEL_BASTION
 			else:
 				current_level = LEVEL_BASTION
+			$AreaSwitched.play()
 			_update_player_position(false)
 		if Input.is_action_just_pressed("right"):
 			if current_level == LEVEL_CLOUDS:
@@ -84,8 +85,11 @@ func _process(delta: float) -> void:
 					current_level = LEVEL_CLOUDS
 			else:
 				current_level = LEVEL_CLOUDS
+			$AreaSwitched.play()
 			_update_player_position(false)
 	if Input.is_action_just_pressed("start_level"):
+		$AreaSelected.play()
+		await get_tree().create_timer(1.0).timeout
 		if !ThisRun.timer_started && !ThisRun.is_completed:
 			ThisRun.start_timer()
 		match current_level:

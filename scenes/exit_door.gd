@@ -56,3 +56,6 @@ func _on_player_entry_detector_body_exited(body: Node2D) -> void:
 	hint_animation.play_backwards("show")
 	var player = body as Player
 	player.nearby_door = null
+
+func _play_enter_sound() -> void:
+	$EnteredSound.play()

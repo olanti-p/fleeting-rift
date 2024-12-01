@@ -413,8 +413,11 @@ scale = Vector2(21.3906, 0.463485)
 position = Vector2(193, 220)
 
 [node name="DebugPlayerSpawner" parent="." index="10"]
-position = Vector2(1189, 53)
+position = Vector2(3250, 213)
 spawn_enabled = true
+
+[node name="ConsoleContainer" parent="UI/Control" index="1"]
+visible = true
 
 [node name="ScanLine" parent="VFX_Scanlines1" index="0"]
 material = SubResource("ShaderMaterial_ea5ar")

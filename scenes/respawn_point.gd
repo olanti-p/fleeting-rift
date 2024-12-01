@@ -36,6 +36,7 @@ func _on_player_entered(player: Player) -> void:
 	is_checked = true
 	player.set_respawn_point(self)
 	if !disable_gfx:
+		$ActivatedSound.play()
 		main_sprite.play("checked")
 		await main_sprite.animation_finished
 		main_sprite.play("idle_checked")

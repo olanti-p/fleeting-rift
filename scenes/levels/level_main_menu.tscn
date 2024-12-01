@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://d0yut6l15lwop"]
+[gd_scene load_steps=44 format=4 uid="uid://d0yut6l15lwop"]
 
 [ext_resource type="PackedScene" uid="uid://cwil3jmniqbr5" path="res://scenes/level.tscn" id="1_xf6j1"]
 [ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="2_0tc3h"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://xm6ihuvsfbrd" path="res://scenes/star_emitter.tscn" id="4_h55j8"]
 [ext_resource type="PackedScene" uid="uid://daip1ghfwxrxb" path="res://scenes/laser_emitter.tscn" id="5_15trc"]
 [ext_resource type="PackedScene" uid="uid://tpn06dqmuwkg" path="res://scenes/fall_damage_area.tscn" id="7_oonb3"]
+[ext_resource type="AudioStream" uid="uid://conoc4357fdlo" path="res://sfx/play_game.wav" id="9_j6tq2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tf66a"]
 
@@ -502,5 +503,9 @@ material = SubResource("ShaderMaterial_swx3i")
 
 [node name="BadScreenBlock6" parent="VFX_BadBlocks" index="5"]
 material = SubResource("ShaderMaterial_7lmsv")
+
+[node name="PlayPressed" type="AudioStreamPlayer" parent="." index="17"]
+unique_name_in_owner = true
+stream = ExtResource("9_j6tq2")
 
 [connection signal="pressed" from="Text/Control/CenterContainer/PanelContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

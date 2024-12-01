@@ -68,6 +68,34 @@ func _reset_air_jump_counter() -> void:
 	air_jumps_remaining = 1 if ThisRun.is_double_jump_enabled else 0
 
 
+func _play_ground_jump_sound() -> void:
+	match randi_range(1, 4):
+		1:
+			$SFX/Jump1.play()
+		2:
+			$SFX/Jump2.play()
+		3:
+			$SFX/Jump3.play()
+		4:
+			$SFX/Jump4.play()
+
+
+func _play_air_jump_sound() -> void:
+	match randi_range(1, 4):
+		1:
+			$SFX/AirJump1.play()
+		2:
+			$SFX/AirJump2.play()
+		3:
+			$SFX/AirJump3.play()
+		4:
+			$SFX/AirJump4.play()
+
+
+func _play_dash_sound() -> void:
+	$SFX/Dash.play()
+
+
 func _physics_process(delta: float) -> void:
 	if is_dead || is_entering_door:
 		return
@@ -118,6 +146,7 @@ func _physics_process(delta: float) -> void:
 		was_on_floor = false
 		is_dashing = true
 		$DashTimer.start()
+		_play_dash_sound()
 	
 	if is_grabbing && !grab_detector.is_colliding():
 		# Slipped down
@@ -152,6 +181,7 @@ func _physics_process(delta: float) -> void:
 	  !is_dashing && \
 	  Input.is_action_just_pressed("jump"):
 		if is_grabbing:
+			_play_ground_jump_sound()
 			is_grabbing = false
 			was_on_floor = false
 			ignore_continued_grabbing = true
@@ -159,11 +189,13 @@ func _physics_process(delta: float) -> void:
 			velocity = -WALLJUMP_VELOCITY * make_walljump_vector()
 			stamina -= STAMINA_LOSS_PER_JUMP
 		elif is_on_floor() || !coyote_timer.is_stopped():
+			_play_ground_jump_sound()
 			coyote_timer.stop()
 			was_on_floor = false
 			is_jumping = true
 			velocity.y = -JUMP_VELOCITY_IMMEDIATE
 		elif air_jumps_remaining > 0:
+			_play_air_jump_sound()
 			air_jumps_remaining -= 1
 			velocity.y = -AIRJUMP_VELOCITY
 			is_jumping = true
@@ -257,6 +289,7 @@ func _respawn() -> void:
 	is_grabbing = false
 	was_on_floor = false
 	player_sprite.play("respawn")
+	$SFX/Respawn.play()
 	await player_sprite.animation_finished
 	is_dead = false
 
@@ -266,6 +299,7 @@ func _on_hit() -> void:
 		return
 	is_dead = true
 	player_sprite.play("death")
+	$SFX/Death.play()
 	await player_sprite.animation_finished
 	_respawn()
 
@@ -274,6 +308,7 @@ func fell_beyond_map_edge() -> void:
 	if is_dead || is_entering_door:
 		return
 	is_dead = true
+	
 	_respawn()
 
 

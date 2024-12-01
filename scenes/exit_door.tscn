@@ -1,7 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://c31p42f5jycat"]
+[gd_scene load_steps=34 format=3 uid="uid://c31p42f5jycat"]
 
 [ext_resource type="Texture2D" uid="uid://c4fiuph21tjjr" path="res://art/exit_door.png" id="1_0143j"]
 [ext_resource type="Script" path="res://scenes/exit_door.gd" id="1_kqnjs"]
+[ext_resource type="AudioStream" uid="uid://cmtgcrkbtyey7" path="res://sfx/enter_door.wav" id="3_qxhi2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7b7p"]
 atlas = ExtResource("1_0143j")
@@ -246,6 +247,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 0, 7, 8, 9, 11, 12]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_enter_sound"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lginc"]
 _data = {
@@ -368,6 +383,9 @@ offset_bottom = -13.0
 theme_override_colors/font_outline_color = Color(0.0588235, 0.105882, 0.14902, 1)
 theme_override_constants/outline_size = 8
 text = "Press W to enter"
+
+[node name="EnteredSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qxhi2")
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

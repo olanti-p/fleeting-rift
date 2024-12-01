@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dadoqbh5kn2v2"]
+[gd_scene load_steps=49 format=3 uid="uid://dadoqbh5kn2v2"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_hqnfc"]
 [ext_resource type="Texture2D" uid="uid://djraq8bp4byv5" path="res://art/character_death.png" id="2_vlghn"]
@@ -6,6 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://bomwdeyjltuix" path="res://art/character_respawn.png" id="4_8bc5g"]
 [ext_resource type="Texture2D" uid="uid://cwtyh84ykumbg" path="res://art/stamina_bar_bg.png" id="5_8w5qt"]
 [ext_resource type="Texture2D" uid="uid://bbh457ucma3qt" path="res://art/stamina_bar_body.png" id="6_ywjb8"]
+[ext_resource type="AudioStream" uid="uid://bkueht51cfytu" path="res://sfx/airjump1.wav" id="7_bb1vv"]
+[ext_resource type="AudioStream" uid="uid://c2gysqce4x5w3" path="res://sfx/jump2.wav" id="8_gtyq7"]
+[ext_resource type="AudioStream" uid="uid://lyolrdx6kkt" path="res://sfx/airjump2.wav" id="8_kngrp"]
+[ext_resource type="AudioStream" uid="uid://b7ljj1j13i8wa" path="res://sfx/airjump3.wav" id="9_itqmv"]
+[ext_resource type="AudioStream" uid="uid://crjwqf2npk7vc" path="res://sfx/jump3.wav" id="9_yo0kv"]
+[ext_resource type="AudioStream" uid="uid://btv1d385xcnkk" path="res://sfx/jump4.wav" id="10_2ek7i"]
+[ext_resource type="AudioStream" uid="uid://ddm0vaje3hwbv" path="res://sfx/airjump4.wav" id="10_jqubp"]
+[ext_resource type="AudioStream" uid="uid://drl83e4ca8mc5" path="res://sfx/jump1.wav" id="11_7ekay"]
+[ext_resource type="AudioStream" uid="uid://ci78nsnwpq00r" path="res://sfx/dash.wav" id="15_0spnj"]
+[ext_resource type="AudioStream" uid="uid://cbs8d5bo3pb4r" path="res://sfx/death.wav" id="16_im5mm"]
+[ext_resource type="AudioStream" uid="uid://dgs03gh3k8k4s" path="res://sfx/respawn.wav" id="17_qhb2c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tniwb"]
 radius = 2.9
@@ -304,6 +315,41 @@ collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WinScanner"]
 shape = SubResource("CircleShape2D_e4nq0")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="AirJump1" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("7_bb1vv")
+
+[node name="AirJump2" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("8_kngrp")
+
+[node name="AirJump3" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("9_itqmv")
+
+[node name="AirJump4" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_jqubp")
+
+[node name="Jump1" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("11_7ekay")
+
+[node name="Jump2" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("8_gtyq7")
+
+[node name="Jump3" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("9_yo0kv")
+
+[node name="Jump4" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_2ek7i")
+
+[node name="Dash" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("15_0spnj")
+
+[node name="Death" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("16_im5mm")
+
+[node name="Respawn" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("17_qhb2c")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ContinuedGrabTimer" to="." method="_on_continued_grab_timer_timeout"]

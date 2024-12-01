@@ -23,3 +23,6 @@ func _reveal_fake_wall() -> void:
 			fake_wall = null
 			reveal_radius = null
 			$Ground/WorldBoundaries/Bottom.position.y = 517
+			_cheat_ok("1 hidden wall(s) revealed")
+			return
+	_cheat_fail("no hidden walls to reveal")

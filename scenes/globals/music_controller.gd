@@ -35,3 +35,7 @@ func play_north() -> void:
 func play_glitch() -> void:
 	stop_all()
 	$MusicHardwareFault.play()
+
+func play_finale() -> void:
+	stop_all()
+	$MusicFinale.play()

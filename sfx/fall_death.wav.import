@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://crjwqf2npk7vc"
-path="res://.godot/imported/jump3.wav-4245dc01ef5595b949e49cc1e13c28c4.sample"
+uid="uid://ce23wnxi1wbal"
+path="res://.godot/imported/fall_death.wav-3af4534260a8bc00b6c08f5a191ce84b.sample"
 
 [deps]
 
-source_file="res://sfx/jump3.wav"
-dest_files=["res://.godot/imported/jump3.wav-4245dc01ef5595b949e49cc1e13c28c4.sample"]
+source_file="res://sfx/fall_death.wav"
+dest_files=["res://.godot/imported/fall_death.wav-3af4534260a8bc00b6c08f5a191ce84b.sample"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://cwil3jmniqbr5"]
+[gd_scene load_steps=46 format=4 uid="uid://cwil3jmniqbr5"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_rvwlj"]
 [ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="1_ynsno"]
@@ -8,6 +8,8 @@
 [ext_resource type="FontFile" uid="uid://c5hh33uj7dtlh" path="res://font/FFFFORWA_MONONUMBER.TTF" id="5_0s6dd"]
 [ext_resource type="Script" path="res://scenes/cheat_code_list.gd" id="7_fb0jk"]
 [ext_resource type="StyleBox" uid="uid://c3rw2njbv6r1a" path="res://ui/simple_panel.tres" id="10_jxr8j"]
+[ext_resource type="AudioStream" uid="uid://xmlobjd52c0o" path="res://sfx/cheat_activated.wav" id="11_toyx4"]
+[ext_resource type="AudioStream" uid="uid://bwcjs4iia704t" path="res://sfx/cheat_failed.wav" id="12_l0eiw"]
 [ext_resource type="PackedScene" uid="uid://dhvd7jxh07fvh" path="res://scenes/scan_line.tscn" id="14_udcnm"]
 [ext_resource type="PackedScene" uid="uid://bu8dhkrdwmv34" path="res://scenes/bad_screen_block.tscn" id="16_kg1pc"]
 
@@ -357,6 +359,7 @@ theme_override_constants/margin_bottom = 2
 layout_mode = 2
 
 [node name="Caret" type="RichTextLabel" parent="UI/Control/ConsoleContainer/VBoxContainer/InputText/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(8, 12)
 layout_mode = 2
@@ -509,4 +512,14 @@ material = SubResource("ShaderMaterial_7lmsv")
 position = Vector2(188, 110)
 scale = Vector2(12.1835, 15.0881)
 
+[node name="CheatcodeActivated" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_toyx4")
+
+[node name="CheatcodeFailed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_l0eiw")
+
+[node name="CaretResetTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="Ground/WorldBoundaries" to="." method="_on_world_boundaries_body_entered"]
+[connection signal="timeout" from="CaretResetTimer" to="." method="_on_caret_reset_timer_timeout"]
