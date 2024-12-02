@@ -1,0 +1,4 @@
+I'm disappointed in you :)
+
+Still, you can now use the TIMEOUT hack right before entering the pedestal
+in order to reset the timer and "complete" the game in under 3 seconds, as the pedestal expects.

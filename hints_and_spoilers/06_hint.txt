@@ -1,0 +1,5 @@
+In glitch area 5, you've discovered the UNLOCKMAP hack that unlocks all areas on the map.
+You've also discovered NOSPIKES hack that disables damage from spikes.
+
+There is a room in Bastion area that you can now pass through with that hack, and a shortcut that lets you skip room 2.
+

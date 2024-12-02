@@ -1,0 +1,2 @@
+Use FEATHER to turn off the fall damage, then jump off a cloud into the chasm
+(denoted by red particles at the bottom of the screen).

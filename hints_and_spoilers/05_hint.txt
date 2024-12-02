@@ -1,0 +1,6 @@
+In glitch area 4, you've discovered the DASH hack that unlocks dash action.
+The developer warns you that the feature is broken
+(particularly, there is no limit or cooldown for dashing, and you can spam it to travel horizontally).
+
+There is a room in Clouds area that you can now access using dash.
+

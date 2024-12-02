@@ -1,0 +1,8 @@
+In glitch area, you get explanation of how to open the debug menu (double press P),
+and collect 2 functions:
+1. RESET lets you return to the start of the game (on web build, don't refresh the browser page, it'll just erase your progress)
+2. REVEAL reveals a single invisible impassable wall in cloud area
+
+You have to collect functions (wave blue text) before you can use them.
+
+Exiting glitch areas can only be done via RESET.

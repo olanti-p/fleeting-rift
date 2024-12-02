@@ -1,0 +1,7 @@
+You can open debug menu while on the map and use UNLOCKMAP hack to jump straight into Bastion or Frozen North areas.
+
+The shortcut is located at the top-left of room 2, and brings you straight into room 3.
+It's a short hole filled with spikes that you can now go through thanks to spike immunity.
+
+Turning left from room 3 will bring you into a room that used to be impossible to complete
+because of spikes everywhere, but now you can.

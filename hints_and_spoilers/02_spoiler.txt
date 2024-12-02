@@ -1,0 +1,6 @@
+Collect both RESET and REVEAL functions by moving your character into them, then open debug menu (double press P)
+and press 1 for RESET. That'll bring you back to main menu, where you can start a new game and enter the cloud area. 
+
+The invisible wall is in the 3rd room of cloud area, the room where you triggered your first ever checkpoint.
+Open debug menu while in that room, then press 2 for the REVEAL hack.
+

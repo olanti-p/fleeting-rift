@@ -1,0 +1,2 @@
+Second glitch area grants you FEATHER function that lets you turn off fall damage.
+The developer also warns you of hardware limit on coordinates, and exceeding the limit will trigger a crash.

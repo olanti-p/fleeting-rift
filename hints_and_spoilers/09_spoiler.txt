@@ -1,0 +1,6 @@
+The new room can be accessed from room 3 of Bastion area. Just stand on the checkpoint and trigger REVGRAV.
+
+You'll fall upwards into a hole, where you have to use REVGRAV to play with gravity in order to evade the danger.
+
+You don't have to close the debug menu.
+

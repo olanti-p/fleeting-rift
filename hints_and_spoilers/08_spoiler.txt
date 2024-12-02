@@ -1,0 +1,4 @@
+The new room can be accessed from room 4 of Bastion area, where there are 4 horizontal corridors with shuriken stars and lasers.
+
+You used to be able to pass through the 2 bottom corridors, but now you can also pass through the corridor that's 2nd from the top.
+ 
