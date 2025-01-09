@@ -514,9 +514,11 @@ scale = Vector2(12.1835, 15.0881)
 
 [node name="CheatcodeActivated" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_toyx4")
+bus = &"Sound"
 
 [node name="CheatcodeFailed" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_l0eiw")
+bus = &"Sound"
 
 [node name="CaretResetTimer" type="Timer" parent="."]
 one_shot = true

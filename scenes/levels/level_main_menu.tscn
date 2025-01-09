@@ -509,6 +509,7 @@ material = SubResource("ShaderMaterial_7lmsv")
 unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("9_j6tq2")
+bus = &"Sound"
 
 [node name="CheatcodeActivated" parent="." index="18"]
 process_mode = 3

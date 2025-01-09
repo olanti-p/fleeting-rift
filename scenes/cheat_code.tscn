@@ -30,5 +30,6 @@ shape = SubResource("RectangleShape2D_aroes")
 stream = ExtResource("2_8ek0v")
 volume_db = 2.0
 max_polyphony = 2
+bus = &"Sound"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

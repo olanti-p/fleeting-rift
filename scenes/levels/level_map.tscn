@@ -384,6 +384,8 @@ material = SubResource("ShaderMaterial_7lmsv")
 [node name="AreaSwitched" type="AudioStreamPlayer" parent="." index="17"]
 stream = ExtResource("7_hulf2")
 max_polyphony = 4
+bus = &"Sound"
 
 [node name="AreaSelected" type="AudioStreamPlayer" parent="." index="18"]
 stream = ExtResource("8_pa0lu")
+bus = &"Sound"

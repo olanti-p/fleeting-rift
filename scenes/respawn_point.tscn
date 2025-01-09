@@ -205,5 +205,6 @@ shape = SubResource("RectangleShape2D_ydo1b")
 [node name="ActivatedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_3aja5")
 volume_db = 4.0
+bus = &"Sound"
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

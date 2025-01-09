@@ -320,36 +320,47 @@ shape = SubResource("CircleShape2D_e4nq0")
 
 [node name="AirJump1" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("7_bb1vv")
+bus = &"Sound"
 
 [node name="AirJump2" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("8_kngrp")
+bus = &"Sound"
 
 [node name="AirJump3" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("9_itqmv")
+bus = &"Sound"
 
 [node name="AirJump4" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("10_jqubp")
+bus = &"Sound"
 
 [node name="Jump1" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("11_7ekay")
+bus = &"Sound"
 
 [node name="Jump2" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("8_gtyq7")
+bus = &"Sound"
 
 [node name="Jump3" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("9_yo0kv")
+bus = &"Sound"
 
 [node name="Jump4" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("10_2ek7i")
+bus = &"Sound"
 
 [node name="Dash" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("15_0spnj")
+bus = &"Sound"
 
 [node name="Death" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("16_im5mm")
+bus = &"Sound"
 
 [node name="Respawn" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("17_qhb2c")
+bus = &"Sound"
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ContinuedGrabTimer" to="." method="_on_continued_grab_timer_timeout"]

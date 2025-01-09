@@ -3376,6 +3376,8 @@ scale = Vector2(25.9668, 5.41905)
 
 [node name="GlitchSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_gopv7")
+bus = &"Sound"
 
 [node name="ShutdownSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_kfkuj")
+bus = &"Sound"
