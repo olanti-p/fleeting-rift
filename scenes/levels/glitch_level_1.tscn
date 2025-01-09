@@ -1,8 +1,9 @@
-[gd_scene load_steps=38 format=4 uid="uid://b1qnmv4o443gi"]
+[gd_scene load_steps=39 format=4 uid="uid://b1qnmv4o443gi"]
 
 [ext_resource type="PackedScene" uid="uid://cwil3jmniqbr5" path="res://scenes/level.tscn" id="1_g47l5"]
 [ext_resource type="Script" path="res://scenes/levels/glitch_level.gd" id="2_0jixg"]
 [ext_resource type="PackedScene" uid="uid://qs6bqvumu8nr" path="res://scenes/cheat_code.tscn" id="3_l0uwi"]
+[ext_resource type="LabelSettings" uid="uid://bco2g733hoxjh" path="res://ui/multiline_label_settings.tres" id="3_qryh2"]
 [ext_resource type="PackedScene" uid="uid://cdwerteriusj" path="res://scenes/camera_area.tscn" id="4_grpjt"]
 [ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="5_u12nn"]
 
@@ -216,14 +217,13 @@ position = Vector2(880, -26)
 [node name="Left" parent="Ground/WorldBoundaries" index="3"]
 position = Vector2(-32, 123)
 
-[node name="CheatText" type="RichTextLabel" parent="Text" index="0"]
+[node name="CheatText" type="Label" parent="Text" index="0"]
 offset_left = 439.0
 offset_top = -191.0
 offset_right = 801.0
 offset_bottom = -55.0
 theme_override_colors/font_outline_color = Color(0.0588235, 0.105882, 0.14902, 1)
 theme_override_constants/outline_size = 4
-bbcode_enabled = true
 text = "// Hey, Mike. I've added the debug menu as you requested,
 // you can access it by double pressing the \"P\" key.
 // It's fairly robust (if I do say so myself), and should work even 
@@ -233,6 +233,7 @@ text = "// Hey, Mike. I've added the debug menu as you requested,
 // and               that gets rid of that one invisible wall in the
 // cloud area (I'll get to making it passable later).
 // - Love, John"
+label_settings = ExtResource("3_qryh2")
 
 [node name="CheatReset" parent="Text" index="1" instance=ExtResource("3_l0uwi")]
 position = Vector2(500, -139)
