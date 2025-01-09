@@ -317,7 +317,8 @@ Press SPACE to jump
 Hold SPACE for longer jumps"
 horizontal_alignment = 1
 
-[node name="Label5" type="Label" parent="Text" index="1"]
+[node name="LabelDash" type="Label" parent="Text" index="1"]
+unique_name_in_owner = true
 offset_left = 129.0
 offset_top = 93.0
 offset_right = 276.0

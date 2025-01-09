@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super(delta)
+	%LabelDash.visible = ThisRun.is_dash_enabled
 
 func _this_door_entered(_new_scene: String, _buggy: bool) -> void:
 	ThisRun.clouds_finished = true
