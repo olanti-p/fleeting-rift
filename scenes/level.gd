@@ -4,38 +4,20 @@ class_name Level
 @onready var projectiles: Node2D = $Projectiles
 @onready var console_open_timer: Timer = $ConsoleOpenTimer
 @onready var console_container: MarginContainer = %ConsoleContainer
-@onready var vfx_scanlines_1: CanvasLayer = $VFX_Scanlines1
-@onready var vfx_scanlines_2: CanvasLayer = $VFX_Scanlines2
-@onready var vfx_bad_blocks: CanvasLayer = $VFX_BadBlocks
 @onready var main_camera: Camera2D = $MainCamera
 
 var active_camera_area: CameraArea = null
 var is_glitch_level: bool = false
-
-
-@export var glitches_visible: bool = false:
-	set(value):
-		glitches_visible = value
-		if vfx_scanlines_1:
-			_update_glitch_vfx()
-
 
 var is_timer_visible: bool = true:
 	set(value):
 		is_timer_visible = value
 		%TimerContainer.visible = value
 
-
-func _update_glitch_vfx() -> void:
-	vfx_scanlines_1.visible = glitches_visible
-	vfx_scanlines_2.visible = glitches_visible
-	vfx_bad_blocks.visible = glitches_visible
-
 var is_debug_spawn_enabled: bool = false
 
 func _ready() -> void:
 	AllRuns.current_level = self
-	_update_glitch_vfx()
 	is_timer_visible = ThisRun.timer_started && !ThisRun.is_completed
 	console_container.visible = false
 	if is_debug_spawn_enabled and $DebugPlayerSpawner.spawn_enabled:
