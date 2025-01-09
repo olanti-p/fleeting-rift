@@ -25,6 +25,7 @@ var checked_respawn_point: RespawnPoint = null
 var air_jumps_remaining: int = 0
 var is_jumping: bool = false
 var is_dashing: bool = false
+var is_unassisted_walljump: bool = false
 
 var nearby_door: ExitDoor = null
 var is_entering_door: bool = false
@@ -56,9 +57,17 @@ func make_walljump_vector() -> Vector2:
 	var do_down = Input.is_action_pressed("down")
 	var do_left = Input.is_action_pressed("left") && is_grabbing_right
 	var do_right = Input.is_action_pressed("right") && !is_grabbing_right
-	var direction = \
+	var direction: Vector2
+	if !do_left && !do_right && !do_up:
+		if do_down:
+			direction = Vector2.ZERO
+		elif is_grabbing_right:
+			direction = Vector2.DOWN + Vector2.RIGHT
+		else:
+			direction = Vector2.DOWN + Vector2.LEFT
+	else:
+		direction = \
 		  (Vector2.DOWN if do_up else Vector2.ZERO) \
-		+ (Vector2.UP if do_down else Vector2.ZERO) \
 		+ (Vector2.RIGHT if do_left else Vector2.ZERO) \
 		+ (Vector2.LEFT if do_right else Vector2.ZERO)
 	return direction.normalized()
@@ -94,6 +103,10 @@ func _play_air_jump_sound() -> void:
 
 func _play_dash_sound() -> void:
 	$SFX/Dash.play()
+
+
+func _is_on_ice() -> bool:
+	return ThisRun.current_level == 2
 
 
 func _physics_process(delta: float) -> void:
@@ -188,6 +201,10 @@ func _physics_process(delta: float) -> void:
 			continued_grab_timer.start()
 			velocity = -WALLJUMP_VELOCITY * make_walljump_vector()
 			stamina -= STAMINA_LOSS_PER_JUMP
+			is_unassisted_walljump = \
+			  !Input.is_action_pressed("left") && \
+			  !Input.is_action_pressed("right") && \
+			  !Input.is_action_pressed("up")
 		elif is_on_floor() || !coyote_timer.is_stopped():
 			_play_ground_jump_sound()
 			coyote_timer.stop()
@@ -200,10 +217,21 @@ func _physics_process(delta: float) -> void:
 			velocity.y = -AIRJUMP_VELOCITY
 			is_jumping = true
 	
-	var direction := Input.get_axis("left", "right")
+	var direction = Input.get_axis("left", "right")
+	if direction != 0 || is_on_floor() || is_grabbing || is_dashing:
+		is_unassisted_walljump = false
 	if is_control_hackably_disabled:
 		direction = 0
-	if !is_grabbing:
+	if is_unassisted_walljump:
+		if velocity.x > 0:
+			if !looking_right:
+				looking_right = true
+				flippable_nodes.apply_scale(Vector2(-1, 1))
+		elif velocity.x < 0:
+			if looking_right:
+				looking_right = false
+				flippable_nodes.apply_scale(Vector2(-1, 1))
+	elif !is_grabbing:
 		if direction > 0:
 			if !looking_right:
 				looking_right = true
@@ -212,16 +240,17 @@ func _physics_process(delta: float) -> void:
 			if looking_right:
 				looking_right = false
 				flippable_nodes.apply_scale(Vector2(-1, 1))
-	if direction:
+	if direction != 0:
+		# FIXME: joystick
 		# While in air, or on ice, we want to conserve extra velocity gained from wall jump
-		if (is_on_floor() and ThisRun.current_level != 2) or \
+		if (is_on_floor() and !_is_on_ice()) or \
 		   (direction > 0 and velocity.x < SPEED) or \
 		   (direction < 0 and velocity.x > -SPEED):
 			velocity.x = direction * SPEED
-	elif direction == 0:
-		if is_on_floor() and ThisRun.current_level == 2:
+	else:
+		if is_on_floor() and _is_on_ice():
 			velocity.x = move_toward(velocity.x, 0, SPEED * delta * 4.0)
-		else:
+		elif !is_unassisted_walljump:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 	# Handle grab
@@ -250,7 +279,7 @@ func _physics_process(delta: float) -> void:
 		ignore_continued_grabbing = false
 	
 	if is_grabbing:
-		if ThisRun.current_level == 2:
+		if _is_on_ice():
 			velocity = Vector2(0.0, GRAB_ICE_SLIP_SPEED)
 		else:
 			velocity = Vector2.ZERO
