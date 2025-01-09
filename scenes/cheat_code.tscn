@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://qs6bqvumu8nr"]
+[gd_scene load_steps=4 format=3 uid="uid://qs6bqvumu8nr"]
 
 [ext_resource type="Script" path="res://scenes/cheat_code.gd" id="1_yd1w1"]
+[ext_resource type="AudioStream" uid="uid://ohvjfsos16cb" path="res://sfx/cheat_collected.wav" id="2_8ek0v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aroes"]
 resource_local_to_scene = true
@@ -24,5 +25,10 @@ autowrap_mode = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(19, 5)
 shape = SubResource("RectangleShape2D_aroes")
+
+[node name="CollectedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8ek0v")
+volume_db = 2.0
+max_polyphony = 2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

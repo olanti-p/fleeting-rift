@@ -33,3 +33,4 @@ func _on_body_entered(_body: Node2D) -> void:
 	if !is_collected:
 		is_collected = true
 		AllRuns.set(cheat_id, true)
+		$CollectedSound.play()
