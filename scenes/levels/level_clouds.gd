@@ -16,14 +16,17 @@ func _process(delta: float) -> void:
 
 func _this_door_entered(_new_scene: String, _buggy: bool) -> void:
 	ThisRun.clouds_finished = true
-	
-func _reveal_fake_wall() -> void:
-	if fake_wall:
-		if reveal_radius.has_overlapping_bodies():
-			fake_wall.queue_free()
-			fake_wall = null
-			reveal_radius = null
-			$Ground/WorldBoundaries/Bottom.position.y = 517
-			_cheat_ok("1 hidden wall(s) revealed")
-			return
-	_cheat_fail("no hidden walls to reveal")
+
+
+func has_fake_wall() -> bool:
+	return fake_wall != null
+
+
+func reveal_fake_wall() -> void:
+	if !fake_wall:
+		return
+	if reveal_radius.has_overlapping_bodies():
+		fake_wall.queue_free()
+		fake_wall = null
+		reveal_radius = null
+		$Ground/WorldBoundaries/Bottom.position.y = 517

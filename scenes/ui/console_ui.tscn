@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://blun4b65r4f4j"]
+
+[ext_resource type="Script" path="res://scenes/ui/console_ui.gd" id="1_8cml8"]
+[ext_resource type="AudioStream" uid="uid://xmlobjd52c0o" path="res://sfx/cheat_activated.wav" id="2_my1fq"]
+[ext_resource type="AudioStream" uid="uid://bwcjs4iia704t" path="res://sfx/cheat_failed.wav" id="3_wyycm"]
+[ext_resource type="StyleBox" uid="uid://c3rw2njbv6r1a" path="res://resources/simple_panel.tres" id="4_hcrts"]
+[ext_resource type="Script" path="res://scenes/ui/cheat_code_list.gd" id="6_b4q8d"]
+
+[node name="ConsoleUI" type="CanvasLayer"]
+script = ExtResource("1_8cml8")
+
+[node name="CaretResetTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ConsoleOpenTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="CheatcodeActivated" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_my1fq")
+bus = &"Sound"
+
+[node name="CheatcodeFailed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wyycm")
+bus = &"Sound"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ConsoleContainer" type="MarginContainer" parent="Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -57.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ConsoleContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = -1
+
+[node name="DisplayText" type="PanelContainer" parent="Control/ConsoleContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_hcrts")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/ConsoleContainer/VBoxContainer/DisplayText"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = -1
+
+[node name="CheatCodeList" type="RichTextLabel" parent="Control/ConsoleContainer/VBoxContainer/DisplayText/MarginContainer"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "* [color=#20a5a6]1[/color] - Enable immortality
+* [color=#20a5a6]2[/color] - Disable colllisions
+* [color=#20a5a6]0[/color] - Close"
+fit_content = true
+scroll_active = false
+script = ExtResource("6_b4q8d")
+
+[node name="InputText" type="PanelContainer" parent="Control/ConsoleContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_hcrts")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/ConsoleContainer/VBoxContainer/InputText"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/ConsoleContainer/VBoxContainer/InputText/MarginContainer"]
+layout_mode = 2
+
+[node name="Caret" type="RichTextLabel" parent="Control/ConsoleContainer/VBoxContainer/InputText/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(8, 12)
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = ">[pulse freq=2.0 ease=-20.0 color=#00000000]_[/pulse]"
+scroll_active = false
+
+[connection signal="timeout" from="CaretResetTimer" to="." method="_on_caret_reset_timer_timeout"]

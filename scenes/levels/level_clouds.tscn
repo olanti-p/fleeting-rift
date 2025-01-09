@@ -227,6 +227,3 @@ position = Vector2(68, 172)
 [node name="DebugPlayerSpawner" parent="." index="10"]
 position = Vector2(3250, 213)
 spawn_enabled = true
-
-[node name="ConsoleContainer" parent="UI/Control" index="1"]
-visible = true

@@ -588,7 +588,7 @@ position = Vector2(68, 228)
 position = Vector2(4793, 169)
 spawn_enabled = true
 
-[node name="VFX_AwardGlitchReveal" type="CanvasLayer" parent="." index="17"]
+[node name="VFX_AwardGlitchReveal" type="CanvasLayer" parent="." index="13"]
 
 [node name="BadScreenBlock" parent="VFX_AwardGlitchReveal" index="0" instance=ExtResource("10_oc64i")]
 material = SubResource("ShaderMaterial_dl1nu")

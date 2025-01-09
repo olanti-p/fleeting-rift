@@ -106,7 +106,7 @@ func _play_dash_sound() -> void:
 
 
 func _is_on_ice() -> bool:
-	return ThisRun.current_level == 2
+	return ThisRun.current_level == 2 && !get_parent().is_glitch_level
 
 
 func _physics_process(delta: float) -> void:

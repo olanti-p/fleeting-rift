@@ -92,11 +92,11 @@ position = Vector2(134, 185)
 [node name="MainCamera" parent="." index="11"]
 position = Vector2(213, 134)
 
-[node name="AreaSwitched" type="AudioStreamPlayer" parent="." index="17"]
+[node name="AreaSwitched" type="AudioStreamPlayer" parent="." index="14"]
 stream = ExtResource("7_hulf2")
 max_polyphony = 4
 bus = &"Sound"
 
-[node name="AreaSelected" type="AudioStreamPlayer" parent="." index="18"]
+[node name="AreaSelected" type="AudioStreamPlayer" parent="." index="15"]
 stream = ExtResource("8_pa0lu")
 bus = &"Sound"

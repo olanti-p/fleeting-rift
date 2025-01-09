@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dritl20a151ec"]
+
+[ext_resource type="Script" path="res://scenes/ui/timer_ui.gd" id="1_rnxdt"]
+[ext_resource type="StyleBox" uid="uid://c3rw2njbv6r1a" path="res://resources/simple_panel.tres" id="2_4ufix"]
+[ext_resource type="FontFile" uid="uid://c5hh33uj7dtlh" path="res://font/FFFFORWA_MONONUMBER.TTF" id="3_uykad"]
+
+[node name="TimerUI" type="CanvasLayer"]
+script = ExtResource("1_rnxdt")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TimerContainer" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 16.0
+theme_override_styles/panel = ExtResource("2_4ufix")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TimerContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 1
+
+[node name="LevelTimeDisplay" type="Label" parent="Control/TimerContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.960784, 0.909804, 0.819608, 1)
+theme_override_fonts/font = ExtResource("3_uykad")
+theme_override_font_sizes/font_size = 8
+text = "00:00:00.0"

@@ -2,7 +2,6 @@ extends Level
 
 func _ready() -> void:
 	super()
-	is_timer_visible = false
 	$Player.is_control_hackably_disabled = true
 	await get_tree().create_timer(1.0).timeout
 	for respawn in $Respawns.get_children():

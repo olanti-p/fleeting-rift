@@ -12,9 +12,9 @@ func _ready() -> void:
 func fmt_run_time_display() -> void:
 	var tm: String
 	if ThisRun.is_completed:
-		tm = fmt_timer(ThisRun.final_time)
+		tm = Util.fmt_timer(ThisRun.final_time)
 	else:
-		tm = fmt_timer(ThisRun.run_time)
+		tm = Util.fmt_timer(ThisRun.run_time)
 	%EndgoalTimer.text = "[%s]" % tm
 
 func _process(delta: float) -> void:
@@ -41,7 +41,6 @@ func _on_glitch_reveal_area_body_entered(_body: Node2D) -> void:
 
 
 func _on_endgoal_player_entered() -> void:
-	is_timer_visible = false
 	ThisRun.final_time = ThisRun.run_time
 	ThisRun.is_completed = true
 	fmt_run_time_display()
