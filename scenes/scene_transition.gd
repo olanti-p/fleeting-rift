@@ -12,9 +12,8 @@ func _ready() -> void:
 	$VFX_Scanlines1.visible = false
 	$VFX_Scanlines2.visible = false
 	$VFX_BadBlocks.visible = false
-	await get_tree().create_timer(1.0).timeout
-	MusicController.play_main_menu()
-	animation_player.play("fade_in")
+	frame = 7
+
 
 func do_normal(new_scene: String) -> void:
 	get_tree().paused = true
@@ -55,6 +54,18 @@ func do_shutdown(new_scene: String) -> void:
 	MusicController.stop_all()
 	await get_tree().create_timer(1.5).timeout
 	get_tree().change_scene_to_file(new_scene)
+	animation_player.play("fade_in")
+	MusicController.play_main_menu()
+	await animation_player.animation_finished
+	get_tree().paused = false
+
+
+func do_first_start() -> void:
+	get_tree().paused = true
+	frame = 0
+	MusicController.stop_all()
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://scenes/levels/level_main_menu.tscn")
 	animation_player.play("fade_in")
 	MusicController.play_main_menu()
 	await animation_player.animation_finished

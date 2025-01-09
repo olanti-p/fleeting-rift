@@ -286,7 +286,7 @@ func fmt_timer(val: float) -> String:
 
 
 func _process(delta: float) -> void:
-	ThisRun.run_time += delta
+	ThisRun.run_time += delta * AllRuns.get_difficulty_time_correction()
 	%LevelTimeDisplay.text = fmt_timer(ThisRun.run_time)
 	
 	if Input.is_action_just_pressed("open_console"):

@@ -2,6 +2,41 @@ extends Node
 
 var total_time_in_game: float = 0.0
 
+enum Difficulty {
+	Hard,
+	Normal,
+	Easy,
+	Cakewalk,
+}
+var difficulty: Difficulty = Difficulty.Normal:
+	set(value):
+		difficulty = value
+		Engine.time_scale = _get_difficulty_time_scale(difficulty)
+
+
+func get_current_difficulty_time_scale() -> float:
+	return _get_difficulty_time_scale(difficulty)
+
+
+func get_difficulty_time_correction() -> float:
+	return 1.0 / _get_difficulty_time_scale(difficulty)
+
+
+func _get_difficulty_time_scale(diff: Difficulty) -> float:
+	match diff:
+		Difficulty.Hard:
+			return 1.0
+		Difficulty.Normal:
+			return 0.85
+		Difficulty.Easy:
+			return 0.75
+		Difficulty.Cakewalk:
+			return 0.6
+		_:
+			push_error("unimplemented")
+			return 1.0
+
+
 var current_level: Level = null
 
 var cheat_reset: bool = false
@@ -35,7 +70,7 @@ var cheat_timer: bool = false
 #var cheat_timer: bool = true
 
 func _process(delta: float) -> void:
-	total_time_in_game += delta
+	total_time_in_game += delta * get_difficulty_time_correction()
 
 func factory_reset() -> void:
 	total_time_in_game = 0.0
