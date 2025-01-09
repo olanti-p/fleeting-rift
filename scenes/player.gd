@@ -370,7 +370,7 @@ func _on_dash_timer_timeout() -> void:
 
 
 func _do_win() -> void:
-	SceneTransition.do_glitched("res://scenes/victory_screen.tscn")
+	SceneTransition.do_glitched("res://scenes/ui/victory_screen.tscn")
 
 
 func _on_win_scanner_body_entered(_body: Node2D) -> void:

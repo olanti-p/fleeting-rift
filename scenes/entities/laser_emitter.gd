@@ -1,7 +1,7 @@
 extends Node2D
 class_name LaserEmitter
 
-const packed_laser: PackedScene = preload("res://scenes/laser_beam.tscn")
+const packed_laser: PackedScene = preload("res://scenes/entities/laser_beam.tscn")
 @onready var main_sprite: AnimatedSprite2D = $MainSprite
 @onready var laser_spawn_pos: Marker2D = $LaserSpawnPos
 @onready var spawn_timer: Timer = $SpawnTimer

@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://dhvd7jxh07fvh"]
 
-[ext_resource type="Material" uid="uid://cabo7x1cmo5yr" path="res://scenes/vfx_glitch_material.tres" id="1_p5qjp"]
+[ext_resource type="Material" uid="uid://cabo7x1cmo5yr" path="res://resources/vfx_glitch_material.tres" id="1_p5qjp"]
 [ext_resource type="Texture2D" uid="uid://b12fumgrjpmkh" path="res://art/scanline.png" id="2_m2a7r"]
-[ext_resource type="Script" path="res://scenes/scan_line.gd" id="3_ekivv"]
+[ext_resource type="Script" path="res://scenes/effects/scan_line.gd" id="3_ekivv"]
 
 [sub_resource type="Animation" id="Animation_h0h2b"]
 length = 0.001

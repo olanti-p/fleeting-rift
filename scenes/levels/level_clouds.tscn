@@ -1,14 +1,14 @@
 [gd_scene load_steps=44 format=4 uid="uid://6lms22mfmhln"]
 
 [ext_resource type="PackedScene" uid="uid://cwil3jmniqbr5" path="res://scenes/level.tscn" id="1_rpsxk"]
-[ext_resource type="PackedScene" uid="uid://j0cv5mpeq3d6" path="res://scenes/respawn_point.tscn" id="2_rtuwm"]
+[ext_resource type="PackedScene" uid="uid://j0cv5mpeq3d6" path="res://scenes/entities/respawn_point.tscn" id="2_rtuwm"]
 [ext_resource type="Script" path="res://scenes/levels/level_clouds.gd" id="2_togrn"]
 [ext_resource type="Texture2D" uid="uid://51mg2rnnmq6x" path="res://art/fake_wall.png" id="3_b4ou4"]
-[ext_resource type="PackedScene" uid="uid://c31p42f5jycat" path="res://scenes/exit_door.tscn" id="3_i1jhj"]
-[ext_resource type="PackedScene" uid="uid://cdwerteriusj" path="res://scenes/camera_area.tscn" id="4_cdqyq"]
-[ext_resource type="PackedScene" uid="uid://tpn06dqmuwkg" path="res://scenes/fall_damage_area.tscn" id="5_63wdm"]
-[ext_resource type="PackedScene" uid="uid://dfw4ac21go7bq" path="res://scenes/glitch_entry.tscn" id="5_nyg6u"]
-[ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="6_bbjm2"]
+[ext_resource type="PackedScene" uid="uid://c31p42f5jycat" path="res://scenes/entities/exit_door.tscn" id="3_i1jhj"]
+[ext_resource type="PackedScene" uid="uid://cdwerteriusj" path="res://scenes/control/camera_area.tscn" id="4_cdqyq"]
+[ext_resource type="PackedScene" uid="uid://tpn06dqmuwkg" path="res://scenes/control/fall_damage_area.tscn" id="5_63wdm"]
+[ext_resource type="PackedScene" uid="uid://dfw4ac21go7bq" path="res://scenes/entities/glitch_entry.tscn" id="5_nyg6u"]
+[ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://resources/level_glitch_effect.tres" id="6_bbjm2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bk3lg"]
 size = Vector2(56, 104)

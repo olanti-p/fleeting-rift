@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://qs6bqvumu8nr"]
 
-[ext_resource type="Script" path="res://scenes/cheat_code.gd" id="1_yd1w1"]
+[ext_resource type="Script" path="res://scenes/entities/cheat_code.gd" id="1_yd1w1"]
 [ext_resource type="AudioStream" uid="uid://ohvjfsos16cb" path="res://sfx/cheat_collected.wav" id="2_8ek0v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aroes"]

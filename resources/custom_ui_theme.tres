@@ -1,8 +1,8 @@
 [gd_resource type="Theme" load_steps=5 format=3 uid="uid://ch1hda8sbrhh3"]
 
-[ext_resource type="StyleBox" uid="uid://bjshfy514rk8w" path="res://ui/button_panel_normal.tres" id="1_3gtug"]
+[ext_resource type="StyleBox" uid="uid://bjshfy514rk8w" path="res://resources/button_panel_normal.tres" id="1_3gtug"]
 [ext_resource type="FontFile" uid="uid://dvo8ytv3guoaq" path="res://font/FFFFORWA.TTF" id="1_wran7"]
-[ext_resource type="StyleBox" uid="uid://c0guxaarjg5sf" path="res://ui/button_panel_hovered.tres" id="2_axkye"]
+[ext_resource type="StyleBox" uid="uid://c0guxaarjg5sf" path="res://resources/button_panel_hovered.tres" id="2_axkye"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fp2ed"]
 

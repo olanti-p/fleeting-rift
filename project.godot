@@ -11,15 +11,19 @@ config_version=5
 [application]
 
 config/name="Fleeting Rift"
-run/main_scene="res://scenes/intro_screen.tscn"
+run/main_scene="res://scenes/ui/intro_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://art/game_icon.png"
+
+[audio]
+
+buses/default_bus_layout="res://resources/default_bus_layout.tres"
 
 [autoload]
 
 ThisRun="*res://scenes/globals/this_run.gd"
 AllRuns="*res://scenes/globals/all_runs.gd"
-SceneTransition="*res://scenes/scene_transition.tscn"
+SceneTransition="*res://scenes/globals/scene_transition.tscn"
 MusicController="*res://scenes/globals/music_controller.tscn"
 
 [debug]
@@ -36,7 +40,7 @@ window/stretch/mode="canvas_items"
 
 [gui]
 
-theme/custom="res://ui/custom_theme.tres"
+theme/custom="res://resources/custom_ui_theme.tres"
 theme/custom_font="res://font/FFFFORWA.TTF"
 theme/default_font_antialiasing=0
 theme/default_font_hinting=0

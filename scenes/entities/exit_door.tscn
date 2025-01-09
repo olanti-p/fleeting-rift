@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://c31p42f5jycat"]
 
 [ext_resource type="Texture2D" uid="uid://c4fiuph21tjjr" path="res://art/exit_door.png" id="1_0143j"]
-[ext_resource type="Script" path="res://scenes/exit_door.gd" id="1_kqnjs"]
+[ext_resource type="Script" path="res://scenes/entities/exit_door.gd" id="1_kqnjs"]
 [ext_resource type="AudioStream" uid="uid://cmtgcrkbtyey7" path="res://sfx/enter_door.wav" id="3_qxhi2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7b7p"]

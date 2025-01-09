@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://j0cv5mpeq3d6"]
 
-[ext_resource type="Script" path="res://scenes/respawn_point.gd" id="1_fbhi2"]
+[ext_resource type="Script" path="res://scenes/entities/respawn_point.gd" id="1_fbhi2"]
 [ext_resource type="Texture2D" uid="uid://dvyyouxwkjmtp" path="res://art/respawn_point.png" id="1_lpard"]
 [ext_resource type="AudioStream" uid="uid://bgsxk3psq2ktr" path="res://sfx/checkpoint_activated.wav" id="3_3aja5"]
 

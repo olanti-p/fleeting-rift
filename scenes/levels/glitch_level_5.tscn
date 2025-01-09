@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cwil3jmniqbr5" path="res://scenes/level.tscn" id="1_admno"]
 [ext_resource type="Script" path="res://scenes/levels/glitch_level.gd" id="2_ipkny"]
-[ext_resource type="PackedScene" uid="uid://qs6bqvumu8nr" path="res://scenes/cheat_code.tscn" id="2_r0bsb"]
-[ext_resource type="LabelSettings" uid="uid://bco2g733hoxjh" path="res://ui/multiline_label_settings.tres" id="3_1s7fm"]
-[ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://scenes/level_glitch_effect.tres" id="3_qo5yk"]
+[ext_resource type="PackedScene" uid="uid://qs6bqvumu8nr" path="res://scenes/entities/cheat_code.tscn" id="2_r0bsb"]
+[ext_resource type="LabelSettings" uid="uid://bco2g733hoxjh" path="res://resources/multiline_label_settings.tres" id="3_1s7fm"]
+[ext_resource type="Shader" uid="uid://c42wei3d6yh1u" path="res://resources/level_glitch_effect.tres" id="3_qo5yk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ea5ar"]
 resource_local_to_scene = true

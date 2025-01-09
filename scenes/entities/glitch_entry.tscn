@@ -1,7 +1,7 @@
 [gd_scene load_steps=57 format=3 uid="uid://dfw4ac21go7bq"]
 
 [ext_resource type="Texture2D" uid="uid://vfm61dp74142" path="res://art/glitch_entrance.png" id="1_8ffdo"]
-[ext_resource type="Script" path="res://scenes/glitch_entry.gd" id="1_qlh4l"]
+[ext_resource type="Script" path="res://scenes/entities/glitch_entry.gd" id="1_qlh4l"]
 
 [sub_resource type="Gradient" id="Gradient_tau8e"]
 interpolation_mode = 1

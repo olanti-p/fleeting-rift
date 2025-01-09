@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://xm6ihuvsfbrd"]
 
 [ext_resource type="Texture2D" uid="uid://8nj6v8mvkj5q" path="res://art/star_emitter.png" id="1_dv7vo"]
-[ext_resource type="Script" path="res://scenes/star_emitter.gd" id="1_onfxl"]
+[ext_resource type="Script" path="res://scenes/entities/star_emitter.gd" id="1_onfxl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5l1d1"]
 atlas = ExtResource("1_dv7vo")

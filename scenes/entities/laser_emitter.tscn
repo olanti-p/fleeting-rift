@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://daip1ghfwxrxb"]
 
-[ext_resource type="Script" path="res://scenes/laser_emitter.gd" id="1_u7cwd"]
+[ext_resource type="Script" path="res://scenes/entities/laser_emitter.gd" id="1_u7cwd"]
 [ext_resource type="Texture2D" uid="uid://ccr1sw5u28sfd" path="res://art/laser_emitter.png" id="2_dgrdw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ov7rf"]

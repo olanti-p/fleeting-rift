@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdwerteriusj"]
 
-[ext_resource type="Script" path="res://scenes/camera_area.gd" id="1_d22ra"]
+[ext_resource type="Script" path="res://scenes/control/camera_area.gd" id="1_d22ra"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_euqs5"]
 size = Vector2(426, 240)

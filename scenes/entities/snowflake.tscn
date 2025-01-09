@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dpbqfee8hlo8d"]
 
 [ext_resource type="Texture2D" uid="uid://bgk56e5yso4kb" path="res://art/snowflake.png" id="1_sy4u2"]
-[ext_resource type="Script" path="res://scenes/snowflake.gd" id="2_insb7"]
+[ext_resource type="Script" path="res://scenes/entities/snowflake.gd" id="2_insb7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ke3y"]
 atlas = ExtResource("1_sy4u2")

@@ -1,7 +1,7 @@
 extends Node2D
 class_name StarEmitter
 
-const packed_star: PackedScene = preload("res://scenes/spinning_star.tscn")
+const packed_star: PackedScene = preload("res://scenes/entities/spinning_star.tscn")
 @onready var main_sprite: AnimatedSprite2D = $MainSprite
 @onready var star_spawn_pos: Marker2D = $StarSpawnPos
 @onready var spawn_timer: Timer = $SpawnTimer
