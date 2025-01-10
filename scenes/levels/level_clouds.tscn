@@ -114,7 +114,7 @@ change_to_scene = "res://scenes/levels/level_map.tscn"
 position = Vector2(42, 164)
 change_to_scene = "res://scenes/levels/level_map.tscn"
 
-[node name="Label" type="Label" parent="Text" index="0"]
+[node name="LabelBasic" type="Label" parent="Text" index="0"]
 offset_left = 137.0
 offset_top = 27.0
 offset_right = 246.0
@@ -133,31 +133,32 @@ offset_bottom = 132.0
 text = "Press G to dash"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Text" index="2"]
-offset_left = 513.0
+[node name="LabelWallJump" type="Label" parent="Text" index="2"]
+offset_left = 479.0
 offset_top = 38.0
-offset_right = 762.0
+offset_right = 777.0
 offset_bottom = 77.0
 text = "Press SHIFT to grab the wall
 Press SPACE while grabbing to jump off the wall
-Hold WASD to choose jump direction"
+Hold W,A,D when pressing SPACE to change jump direction"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="Text" index="3"]
+[node name="LabelSpawnpoints" type="Label" parent="Text" index="3"]
 offset_left = 908.0
 offset_top = 28.0
 offset_right = 1157.0
 offset_bottom = 67.0
 text = "Avoid dangerous terrain
-Use respawn points to save your progress"
+Use respawn points to save your progress
+You can jump a split second after leaving ground"
 horizontal_alignment = 1
 
-[node name="Label4" type="Label" parent="Text" index="4"]
-offset_left = 1784.0
-offset_top = 12.0
-offset_right = 2033.0
-offset_bottom = 51.0
-text = "Wall jumps provide extra boost"
+[node name="LabelWalljumpReach" type="Label" parent="Text" index="4"]
+offset_left = 1800.0
+offset_top = 27.0
+offset_right = 2049.0
+offset_bottom = 66.0
+text = "Wall jumps let you reach farther than regular jumps"
 horizontal_alignment = 1
 
 [node name="CameraAreas" parent="." index="7"]
