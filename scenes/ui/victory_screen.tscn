@@ -25,11 +25,11 @@ vertical_alignment = 1
 
 [node name="LabelSubtitle" type="Label" parent="."]
 layout_mode = 0
-offset_left = 176.0
+offset_left = 148.0
 offset_top = 62.0
-offset_right = 252.0
+offset_right = 276.0
 offset_bottom = 73.0
-text = "Game by Olanti"
+text = "You've reached the Core!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -57,7 +57,6 @@ offset_left = 165.0
 offset_top = 139.0
 offset_right = 260.0
 offset_bottom = 150.0
-text = "Great job!"
 horizontal_alignment = 1
 
 [node name="LabelThanks" type="Label" parent="."]
