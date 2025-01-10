@@ -145,10 +145,11 @@ func _physics_process(delta: float) -> void:
 		stamina = MAX_STAMINA
 	
 	if should_noclip:
-		var dir = Input.get_vector("left", "right", "up", "down")
-		position += dir * NOCLIP_FLOAT_SPEED * delta
-		_update_anim()
-		move_and_slide()
+		if !is_control_hackably_disabled:
+			var dir = Input.get_vector("left", "right", "up", "down")
+			position += dir * NOCLIP_FLOAT_SPEED * delta
+			_update_anim()
+			move_and_slide()
 		return
 	
 	if !is_control_hackably_disabled && \
