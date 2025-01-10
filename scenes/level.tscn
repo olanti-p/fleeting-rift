@@ -26,6 +26,10 @@ tile_set = ExtResource("2_o6s4o")
 [node name="Spikes" type="TileMapLayer" parent="Ground"]
 tile_set = ExtResource("2_o6s4o")
 
+[node name="CakewalkPlatforms" type="TileMapLayer" parent="Ground"]
+unique_name_in_owner = true
+tile_set = ExtResource("2_o6s4o")
+
 [node name="WorldBoundaries" type="Area2D" parent="Ground"]
 collision_layer = 32
 collision_mask = 4
@@ -80,5 +84,6 @@ process_callback = 0
 [node name="TimerUI" parent="." instance=ExtResource("6_6x7gk")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_8cxph")]
+visible = false
 
 [connection signal="body_entered" from="Ground/WorldBoundaries" to="." method="_on_world_boundaries_body_entered"]
