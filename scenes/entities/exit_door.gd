@@ -29,6 +29,11 @@ func _ready() -> void:
 	hint_container.modulate = Color.TRANSPARENT
 
 
+func _process(_delta: float) -> void:
+	hint_animation.set_speed_scale(GlobalState.get_animation_correction())
+	animation_player.set_speed_scale(GlobalState.get_animation_correction())
+
+
 func _on_player_detector_body_entered(_body: Node2D) -> void:
 	if is_being_entered:
 		return

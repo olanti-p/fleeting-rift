@@ -95,7 +95,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("start_level"):
 		$AreaSelected.play()
 		is_starting = true
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.0 / GlobalState.get_animation_correction()).timeout
 		if !ThisRun.timer_started && !ThisRun.is_completed:
 			ThisRun.start_timer()
 		match current_level:

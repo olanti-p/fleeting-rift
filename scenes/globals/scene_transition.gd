@@ -17,6 +17,7 @@ func _ready() -> void:
 
 func do_normal(new_scene: String) -> void:
 	get_tree().paused = true
+	animation_player.set_speed_scale(GlobalState.get_animation_correction())
 	animation_player.play("fade_out")
 	await animation_player.animation_finished
 	get_tree().change_scene_to_file(new_scene)
@@ -54,6 +55,7 @@ func do_shutdown(new_scene: String) -> void:
 	MusicController.stop_all()
 	await get_tree().create_timer(1.5).timeout
 	get_tree().change_scene_to_file(new_scene)
+	animation_player.set_speed_scale(GlobalState.get_animation_correction())
 	animation_player.play("fade_in")
 	MusicController.play_main_menu()
 	await animation_player.animation_finished
@@ -66,6 +68,7 @@ func do_first_start() -> void:
 	MusicController.stop_all()
 	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://scenes/levels/level_main_menu.tscn")
+	animation_player.set_speed_scale(GlobalState.get_animation_correction())
 	animation_player.play("fade_in")
 	MusicController.play_main_menu()
 	await animation_player.animation_finished

@@ -30,6 +30,10 @@ func _ready() -> void:
 		_update_appear()
 
 
+func _process(_delta: float) -> void:
+	main_sprite.set_speed_scale(GlobalState.get_animation_correction())
+
+
 func _on_player_entered(player: Player) -> void:
 	if is_checked:
 		return

@@ -322,9 +322,11 @@ func _respawn() -> void:
 	velocity = Vector2.ZERO
 	is_grabbing = false
 	was_on_floor = false
+	player_sprite.set_speed_scale(GlobalState.get_animation_correction())
 	player_sprite.play("respawn")
 	$SFX/Respawn.play()
 	await player_sprite.animation_finished
+	player_sprite.set_speed_scale(1.0)
 	is_dead = false
 
 
@@ -332,9 +334,11 @@ func _on_hit() -> void:
 	if is_dead || is_entering_door:
 		return
 	is_dead = true
+	player_sprite.set_speed_scale(GlobalState.get_animation_correction())
 	player_sprite.play("death")
 	$SFX/Death.play()
 	await player_sprite.animation_finished
+	player_sprite.set_speed_scale(1.0)
 	_respawn()
 
 
@@ -350,8 +354,10 @@ func _on_restart_pressed() -> void:
 	if is_dead || is_entering_door:
 		return
 	is_dead = true
+	player_sprite.set_speed_scale(GlobalState.get_animation_correction())
 	player_sprite.play("death")
 	await player_sprite.animation_finished
+	player_sprite.set_speed_scale(1.0)
 	_respawn()
 
 

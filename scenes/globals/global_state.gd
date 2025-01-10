@@ -43,6 +43,10 @@ func get_difficulty_time_correction() -> float:
 	return 1.0 / _get_difficulty_time_scale(difficulty)
 
 
+func get_animation_correction() -> float:
+	return get_difficulty_time_correction()
+
+
 func _get_difficulty_stamina_decay(diff: Difficulty) -> bool:
 	return diff == Difficulty.Hard || diff == Difficulty.Normal
 
