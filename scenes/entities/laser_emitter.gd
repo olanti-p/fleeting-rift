@@ -22,7 +22,7 @@ func register_owner_level(level: Level) -> void:
 	owner_level = level
 
 
-func spawn_star() -> void:
+func spawn_laser() -> void:
 	var proj = packed_laser.instantiate()
 	proj.rotation = rotation
 	owner_level.add_projectile(proj, laser_spawn_pos.global_position)
@@ -32,4 +32,4 @@ func _on_spawn_timer_timeout() -> void:
 	main_sprite.play("spawn")
 	await main_sprite.animation_finished
 	main_sprite.play("idle")
-	spawn_star()
+	spawn_laser()
