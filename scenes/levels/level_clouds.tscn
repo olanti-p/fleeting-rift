@@ -191,23 +191,19 @@ position = Vector2(1724, 0)
 
 [node name="CameraArea6" parent="CameraAreas" index="7" instance=ExtResource("4_cdqyq")]
 position = Vector2(2153, 113)
+scale = Vector2(3.02, 0.993)
+camera_follow_mode = true
 
-[node name="CameraArea7" parent="CameraAreas" index="8" instance=ExtResource("4_cdqyq")]
-position = Vector2(2583, 113)
-
-[node name="CameraArea8" parent="CameraAreas" index="9" instance=ExtResource("4_cdqyq")]
-position = Vector2(3012, 113)
-
-[node name="CameraArea9" parent="CameraAreas" index="10" instance=ExtResource("4_cdqyq")]
+[node name="CameraArea9" parent="CameraAreas" index="8" instance=ExtResource("4_cdqyq")]
 position = Vector2(3012, -143)
 
-[node name="CameraArea10" parent="CameraAreas" index="11" instance=ExtResource("4_cdqyq")]
+[node name="CameraArea10" parent="CameraAreas" index="9" instance=ExtResource("4_cdqyq")]
 position = Vector2(2582, -143)
 
-[node name="CameraArea11" parent="CameraAreas" index="12" instance=ExtResource("4_cdqyq")]
+[node name="CameraArea11" parent="CameraAreas" index="10" instance=ExtResource("4_cdqyq")]
 position = Vector2(2153, -143)
 
-[node name="CameraArea14" parent="CameraAreas" index="13" instance=ExtResource("4_cdqyq")]
+[node name="CameraArea14" parent="CameraAreas" index="11" instance=ExtResource("4_cdqyq")]
 position = Vector2(2153, -386)
 
 [node name="FallDamageArea" parent="DangerAreas" index="0" instance=ExtResource("5_63wdm")]
