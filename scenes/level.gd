@@ -57,7 +57,9 @@ func reveal_fake_wall() -> void:
 
 
 func _process(_delta: float) -> void:
-	pass
+	var cakewalk = GlobalState.get_difficulty_extra_platforms()
+	%CakewalkPlatforms.visible = cakewalk
+	%CakewalkPlatforms.collision_enabled = cakewalk
 
 
 func add_projectile(projectile: Node2D, pos: Vector2) -> void:

@@ -156,14 +156,8 @@ tile_map_data = PackedByteArray("AAAAABYAAAADAAcAAAAAABcAAAABAAcAAAAAAB0AAAADAAc
 [node name="Spikes" parent="Ground" index="2"]
 tile_map_data = PackedByteArray("AAA9AA0AAAAHAA0ABAA8AA8AAAAIAA0ABAA7ABAAAAAKAAwABAA6AA8AAAAHAA0ABAA5AA4AAAAJAAwABAA4AA8AAAAIAA0ABAA=")
 
-[node name="Top" parent="Ground/WorldBoundaries" index="1"]
-position = Vector2(358, -530)
-
-[node name="Right" parent="Ground/WorldBoundaries" index="2"]
-position = Vector2(5968, 111)
-
-[node name="Left" parent="Ground/WorldBoundaries" index="3"]
-position = Vector2(-70, 112)
+[node name="CakewalkPlatforms" parent="Ground" index="3"]
+tile_map_data = PackedByteArray("AABSABwAAAALAA0AAABRABwAAAALAA0AAABQABwAAAALAA0AAABPABwAAAALAA0AAABOABwAAAALAA0AAAA6AQwAAAALAA0AAAA7AQwAAAALAA0AAAA5AQ0AAAALAA0AAADkAQwAAAALAA0AAADjAQwAAAALAA0AAADiAQ0AAAALAA0AAADiAQ4AAAALAA0AAADjAQ0AAAALAA0AAAA=")
 
 [node name="Snowflakes" type="Node2D" parent="Ground" index="4"]
 
@@ -445,6 +439,15 @@ position = Vector2(61, -480)
 
 [node name="Snowflake94" parent="Ground/Snowflakes" index="92" instance=ExtResource("3_ujdfs")]
 position = Vector2(46, -477)
+
+[node name="Top" parent="Ground/WorldBoundaries" index="1"]
+position = Vector2(358, -530)
+
+[node name="Right" parent="Ground/WorldBoundaries" index="2"]
+position = Vector2(5968, 111)
+
+[node name="Left" parent="Ground/WorldBoundaries" index="3"]
+position = Vector2(-70, 112)
 
 [node name="RespawnPoint" parent="Respawns" index="0" instance=ExtResource("3_j4itr")]
 position = Vector2(486, 220)
