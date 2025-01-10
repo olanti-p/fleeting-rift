@@ -65,6 +65,7 @@ func _process(_delta: float) -> void:
 func add_projectile(projectile: Node2D, pos: Vector2) -> void:
 	projectiles.add_child(projectile)
 	projectile.global_position = pos
+	projectile.reset_physics_interpolation()
 
 
 func get_player_global_pos() -> Vector2:
