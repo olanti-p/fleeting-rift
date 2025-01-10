@@ -73,6 +73,7 @@ script = ExtResource("4_78bw4")
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(213, 120)
+process_callback = 0
 
 [node name="ConsoleUI" parent="." instance=ExtResource("5_4d0jj")]
 
