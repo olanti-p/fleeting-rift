@@ -94,7 +94,10 @@ func get_difficulty_name(diff: Difficulty) -> String:
 
 
 func get_difficulty_description(diff: Difficulty) -> String:
-	var text = "The game runs at %d%% speed.\n" % roundi(_get_difficulty_time_scale(diff) * 100.0)
+	var text = ""
+	if diff == Difficulty.Hard:
+		text += "Original difficulty. "
+	text += "The game runs at %d%% speed.\n" % roundi(_get_difficulty_time_scale(diff) * 100.0)
 	if _get_difficulty_stamina_decay(diff):
 		text += "Stamina drains while grabbing walls.\n"
 	else:
