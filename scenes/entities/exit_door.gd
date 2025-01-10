@@ -3,6 +3,7 @@ class_name ExitDoor
 
 @export var change_to_scene: String = ""
 @export var is_buggy: bool = false
+@export var is_return_door: bool = false
 
 @onready var hint_animation: AnimationPlayer = $HintAnimation
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -27,6 +28,8 @@ func do_enter() -> void:
 
 func _ready() -> void:
 	hint_container.modulate = Color.TRANSPARENT
+	if is_return_door:
+		%EnterHint.text = "Press W to leave"
 
 
 func _process(_delta: float) -> void:

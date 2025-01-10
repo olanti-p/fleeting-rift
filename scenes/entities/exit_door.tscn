@@ -376,6 +376,7 @@ libraries = {
 [node name="HintContainer" type="Node2D" parent="."]
 
 [node name="EnterHint" type="Label" parent="HintContainer"]
+unique_name_in_owner = true
 offset_left = -40.0
 offset_top = -24.0
 offset_right = 47.0

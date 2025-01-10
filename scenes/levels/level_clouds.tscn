@@ -116,6 +116,7 @@ change_to_scene = "res://scenes/levels/level_map.tscn"
 [node name="EntryDoor" parent="Doors" index="1" instance=ExtResource("3_i1jhj")]
 position = Vector2(42, 164)
 change_to_scene = "res://scenes/levels/level_map.tscn"
+is_return_door = true
 
 [node name="LabelBasic" type="Label" parent="Text" index="0"]
 offset_left = 137.0

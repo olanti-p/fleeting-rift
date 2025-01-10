@@ -408,6 +408,7 @@ change_to_scene = "res://scenes/levels/level_map.tscn"
 [node name="EntryDoor" parent="Doors" index="1" instance=ExtResource("3_r6c52")]
 position = Vector2(47, 148)
 change_to_scene = "res://scenes/levels/level_map.tscn"
+is_return_door = true
 
 [node name="CameraAreas" parent="." index="7"]
 metadata/_edit_lock_ = true

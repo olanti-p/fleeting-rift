@@ -467,6 +467,7 @@ change_to_scene = "res://scenes/levels/glitch_level_7.tscn"
 [node name="EntryDoor" parent="Doors" index="0" instance=ExtResource("3_87pxf")]
 position = Vector2(42, 220)
 change_to_scene = "res://scenes/levels/level_map.tscn"
+is_return_door = true
 
 [node name="HintHorizSpeed" type="Label" parent="Text" index="0"]
 offset_left = 485.0
