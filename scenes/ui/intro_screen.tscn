@@ -71,9 +71,15 @@ text = "Cakewalk"
 [node name="DifficultyDescription" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Difficulty only affects speed scale of the entire game.
-At chosen difficulty, the game will run at %d%% speed.
-You can always change this later.
+text = "Line 1
+Line 2
+Line 3"
+horizontal_alignment = 1
+
+[node name="DifficultyPostNote" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "You can always change it later.
 "
 horizontal_alignment = 1
 

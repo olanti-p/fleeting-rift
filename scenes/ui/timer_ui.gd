@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if _should_be_visible():
 		%TimerContainer.visible = true
-		ThisRun.run_time += delta * AllRuns.get_difficulty_time_correction()
+		ThisRun.run_time += delta * GlobalState.get_difficulty_time_correction()
 		%LevelTimeDisplay.text = Util.fmt_timer(ThisRun.run_time)
 	else:
 		%TimerContainer.visible = false

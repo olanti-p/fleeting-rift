@@ -2,40 +2,6 @@ extends Node
 
 var total_time_in_game: float = 0.0
 
-enum Difficulty {
-	Hard,
-	Normal,
-	Easy,
-	Cakewalk,
-}
-var difficulty: Difficulty = Difficulty.Normal:
-	set(value):
-		difficulty = value
-		Engine.time_scale = _get_difficulty_time_scale(difficulty)
-
-
-func get_current_difficulty_time_scale() -> float:
-	return _get_difficulty_time_scale(difficulty)
-
-
-func get_difficulty_time_correction() -> float:
-	return 1.0 / _get_difficulty_time_scale(difficulty)
-
-
-func _get_difficulty_time_scale(diff: Difficulty) -> float:
-	match diff:
-		Difficulty.Hard:
-			return 1.0
-		Difficulty.Normal:
-			return 0.85
-		Difficulty.Easy:
-			return 0.75
-		Difficulty.Cakewalk:
-			return 0.6
-		_:
-			push_error("unimplemented")
-			return 1.0
-
 
 var current_level: Level = null
 
@@ -78,7 +44,7 @@ func _set_all_cheats(value: bool) -> void:
 
 
 func _process(delta: float) -> void:
-	total_time_in_game += delta * get_difficulty_time_correction()
+	total_time_in_game += delta * GlobalState.get_difficulty_time_correction()
 	if Input.is_action_just_pressed("debug_enable_all_cheats"):
 		_set_all_cheats(true)
 	if Input.is_action_just_pressed("debug_disable_all_cheats"):

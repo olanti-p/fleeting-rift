@@ -42,6 +42,7 @@ const MIN_STAMINA: float = 0.0
 const MAX_STAMINA: float = 100.0
 const STAMINA_LOSS_RATE: float = 30.0
 const STAMINA_LOSS_PER_JUMP: float = 30.0
+const STAMINA_LOSS_PER_JUMP_EASY: float = 35.0
 const GRAB_ICE_SLIP_SPEED: float = 8.0
 const DASH_VELOCITY: float = 200.0
 const NOCLIP_FLOAT_SPEED: float = 150
@@ -200,7 +201,10 @@ func _physics_process(delta: float) -> void:
 			ignore_continued_grabbing = true
 			continued_grab_timer.start()
 			velocity = -WALLJUMP_VELOCITY * make_walljump_vector()
-			stamina -= STAMINA_LOSS_PER_JUMP
+			if GlobalState.get_difficulty_stamina_decay():
+				stamina -= STAMINA_LOSS_PER_JUMP
+			else:
+				stamina -= STAMINA_LOSS_PER_JUMP_EASY
 			is_unassisted_walljump = \
 			  !Input.is_action_pressed("left") && \
 			  !Input.is_action_pressed("right") && \
@@ -271,7 +275,8 @@ func _physics_process(delta: float) -> void:
 	if !is_grabbing && is_on_floor():
 		stamina = MAX_STAMINA
 	if is_grabbing:
-		stamina = move_toward(stamina, MIN_STAMINA, STAMINA_LOSS_RATE * delta)
+		if GlobalState.get_difficulty_stamina_decay():
+			stamina = move_toward(stamina, MIN_STAMINA, STAMINA_LOSS_RATE * delta)
 		if stamina == MIN_STAMINA:
 			is_grabbing = false
 	

@@ -1,8 +1,40 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://ch1hda8sbrhh3"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://ch1hda8sbrhh3"]
 
 [ext_resource type="StyleBox" uid="uid://bjshfy514rk8w" path="res://resources/button_panel_normal.tres" id="1_3gtug"]
 [ext_resource type="FontFile" uid="uid://dvo8ytv3guoaq" path="res://font/FFFFORWA.TTF" id="1_wran7"]
 [ext_resource type="StyleBox" uid="uid://c0guxaarjg5sf" path="res://resources/button_panel_hovered.tres" id="2_axkye"]
+[ext_resource type="Texture2D" uid="uid://bb5o5tv5vpsou" path="res://art/grabber.png" id="3_rpmai"]
+[ext_resource type="Texture2D" uid="uid://bbx5u6drrahb3" path="res://art/grabber_active.png" id="4_er2be"]
+[ext_resource type="Texture2D" uid="uid://c8gv44hr26gum" path="res://art/slider_tick.png" id="5_5s2s6"]
+[ext_resource type="Texture2D" uid="uid://c72hx1svptxc5" path="res://art/slider_bg_filled.png" id="6_imh0x"]
+[ext_resource type="Texture2D" uid="uid://bddcfn5p08msg" path="res://art/slider_bg.png" id="7_fx1us"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4j73e"]
+texture = ExtResource("6_imh0x")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pfxnr"]
+texture = ExtResource("6_imh0x")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fogda"]
+texture = ExtResource("7_fx1us")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fp2ed"]
 
@@ -17,6 +49,13 @@ Button/styles/focus = ExtResource("1_3gtug")
 Button/styles/hover = ExtResource("2_axkye")
 Button/styles/normal = ExtResource("1_3gtug")
 Button/styles/pressed = ExtResource("1_3gtug")
+HSlider/icons/grabber = ExtResource("3_rpmai")
+HSlider/icons/grabber_disabled = ExtResource("3_rpmai")
+HSlider/icons/grabber_highlight = ExtResource("4_er2be")
+HSlider/icons/tick = ExtResource("5_5s2s6")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_4j73e")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_pfxnr")
+HSlider/styles/slider = SubResource("StyleBoxTexture_fogda")
 Label/colors/font_color = Color(0.960784, 0.909804, 0.819608, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/colors/font_shadow_color = Color(0, 0, 0, 0)
