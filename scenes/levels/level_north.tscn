@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://biv13iqbfxtjc"]
+[gd_scene load_steps=29 format=4 uid="uid://biv13iqbfxtjc"]
 
 [ext_resource type="PackedScene" uid="uid://cwil3jmniqbr5" path="res://scenes/level.tscn" id="1_rmtab"]
 [ext_resource type="Script" path="res://scenes/levels/level_north.gd" id="2_3khp5"]
@@ -122,6 +122,12 @@ _data = {
 "RESET": SubResource("Animation_h4lvc"),
 "reveal": SubResource("Animation_kemkr")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_beb36"]
+size = Vector2(62, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_keugv"]
+size = Vector2(48, 235)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dl1nu"]
 resource_local_to_scene = true
@@ -559,6 +565,18 @@ libraries = {
 "": SubResource("AnimationLibrary_ecr2p")
 }
 
+[node name="FastMusicTrigger" type="Area2D" parent="Text" index="10"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Text/FastMusicTrigger" index="0"]
+position = Vector2(382, -304.5)
+shape = SubResource("RectangleShape2D_beb36")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Text/FastMusicTrigger" index="1"]
+position = Vector2(841, 125.5)
+shape = SubResource("RectangleShape2D_keugv")
+
 [node name="CameraAreas" parent="." index="7"]
 visible = false
 metadata/_edit_lock_ = true
@@ -622,3 +640,4 @@ displacement = 0.005
 [connection signal="body_entered" from="Text/GlitchVfxArea" to="." method="_on_glitch_vfx_area_body_entered"]
 [connection signal="body_exited" from="Text/GlitchVfxArea" to="." method="_on_glitch_vfx_area_body_exited"]
 [connection signal="body_entered" from="Text/GlitchRevealArea" to="." method="_on_glitch_reveal_area_body_entered"]
+[connection signal="body_entered" from="Text/FastMusicTrigger" to="." method="_on_fast_music_trigger_body_entered"]

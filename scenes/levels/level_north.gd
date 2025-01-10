@@ -6,7 +6,7 @@ func _ready() -> void:
 	$VFX_AwardGlitchReveal.visible = false
 	%EndgoalTextExpected.visible = false
 	%EndgoalTextFail.visible = false
-	MusicController.play_north()
+	MusicController.play_north_intro()
 	ThisRun.current_level = 2
 
 func fmt_run_time_display() -> void:
@@ -52,3 +52,12 @@ func _on_endgoal_player_entered() -> void:
 		SceneTransition.do_glitched("res://scenes/levels/level_win.tscn")
 	else:
 		%EndgoalTextFail.visible = true
+
+
+var has_triggered_fast_music: bool = false
+
+
+func _on_fast_music_trigger_body_entered(_body: Node2D) -> void:
+	if !has_triggered_fast_music:
+		has_triggered_fast_music = true
+		MusicController.play_north()

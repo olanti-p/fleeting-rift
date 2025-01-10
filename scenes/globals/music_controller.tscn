@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://xgl5ia8rb3eg"]
+[gd_scene load_steps=10 format=3 uid="uid://xgl5ia8rb3eg"]
 
 [ext_resource type="Script" path="res://scenes/globals/music_controller.gd" id="1_ur88g"]
 [ext_resource type="AudioStream" uid="uid://shy5mqm6r8iv" path="res://music/FR-MainMenu.mp3" id="2_j7itu"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cacptrloknlde" path="res://music/FR-DreamyClouds.mp3" id="4_240sx"]
 [ext_resource type="AudioStream" uid="uid://nvb4yyi7dkeq" path="res://music/FR-Bastion.mp3" id="5_xipy3"]
 [ext_resource type="AudioStream" uid="uid://c3hswvasq35ui" path="res://music/FR-FrozenNorth.mp3" id="6_24csl"]
+[ext_resource type="AudioStream" uid="uid://1ryqkhr31147" path="res://music/FR-FrozenNorthIntro.mp3" id="7_2egg8"]
 [ext_resource type="AudioStream" uid="uid://nqgfq7n65knj" path="res://music/FR-HardwareFault.mp3" id="7_powub"]
 [ext_resource type="AudioStream" uid="uid://ceji7sqhiqy4j" path="res://music/FR-Finale.mp3" id="8_rkwp3"]
 
@@ -39,6 +40,12 @@ playback_type = 1
 
 [node name="MusicFrozenNorth" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_24csl")
+volume_db = 3.0
+bus = &"Music"
+playback_type = 1
+
+[node name="MusicFrozenNorthIntro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_2egg8")
 volume_db = 3.0
 bus = &"Music"
 playback_type = 1

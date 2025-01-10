@@ -32,9 +32,20 @@ func play_bastion() -> void:
 
 
 func play_north() -> void:
+	if $MusicFrozenNorthIntro.playing:
+		var pos = $MusicFrozenNorthIntro.get_playback_position()
+		stop_all()
+		$MusicFrozenNorth.play(pos)
+	else:
+		stop_all()
+		if !$MusicFrozenNorth.playing:
+			$MusicFrozenNorth.play()
+
+
+func play_north_intro() -> void:
 	stop_all()
-	if !$MusicFrozenNorth.playing:
-		$MusicFrozenNorth.play()
+	if !$MusicFrozenNorthIntro.playing:
+		$MusicFrozenNorthIntro.play()
 
 
 func play_glitch() -> void:
