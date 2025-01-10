@@ -44,7 +44,7 @@ func attach_camera(camera: Camera2D) -> void:
 		camera.limit_right = 10000000
 		camera.limit_bottom = 10000000
 		camera.global_position = camera_fixed_position.global_position
-		camera.reset_physics_interpolation()
+	camera.reset_physics_interpolation()
 
 
 func detach_camera() -> void:
@@ -54,3 +54,6 @@ func detach_camera() -> void:
 func _physics_process(_delta: float) -> void:
 	if attached_to && camera_follow_mode:
 		attached_to.global_position = owner_level.get_player_global_pos()
+		if owner_level.camera_needs_reset:
+			attached_to.reset_physics_interpolation()
+			owner_level.camera_needs_reset = false

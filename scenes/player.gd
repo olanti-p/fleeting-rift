@@ -317,8 +317,13 @@ func _on_continued_grab_timer_timeout() -> void:
 	ignore_continued_grabbing = false
 
 
+func queue_camera_reset() -> void:
+	get_parent().reset_camera_interpolation()
+
+
 func _respawn() -> void:
 	global_position = respawn_position
+	queue_camera_reset()
 	velocity = Vector2.ZERO
 	is_grabbing = false
 	was_on_floor = false

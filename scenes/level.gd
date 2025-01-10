@@ -8,6 +8,7 @@ var active_camera_area: CameraArea = null
 var is_glitch_level: bool = false
 
 var is_debug_spawn_enabled: bool = false
+var camera_needs_reset: bool = false
 
 func _ready() -> void:
 	AllRuns.current_level = self
@@ -68,6 +69,10 @@ func has_fake_wall() -> bool:
 
 func reveal_fake_wall() -> void:
 	pass
+
+
+func reset_camera_interpolation() -> void:
+	camera_needs_reset = true
 
 
 func _process(_delta: float) -> void:
