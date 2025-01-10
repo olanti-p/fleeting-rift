@@ -44,7 +44,8 @@ func attach_camera(camera: Camera2D) -> void:
 		camera.limit_right = 10000000
 		camera.limit_bottom = 10000000
 		camera.global_position = camera_fixed_position.global_position
-	camera.reset_physics_interpolation()
+	if is_inside_tree():
+		camera.reset_physics_interpolation()
 
 
 func detach_camera() -> void:

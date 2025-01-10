@@ -35,7 +35,7 @@ func _on_camera_area_entered(_player: Player, area: CameraArea) -> void:
 
 
 func _on_camera_area_exited(_player: Player, area: CameraArea) -> void:
-	if area != active_camera_area:
+	if area != active_camera_area || !is_inside_tree() || get_tree().paused:
 		return
 	active_camera_area.detach_camera()
 	active_camera_area = null
