@@ -38,5 +38,5 @@ func _process(_delta: float) -> void:
 	if AllRuns.cheat_timer:
 		s += _fc("T", "TIMEOUT")
 	
-	s += "* I - Close"
+	s += "* L - Close"
 	text = s

@@ -32,7 +32,7 @@ offset_bottom = -55.0
 theme_override_colors/font_outline_color = Color(0.0588235, 0.105882, 0.14902, 1)
 theme_override_constants/outline_size = 4
 text = "// Hey, Mike. I've added the debug menu as you requested,
-// you can access it by double pressing the \"I\" key.
+// you can access it by double pressing the \"L\" key.
 // It's fairly robust (if I do say so myself), and should work even 
 // in case of hardware failure.  Speaking of, first thing I've added
 // was the             function that restarts the hardware
