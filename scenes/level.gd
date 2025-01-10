@@ -68,6 +68,10 @@ func add_projectile(projectile: Node2D, pos: Vector2) -> void:
 	projectile.reset_physics_interpolation()
 
 
+func get_player() -> Player:
+	return $Player
+
+
 func get_player_global_pos() -> Vector2:
 	return $Player.global_position
 

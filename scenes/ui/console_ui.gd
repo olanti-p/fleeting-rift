@@ -150,8 +150,9 @@ func _cheat_no_laser_damage() -> void:
 func _cheat_unstuck() -> void:
 	if !AllRuns.cheat_unstuck:
 		return
-	if $Player.is_control_hackably_disabled:
-		$Player.is_control_hackably_disabled = false
+	var player = get_parent().get_player()
+	if player.is_control_hackably_disabled:
+		player.is_control_hackably_disabled = false
 		_cheat_ok("Player controls reset")
 	else:
 		_cheat_fail("Player controls are fine")
