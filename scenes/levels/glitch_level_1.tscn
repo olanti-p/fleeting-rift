@@ -57,6 +57,9 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="CameraArea" parent="CameraAreas" index="0" instance=ExtResource("4_grpjt")]
+position = Vector2(0, -44)
+scale = Vector2(1, 1.2)
+camera_follow_mode = true
 
 [node name="CameraArea2" parent="CameraAreas" index="1" instance=ExtResource("4_grpjt")]
 position = Vector2(429, -200)
