@@ -19,6 +19,7 @@ func _ready() -> void:
 	for area in $CameraAreas.get_children():
 		area.owner_level = self
 		area.connect("player_entered", _on_camera_area_entered)
+		area.connect("player_exited", _on_camera_area_exited)
 	for door in $Doors.get_children():
 		door.connect("has_been_entered", _on_player_entered_door)
 	for door in $GlitchEntries.get_children():
@@ -30,6 +31,19 @@ func _on_camera_area_entered(_player: Player, area: CameraArea) -> void:
 		active_camera_area.detach_camera()
 	active_camera_area = area
 	active_camera_area.attach_camera(main_camera)
+
+
+func _on_camera_area_exited(_player: Player, area: CameraArea) -> void:
+	if area != active_camera_area:
+		return
+	active_camera_area.detach_camera()
+	active_camera_area = null
+	# HACK: find current camera area via brute force
+	for it in $CameraAreas.get_children():
+		if it.has_player():
+			active_camera_area = it
+			active_camera_area.attach_camera(main_camera)
+			return
 
 
 func _on_player_entered_door(new_scene: String, buggy: bool) -> void:

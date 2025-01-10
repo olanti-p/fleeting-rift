@@ -2,6 +2,7 @@ extends Area2D
 class_name CameraArea
 
 signal player_entered(player: Player, camera_area: CameraArea)
+signal player_exited(player: Player, camera_area: CameraArea)
 
 @onready var camera_fixed_position: Marker2D = $CameraFixedPosition
 
@@ -10,10 +11,24 @@ signal player_entered(player: Player, camera_area: CameraArea)
 var owner_level: Level = null
 var attached_to: Camera2D = null
 
+
 func _on_body_entered(body: Node2D) -> void:
 	var player = body as Player
 	assert(player)
 	player_entered.emit(player, self)
+
+
+func _on_body_exited(body: Node2D) -> void:
+	var player = body as Player
+	assert(player)
+	player_exited.emit(player, self)
+
+
+func has_player() -> bool:
+	for body in get_overlapping_bodies():
+		if body is Player:
+			return true
+	return false
 
 
 func attach_camera(camera: Camera2D) -> void:
