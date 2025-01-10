@@ -119,21 +119,22 @@ change_to_scene = "res://scenes/levels/level_map.tscn"
 is_return_door = true
 
 [node name="LabelBasic" type="Label" parent="Text" index="0"]
-offset_left = 137.0
-offset_top = 27.0
-offset_right = 246.0
-offset_bottom = 52.0
+offset_left = 80.0
+offset_top = 28.0
+offset_right = 303.0
+offset_bottom = 81.0
 text = "Press A and D to run
 Press SPACE to jump
-Hold SPACE for longer jumps"
+Hold SPACE for longer jumps
+Press P or ESC to pause or access settings"
 horizontal_alignment = 1
 
 [node name="LabelDash" type="Label" parent="Text" index="1"]
 unique_name_in_owner = true
-offset_left = 129.0
-offset_top = 93.0
-offset_right = 276.0
-offset_bottom = 132.0
+offset_left = 115.0
+offset_top = 108.0
+offset_right = 262.0
+offset_bottom = 147.0
 text = "Press G to dash"
 horizontal_alignment = 1
 
